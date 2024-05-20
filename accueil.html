@@ -18,12 +18,28 @@
         <h2 class="logo"><img src="logo.png" alt="Votre Logo" width="100"></h2>
         <nav class="navigation">
             <a href="accueil.html">Accueil</a>
-            <a href="Explorer">Explorer</a>
-            <a href="Radio">Radio</a>
+            <a href="explorer.html">Explorer</a>
+            <a href="radio.html">Radio</a>
+            <a href="playlist.html">Playlist</a>
+            <a href="coups_de_coeur.html">Coups de Cœur</a>
         </nav>
     </header>
     <main class="content">
-        <!-- Contenu principal du site -->
+        <section id="playlist">
+            <h2>Ma Playlist</h2>
+            <ul id="playlist-list">
+                <!-- Les chansons de la playlist seront ajoutées ici -->
+            </ul>
+            <input type="text" id="song-input" placeholder="Ajouter une chanson">
+            <button onclick="addSong()">Ajouter</button>
+        </section>
+        <section id="coups-de-coeur">
+            <h2>Coups de Cœur</h2>
+            <ul id="favorites-list">
+                <!-- Les chansons coups de cœur seront ajoutées ici -->
+            </ul>
+        </section>
     </main>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+.top-header {
+    width: 100%;
+    background: #1d1d1d;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.top-navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.top-navigation a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.side-header {
+    width: 200px;
+    height: 100vh;
+    background: #162938;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0 20px; /* Ajout de l'espace en haut pour la barre de navigation supérieure */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+    margin-bottom: 30px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 15px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.content {
+    margin-left: 200px; /* Espace pour la barre latérale */
+    padding-top: 50px; /* Espace pour la barre supérieure */
+    padding: 20px;
+    width: calc(100% - 200px);
+}

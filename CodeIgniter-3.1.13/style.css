@@ -152,22 +152,22 @@ body {
     height: auto; /* Maintient le ratio d'aspect */
 }
 
-.albums-list {
+/* Styles pour la disposition des albums */
+.list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding-top: 20px;
 }
 
-.album {
-    width: 30%; 
+.list div {
+    width: calc(50% - 10px);
     margin-bottom: 20px;
 }
 
-.album img {
-    max-width: 100%;
-    height: auto;
+@media screen and (max-width: 768px) {
+    .list div {
+        width: calc(100% - 10px);
+    }
 }
-
-
-
 

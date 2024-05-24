@@ -53,4 +53,6 @@ $route['default_controller'] = 'AccueilController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['explorer'] = 'explorer/index';
+$route['accueil'] = 'AccueilController';
+
 

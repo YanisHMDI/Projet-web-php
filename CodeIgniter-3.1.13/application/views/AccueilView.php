@@ -9,7 +9,7 @@
 <body>
     <header class="top-header">
         <div class="top-navigation">
-            <button class="btn connexion">connexion</button>
+            <button class="btn_connexion">connexion</button>
             <a href="#">Menu 2</a>
             <a href="#">Menu 3</a>
         </div>
@@ -18,7 +18,7 @@
         <h2 class="logo"><img src="<?php echo base_url('assets/logo.png'); ?>" alt="Votre Logo" width="100"></h2>
         <div class="search-bar">
             <input type="text" id="song-input" placeholder="Ajouter une chanson">
-            <button onclick="addSong()">Ajouter</button>
+            <button onclick="addSong">Ajouter</button>
         </div>
         <nav class="navigation">
             <a href="<?php echo site_url('accueil'); ?>">Accueil</a>
@@ -30,7 +30,11 @@
     </header>
 
     <section class="presentation">
+    <h2 class="logo"><img src="<?php echo base_url('assets/logo.png'); ?>" alt="Votre Logo" width="100"></h2>
         <h1>Découvrez de nouveaux morceaux tous les jours</h1>
+        <p>Profitez de playlists et d'albums qui s'inspirent des artistes et des genres que vous écoutez. Gratuit pendant 1 mois, puis €10,99/mois.<p>
+        <button onclick="addSong">Essayer gratuitement</button>
+        <img src="<?php echo base_url('assets/Macbook.png'); ?>" alt="Sample Image" class="sample-image">
     </section>
     <script src="<?php echo base_url('assets/script.js'); ?>"></script>
 </body>

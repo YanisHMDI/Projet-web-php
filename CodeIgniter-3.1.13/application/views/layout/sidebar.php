@@ -10,5 +10,7 @@
         <a href="<?php echo site_url('radio'); ?>">Radio</a>
         <a href="<?php echo site_url('playlist'); ?>">Playlist</a>
         <a href="<?php echo site_url('coups_de_coeur'); ?>">Coups de Cœur</a>
+        <button class="btn_connexion" onclick="window.location.href='<?php echo site_url('user/login'); ?>'">connexion</button>
+        <button class="btn_inscription" onclick="window.location.href='<?php echo site_url('user/register'); ?>'">inscription</button>
     </nav>
 </aside>

@@ -2,28 +2,25 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1,width=device-width, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <title>Binks</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
 </head>
 <body>
-    <!-- Inclure la barre supérieure -->
-    <?php $this->load->view('layout/topbar'); ?>
+   
 
     <!-- Inclure la barre latérale -->
     <?php $this->load->view('layout/sidebar'); ?>
 
     <!-- Contenu de la page -->
-    
     <section class="list">
         <?php foreach($albums as $album): ?>
             <div>
                 <article>
-                    <header class='short-text'>
-                        <!-- Ajouter un lien autour du nom de l'album -->
-                        <?php echo anchor("albums/details/{$album->id}", "{$album->name}"); ?>
-                    </header>
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
+                <header class='short-text'>
+                    <?php echo anchor("albums/details/{$album->id}", "<h2 class='album-title'>{$album->name}</h2>"); ?>
+                </header>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
                     <footer class='short-text'><?php echo "{$album->year} - {$album->artistName}"; ?></footer>
                 </article>
             </div>

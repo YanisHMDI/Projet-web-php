@@ -29,21 +29,5 @@ class Albums extends CI_Controller {
 		$this->load->view('views/explorer');
 	}
 
-
-
-    public function details($album_id) {
-        // Utilisez l'ID de l'album pour récupérer les détails de l'album depuis le modèle
-        $album_details = $this->model_music->getAlbumDetails($album_id);
-
-        // Vérifiez si l'album existe
-        if ($album_details) {
-            // Chargez la vue des détails de l'album avec les données récupérées
-            $this->load->view('album_details', ['album_details' => $album_details]);
-        } else {
-            // Si l'album n'existe pas, redirigez vers une page d'erreur ou affichez un message d'erreur
-            show_404(); // Affiche une erreur 404
-        }
-    }
-
 }
 ?>

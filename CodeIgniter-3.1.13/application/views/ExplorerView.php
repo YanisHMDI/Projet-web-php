@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
 </head>
 <body>
-   
-
     <!-- Inclure la barre latérale -->
     <?php $this->load->view('layout/sidebar'); ?>
 
@@ -17,10 +15,10 @@
         <?php foreach($albums as $album): ?>
             <div>
                 <article>
-                <header class='short-text'>
-                    <?php echo anchor("albums/details/{$album->id}", "<h2 class='album-title'>{$album->name}</h2>"); ?>
-                </header>
-                <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
+                    <header class='short-text'>
+                        <?php echo anchor("albums/details/{$album->id}", "<h2 class='album-title'>{$album->name}</h2>"); ?>
+                    </header>
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
                     <footer class='short-text'><?php echo "{$album->year} - {$album->artistName}"; ?></footer>
                 </article>
             </div>

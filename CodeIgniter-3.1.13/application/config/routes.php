@@ -54,6 +54,15 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['explorer'] = 'explorer/index';
 $route['accueil'] = 'AccueilController';
+$route['albums/view/(:num)'] = 'explorer/details/$1'; // Correction de 'exlporer' à 'explorer'
+
+
+
+
+
+
+
+
 
 
 

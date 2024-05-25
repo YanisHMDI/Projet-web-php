@@ -14,13 +14,14 @@
     <?php $this->load->view('layout/sidebar'); ?>
 
     <!-- Contenu de la page -->
-    <h5>Albums list</h5>
+    
     <section class="list">
         <?php foreach($albums as $album): ?>
             <div>
                 <article>
                     <header class='short-text'>
-                        <?php echo anchor("albums/view/{$album->id}", "{$album->name}"); ?>
+                        <!-- Ajouter un lien autour du nom de l'album -->
+                        <?php echo anchor("albums/details/{$album->id}", "{$album->name}"); ?>
                     </header>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
                     <footer class='short-text'><?php echo "{$album->year} - {$album->artistName}"; ?></footer>

@@ -2,11 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif; /* Utilisation de la police Poppins comme police de base */
 }
 
 body {
     display: flex;
+    flex-direction: column;
+    margin-left: 200px; /* Espace pour la barre latérale */
+    padding-top: 50px; /* Espace pour la barre supérieure */
 }
 
 .top-header {
@@ -31,7 +34,8 @@ body {
     font-size: 1em;
     font-weight: 500;
 }
-.btn_connexion{
+
+.btn_connexion {
     padding: 10px;
     font-size: 1em;
     border: none;
@@ -40,7 +44,6 @@ body {
     color: #fff;
     cursor: pointer;
 }
-
 
 .side-header {
     width: 200px;
@@ -134,10 +137,9 @@ body {
 }
 
 .presentation {
-    margin-left: 200px; /* Espace pour la barre latérale */
-    padding-top: 50px; /* Espace pour la barre supérieure */
     padding: 20px;
-    width: calc(100% - 200px);
+    width: calc(100% - 220px); /* Ajuster pour laisser de l'espace pour la barre latérale et les marges */
+    margin: 50px 10px 0 210px; /* Espace pour la barre supérieure et la barre latérale */
     text-align: center; /* Centrer le texte */
 }
 
@@ -168,6 +170,35 @@ body {
     height: auto;
 }
 
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    margin-left: 220px;
+}
 
+.list div {
+    flex: 1 1 calc(25% - 16px);
+    box-sizing: border-box;
+}
 
+.list article {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    background: #fff;
+}
 
+.list img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.short-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

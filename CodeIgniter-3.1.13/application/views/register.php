@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/inscription'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
+
+
 </head>
 <body>
+<?php $this->load->view('layout/sidebar'); ?>
 <div class="container">
         <h2>Inscription</h2>
     <?php echo validation_errors(); ?>

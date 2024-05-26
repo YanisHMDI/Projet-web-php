@@ -57,6 +57,10 @@ $route['explorer'] = 'Explorer/index';
 $route['explorer/index'] = 'Explorer/index'; // Pour plus de clarté, mais optionnel
 $route['explorer/details/(:num)'] = 'Explorer/details/$1'; // Correction de 'exlporer' à 'explorer'
 $route['accueil'] = 'AccueilController';
+$route['playlist/create'] = 'playlist/create';
+$route['playlist/create_process'] = 'playlist/create_process';
+$route['playlist'] = 'playlist/index';
+
 
 
 

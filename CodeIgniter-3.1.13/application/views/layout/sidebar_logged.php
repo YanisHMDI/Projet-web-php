@@ -6,7 +6,7 @@
     </div>
     <nav class="navigation">
         <a href="<?php echo site_url('accueil'); ?>">Accueil</a>
-        <a href="<?php echo site_url('Explorer'); ?>">Explorer</a>
+        <a href="<?php echo site_url('explorer'); ?>">Explorer</a>
         <a href="<?php echo site_url('playlist'); ?>">Playlist</a>
         <a href="<?php echo site_url('coups_de_coeur'); ?>">Coups de Cœur</a>
         <a href="<?php echo site_url('user/logout'); ?>">Déconnexion</a>

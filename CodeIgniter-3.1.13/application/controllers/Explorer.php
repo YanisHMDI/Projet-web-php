@@ -7,6 +7,8 @@ class Explorer extends CI_Controller {
         parent::__construct();
         $this->load->model('Model_music');
         $this->load->helper('url');
+        $this->load->library('session'); // Charger la bibliothèque de session
+
     }
 
     public function index() {

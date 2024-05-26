@@ -37,12 +37,11 @@ class Model_music extends CI_Model {
             return null; // Retourne null si l'album n'existe pas
         }
 
-        // Récupérer les pistes de l'album
+        // Récupérer les pistes de l'album directement à partir de la table 'track'
         $tracks_query = $this->db->query("
-            SELECT track.name as trackName, track.duration
+            SELECT *
             FROM track
-            JOIN album_track ON album_track.trackid = track.id
-            WHERE album_track.albumid = ?", array($album_id)
+            WHERE albumId = ?", array($album_id)
         );
 
         // Créer un objet avec les détails de l'album et ses pistes

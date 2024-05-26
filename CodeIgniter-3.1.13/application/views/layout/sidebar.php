@@ -1,15 +1,10 @@
-<aside class="side-header">
-    <h2 class="logo"><img src="<?php echo base_url('assets/logo.png'); ?>" alt="Votre Logo" width="100"></h2>
-    <div class="search-bar">
-        <input type="text" id="song-input" placeholder="Ajouter une chanson">
-        <button onclick="addSong()">Ajouter</button>
-    </div>
-    <nav class="navigation">
-        <a href="<?php echo site_url('accueil'); ?>">Accueil</a>
-        <a href="<?php echo site_url('Explorer'); ?>">Explorer</a>
-        <a href="<?php echo site_url('playlist'); ?>">Playlist</a>
-        <a href="<?php echo site_url('coups_de_coeur'); ?>">Coups de Cœur</a>
-        <button class="btn_connexion" onclick="window.location.href='<?php echo site_url('user/login'); ?>'">connexion</button>
-        <button class="btn_inscription" onclick="window.location.href='<?php echo site_url('user/register'); ?>'">inscription</button>
-    </nav>
-</aside>
+<?php
+// Vérifiez si l'utilisateur est connecté en vérifiant la présence de la session 'username'
+$user_logged_in = $this->session->userdata('username');
+
+if ($user_logged_in) {
+    include 'sidebar_logged.php';
+} else {
+    include 'sidebar_not_logged.php';
+}
+?>

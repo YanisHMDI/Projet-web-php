@@ -23,24 +23,21 @@
             <?php if(isset($album->description)): ?>
                 <p>Description: <?php echo $album->description; ?></p>
             <?php endif; ?>
-            <?php if(isset($album->songs) && count($album->songs) > 0): ?>
-    <h3>Liste des chansons</h3>
-    <ul>
-        <?php foreach($album->songs as $song): ?>
-            <li>
-                                <?php echo $song->song; ?> - Durée: <?php echo floor($song->duration / 60) . ':' . sprintf("%02d", $song->duration % 60); ?>
-                                <?php if(isset($song->diskNumber)): ?>
-                                    (Disque <?php echo $song->diskNumber; ?>)
-                                    <?php endif; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php else: ?>
+            <?php if(isset($album->tracks) && count($album->tracks) > 0): ?>
+                <h3>Liste des chansons</h3>
+                <ul>
+                    <?php foreach($album->tracks as $track): ?>
+                        <li>
+                            <?php echo $track->songName; ?> - Durée: <?php echo floor($track->duration / 60) . ':' . sprintf("%02d", $track->duration % 60); ?>
+                            <?php if(isset($track->diskNumber) && $track->diskNumber > 0): ?>
+                                (Disque <?php echo $track->diskNumber; ?>)
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
                 <p>Aucune chanson trouvée pour cet album.</p>
             <?php endif; ?>
-
-            
-
         <?php else: ?>
             <p>Album non trouvé.</p>
         <?php endif; ?>

@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login'); ?>">
 </head>
 <body>
-    <h1>Connexion</h1>
+<div class="container">
+        <h2>Connexion</h2>
     <?php if ($this->session->flashdata('error')): ?>
         <p><?php echo $this->session->flashdata('error'); ?></p>
     <?php endif; ?>

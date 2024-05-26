@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/inscription'); ?>">
 </head>
 <body>
-    <h2>Inscription</h2>
+<div class="container">
+        <h2>Inscription</h2>
     <?php echo validation_errors(); ?>
     <?php echo form_open('user/register'); ?>
         <div>

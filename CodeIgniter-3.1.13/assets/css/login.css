@@ -1,16 +1,29 @@
-/* style.css */
-
 /* Style de base */
 body {
+    background: linear-gradient(45deg, #FC466B, #3F5EFB);
+    height: 100vh;
     font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    justify-content: center;
     margin: 0;
     padding: 0;
 }
 
 .container {
+    position: relative;
     max-width: 400px;
-    margin: 0 auto;
     padding: 20px;
+    background: rgba(255, 255, 255, .3);
+    border-radius: 20px;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
+    display: inline-block; /* Ajustement de la largeur au contenu */
+    text-align: center; /* Centre horizontalement */
 }
 
 h1 {
@@ -23,17 +36,32 @@ label {
     margin-bottom: 5px;
 }
 
+/* Vos styles pour les inputs et boutons */
+input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+    padding: 1rem;
+    width: calc(100% - 2rem); /* Ajustement pour tenir compte des paddings */
+    max-width: 100%; /* Ajustement pour éviter le dépassement du conteneur */
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    -moz-backdrop-filter: blur(5px);
+    box-shadow: 4px 4px 60px rgba(0, 0, 0, .2);
+    color: white;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+    transition: all .3s;
+    margin-bottom: 1em; /* Ajustement de la marge en bas */
 }
 
 button[type="submit"] {
-    width: 100%;
+    margin-top: 10px;
+    width: calc(100% - 2rem); /* Ajustement pour tenir compte des paddings */
     padding: 10px;
     background-color: #007bff;
     color: #fff;
@@ -46,44 +74,78 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-.error-message {
-    color: red;
-    margin-bottom: 10px;
+/* Vos styles pour les interactions */
+input:hover,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    background: rgba(255,255,255,0.1);
+    box-shadow: 4px 4px 60px 8px rgba(0,0,0,0.2);
 }
 
-/* Sidebar style */
-.side-header {
-    background-color: #007bff;
+::placeholder {
     color: #fff;
-    padding: 20px;
 }
 
-.logo img {
-    display: block;
-    margin: 0 auto;
+/* Vos styles pour le fond et le formulaire */
+p {
+    color: white;
+    font-weight: 500;
+    opacity: .7;
+    font-size: 1.4rem;
+    margin-bottom: 60px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
 }
 
-.navigation {
-    margin-top: 20px;
-}
-
-.navigation a {
-    display: block;
-    color: #fff;
+a {
     text-decoration: none;
-    margin-bottom: 10px;
+    color: #ddd;
+    font-size: 12px;
 }
 
-.navigation button {
-    width: 100%;
-    padding: 10px;
-    background-color: #fff;
-    color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+a:hover {
+    text-shadow: 2px 2px 6px #00000040;
 }
 
-.navigation button:hover {
-    background-color: #f2f2f2;
+a:active {
+    text-shadow: none;
+}
+
+.drop {
+    background: rgba(255, 255, 255, .3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+    box-shadow: 10px 10px 60px -8px rgba(0,0,0,0.2);
+    position: absolute;
+    transition: all 0.2s ease;
+}
+
+.drop-1 {
+    height: 80px; width: 80px;
+    top: -20px; left: -40px;
+    z-index: -1;
+}
+
+.drop-2 {
+    height: 80px; width: 80px;
+    bottom: -30px; right: -10px;
+}
+
+.drop-3 {
+    height: 100px; width: 100px;
+    bottom: 120px; right: -50px;
+    z-index: -1;
+}
+
+.drop-4 {
+    height: 120px; width: 120px;
+    top: -60px; right: -60px;
+}
+
+.drop-5 {
+    height: 60px; width: 60px;
+    bottom: 170px; left: 90px;
+    z-index: -1;
 }

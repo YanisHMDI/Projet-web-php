@@ -16,7 +16,7 @@
             <div>
                 <article>
                     <header class='short-text'>
-                        <?php echo anchor("albums/details/{$album->id}", "<h2 class='album-title'>{$album->name}</h2>"); ?>
+                        <?php echo anchor("explorer/details/{$album->id}", "<h2 class='album-title'>{$album->name}</h2>"); ?>
                     </header>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
                     <footer class='short-text'><?php echo "{$album->year} - {$album->artistName}"; ?></footer>

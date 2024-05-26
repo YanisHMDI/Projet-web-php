@@ -52,12 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'AccueilController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['explorer'] = 'explorer/index';
+
+$route['explorer'] = 'Explorer/index';
+$route['explorer/index'] = 'Explorer/index'; // Pour plus de clarté, mais optionnel
+$route['explorer/details/(:num)'] = 'Explorer/details/$1'; // Correction de 'exlporer' à 'explorer'
 $route['accueil'] = 'AccueilController';
-$route['albums/view/(:num)'] = 'explorer/details/$1'; // Correction de 'exlporer' à 'explorer'
-
-
-
 
 
 

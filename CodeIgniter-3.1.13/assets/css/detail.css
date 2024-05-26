@@ -1,0 +1,116 @@
+/* General styling for body and elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url(images/html_table.jpg) center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.album-details {
+    display: flex;
+    flex-direction: row;
+    max-width: 90vw;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    overflow: hidden;
+}
+
+.album-cover {
+    flex: 0 0 auto;
+    margin: 20px;
+}
+
+.album-cover img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.album-info {
+    flex: 1;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.album-info h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.album-info p {
+    margin-bottom: 10px;
+}
+
+.album-info .artist, .album-info .year {
+    color: black; /* Set text color to black */
+}
+
+.track-list {
+    margin-top: 20px;
+}
+
+.track-list h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.track-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.track-list th, .track-list td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.track-list thead th {
+    position: sticky;
+    top: 0;
+    background-color: #d5d1defe;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.track-list tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+.track-list tbody tr {
+    transition: .5s ease-in-out;
+}
+
+.track-list tbody tr:hover {
+    background-color: #fff6 !important;
+}
+
+@media (max-width: 768px) {
+    .album-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-cover {
+        margin-right: 0;
+    }
+
+    .album-info {
+        text-align: center;
+    }
+
+    .track-list table {
+        width: 100%;
+    }
+}

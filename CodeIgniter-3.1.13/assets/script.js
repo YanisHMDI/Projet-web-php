@@ -28,3 +28,7 @@ function addToFavorites(songName) {
     favoriteItem.textContent = songName;
     favoritesList.appendChild(favoriteItem);
 }
+
+
+
+

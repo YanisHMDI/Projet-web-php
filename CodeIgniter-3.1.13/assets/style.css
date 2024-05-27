@@ -7,7 +7,7 @@
 }
 
 body {
-    background: linear-gradient(45deg, #FC466B, #3F5EFB);
+    background: linear-gradient(45deg, #e2e2e2, #3F5EFB);
     height: 100%;
     font-family: arial, sans-serif;
     display: flex;

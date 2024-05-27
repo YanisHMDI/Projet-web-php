@@ -1,0 +1,33 @@
+/* Styles pour la liste des artistes */
+.artist-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    margin-left: 220px;
+}
+
+.artist-list div {
+    flex: 1 1 calc(25% - 16px);
+    box-sizing: border-box;
+}
+
+.artist-list article {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    background: #fff;
+}
+
+.artist-list img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.artist-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

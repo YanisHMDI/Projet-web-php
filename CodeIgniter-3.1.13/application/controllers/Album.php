@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Explorer extends CI_Controller {
+class Album extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -14,7 +14,7 @@ class Explorer extends CI_Controller {
         $argument1 = 'valeur_argument1';
         $argument2 = 'valeur_argument2';
         $albums = $this->Model_music->getAlbums($argument1, $argument2);
-        $this->load->view('ExplorerView', ['albums' => $albums]);
+        $this->load->view('AlbumView', ['albums' => $albums]);
     }
 
     public function details($album_id) {

@@ -53,13 +53,16 @@ $route['default_controller'] = 'AccueilController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['explorer'] = 'Explorer/index';
-$route['explorer/index'] = 'Explorer/index'; // Pour plus de clarté, mais optionnel
-$route['explorer/details/(:num)'] = 'Explorer/details/$1'; // Correction de 'exlporer' à 'explorer'
+$route['album'] = 'Album/index';
+$route['album/index'] = 'Album/index'; 
+$route['album/details/(:num)'] = 'Album/details/$1'; 
 $route['accueil'] = 'AccueilController';
 $route['playlist/create'] = 'playlist/create';
 $route['playlist/create_process'] = 'playlist/create_process';
 $route['playlist'] = 'playlist/index';
+$route['artist'] = 'artist/index';
+$route['artist/view/(:num)'] = 'artist/view/$1';
+
 
 
 

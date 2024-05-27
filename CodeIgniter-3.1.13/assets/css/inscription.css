@@ -1,18 +1,21 @@
 /* Style de base */
 body {
-    background: linear-gradient(45deg, #e2e2e2, #3F5EFB);
-    height: 100vh;
+    background: linear-gradient(45deg, #FC466B, #3F5EFB);
+    min-height: 100vh; /* Assurez-vous que le dégradé couvre toute la hauteur */
     font-family: Arial, sans-serif;
     display: flex;
-    align-items: center; /* Centre verticalement */
+    align-items: center;
     justify-content: center;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    position: relative;
-    text-align: center; /* Centre horizontalement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 h2 {
@@ -34,9 +37,8 @@ input[type="password"] {
     border-left: 1px solid rgba(255, 255, 255, .3);
     border-top: 1px solid rgba(255, 255, 255, .3);
     padding: 1rem;
-    width: calc(100% - 2rem); /* Ajustement pour tenir compte des paddings */
-    /* width: 100%; */
-    max-width: 100%; /* Ajustement pour éviter le dépassement du conteneur */
+    width: calc(100% - 2rem);
+    max-width: 100%;
     border-radius: 50px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -46,12 +48,12 @@ input[type="password"] {
     font-weight: 500;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
     transition: all .3s;
-    margin-bottom: 1em; /* Ajustement de la marge en bas */
+    margin-bottom: 1em;
 }
 
 button[type="submit"] {
     margin-top: 10px;
-    width: 100%; /* Ajustement pour remplir la largeur du conteneur */
+    width: 100%;
     padding: 10px;
     background-color: #007bff;
     color: #fff;
@@ -77,23 +79,9 @@ input[type="password"]:focus {
 }
 
 /* Vos styles pour le fond et le formulaire */
-body {
-    background: linear-gradient(45deg, #FC466B, #3F5EFB);
-    height: 100vh;
-    font-family: arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    position: relative;
-}
-
 form {
     background: rgba(255, 255, 255, .3);
     padding: 3rem;
-    height: 320px;
     border-radius: 20px;
     border-left: 1px solid rgba(255, 255, 255, .3);
     border-top: 1px solid rgba(255, 255, 255, .3);
@@ -101,10 +89,11 @@ form {
     -webkit-backdrop-filter: blur(10px);
     -moz-backdrop-filter: blur(10px);
     box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
-    display: inline-block; /* Ajustement de la largeur au contenu */
-    text-align: left; /* Alignement du texte à gauche */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
 }
-
 
 p {
     color: white;

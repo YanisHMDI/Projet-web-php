@@ -1,4 +1,4 @@
-/* css pour présenter les albums des artistes */
+/* General styling for body and elements */
 * {
     margin: 0;
     padding: 0;
@@ -11,106 +11,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; 
 }
 
-.album-details {
-    display: flex;
-    flex-direction: row;
+.artist-albums-section {
     max-width: 90vw;
     background-color: #fff5;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
-    overflow: hidden;
+    padding: 20px;
+    text-align: center;
 }
 
-.album-cover {
-    flex: 0 0 auto;
-    margin: 20px;
-}
-
-.album-cover img {
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-}
-
-.album-info {
-    flex: 1;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.album-info h2 {
+.artist-albums-section h2 {
     font-size: 2em;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.album-info p {
-    margin-bottom: 10px;
+.album-list {
+    list-style-type: none;
+    padding: 0;
 }
 
-.album-info .artist, .album-info .year {
-    color: black; 
+.album-item {
+    margin: 10px 0;
+    font-size: 1.2em;
 }
 
-.track-list {
-    margin-top: 20px;
-}
-
-.track-list h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.track-list table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.track-list th, .track-list td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.track-list thead th {
-    position: sticky;
-    top: 0;
-    background-color: #d5d1defe;
-    text-transform: capitalize;
-    cursor: pointer;
-}
-
-.track-list tbody tr:nth-child(even) {
-    background-color: #0000000b;
-}
-
-.track-list tbody tr {
-    transition: .5s ease-in-out;
-}
-
-.track-list tbody tr:hover {
-    background-color: #fff6 !important;
+.no-album {
+    font-size: 1.2em;
+    color: #666;
 }
 
 @media (max-width: 768px) {
-    .album-details {
-        flex-direction: column;
-        align-items: center;
+    .artist-albums-section {
+        padding: 10px;
     }
 
-    .album-cover {
-        margin-right: 0;
-    }
-
-    .album-info {
-        text-align: center;
-    }
-
-    .track-list table {
-        width: 100%;
+    .album-item {
+        font-size: 1em;
     }
 }

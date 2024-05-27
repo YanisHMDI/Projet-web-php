@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artistes</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/artist.css'); ?>">
-
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/artist.css'); ?>">
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
@@ -14,13 +13,13 @@
     <section class="artist-section">
         <h2>Artistes</h2>
         <?php if (!empty($artists)): ?>
-            <ul>
+            <ul class="artist-list">
                 <?php foreach ($artists as $artist): ?>
-                    <li><a href="<?php echo site_url('artist/view/' . $artist->id); ?>"><?php echo $artist->name; ?></a></li>
+                    <li class="artist-item"><a href="<?php echo site_url('artist/view/' . $artist->id); ?>"><?php echo $artist->name; ?></a></li>
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <p>Aucun artiste disponible.</p>
+            <p class="no-artist">Aucun artiste disponible.</p>
         <?php endif; ?>
     </section>
 </body>

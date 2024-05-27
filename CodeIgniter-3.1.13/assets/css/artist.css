@@ -1,33 +1,64 @@
-/* Styles pour la liste des artistes */
-.artist-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 16px;
-    margin-left: 220px;
-}
-
-.artist-list div {
-    flex: 1 1 calc(25% - 16px);
+/* General styling for body and elements */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
-.artist-list article {
-    border: 1px solid #ccc;
-    padding: 16px;
-    border-radius: 8px;
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-section {
+    max-width: 90vw;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    padding: 20px;
     text-align: center;
-    background: #fff;
 }
 
-.artist-list img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 8px;
+.artist-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
 }
 
-.artist-name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.artist-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.artist-item {
+    margin: 10px 0;
+}
+
+.artist-item a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.artist-item a:hover {
+    color: #007BFF;
+}
+
+.no-artist {
+    font-size: 1.2em;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .artist-section {
+        padding: 10px;
+    }
+
+    .artist-item a {
+        font-size: 1em;
+    }
 }

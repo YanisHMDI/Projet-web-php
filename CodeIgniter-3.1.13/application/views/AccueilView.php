@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <title>Binks</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/style'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
 </head>
 <body>
-
 
 <?php $this->load->view('layout/sidebar'); ?>
 

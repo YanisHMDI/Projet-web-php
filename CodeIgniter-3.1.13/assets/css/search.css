@@ -1,0 +1,63 @@
+/* CSS pour la page de recherche */
+
+.search-results {
+    max-width: 90vw;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
+    border-radius: 0.8rem;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.search-results h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.search-results h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.artist-list, .album-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.artist, .album {
+    flex: 1 1 calc(25% - 16px);
+    box-sizing: border-box;
+}
+
+.artist-bubble, .album-bubble {
+    background: #fff;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.artist-bubble:hover, .album-bubble:hover {
+    transform: translateY(-10px);
+}
+
+.artist-name, .album-title {
+    font-size: 1.2em;
+    color: #000;
+}
+
+.artist-bubble a, .album-bubble a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-artist, .no-album {
+    font-size: 1.2em;
+    color: #666;
+}

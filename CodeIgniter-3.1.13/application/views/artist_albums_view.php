@@ -15,7 +15,11 @@
         <?php if (!empty($albums)): ?>
             <ul class="album-list">
                 <?php foreach ($albums as $album): ?>
-                    <li class="album-item"><?php echo $album->name; ?> (<?php echo $album->year; ?>)</li>
+                    <li class="album-item">
+                        <a href="<?php echo site_url('album/details/' . $album->id); ?>">
+                            <?php echo $album->name; ?> (<?php echo $album->year; ?>)
+                        </a>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>

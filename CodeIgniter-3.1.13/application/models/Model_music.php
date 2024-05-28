@@ -8,6 +8,16 @@ class Model_music extends CI_Model {
         $this->load->database();
     }
 
+    public function search_albums($query) {
+        $this->db->select('album.id, album.name, artist.name as artistName, year');
+        $this->db->from('album');
+        $this->db->join('artist', 'album.artistId = artist.id');
+        $this->db->like('album.name', $query);
+        $this->db->or_like('artist.name', $query);
+        $result = $this->db->get();
+        return $result->result();
+    }
+
     public function getAlbums($argument1, $argument2) {
         // Utilise $argument1 et $argument2 dans ta requête SQL ou autre logique de traitement
         $query = $this->db->query("

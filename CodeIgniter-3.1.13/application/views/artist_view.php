@@ -13,11 +13,17 @@
     <section class="artist-section">
         <h2>Artistes</h2>
         <?php if (!empty($artists)): ?>
-            <ul class="artist-list">
+            <div class="artist-list">
                 <?php foreach ($artists as $artist): ?>
-                    <li class="artist-item"><a href="<?php echo site_url('artist/view/' . $artist->id); ?>"><?php echo $artist->name; ?></a></li>
+                    <section class="artist">
+                        <div class="artist-bubble">
+                            <a href="<?php echo site_url('artist/view/' . $artist->id); ?>">
+                                <div class="artist-name"><?php echo $artist->name; ?></div>
+                            </a>
+                        </div>
+                    </section>
                 <?php endforeach; ?>
-            </ul>
+            </div>
         <?php else: ?>
             <p class="no-artist">Aucun artiste disponible.</p>
         <?php endif; ?>

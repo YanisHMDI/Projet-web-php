@@ -1,24 +1,25 @@
-/* General styling for body and elements */
+/* Réinitialisation */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif; /* Utilisation de la police Poppins comme police de base */
 }
 
 body {
-    min-height: 100vh;
+    background: linear-gradient(45deg, #e2e2e2, #3F5EFB);
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .artist-section {
     max-width: 90vw;
-    background-color: #fff5;
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(7px);
-    box-shadow: 0 .4rem .8rem #0005;
-    border-radius: .8rem;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
+    border-radius: 0.8rem;
     padding: 20px;
     text-align: center;
 }
@@ -29,23 +30,38 @@ body {
 }
 
 .artist-list {
-    list-style-type: none;
-    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
 }
 
-.artist-item {
-    margin: 10px 0;
+.artist {
+    flex: 1 1 calc(25% - 16px); /* Ajuste la largeur pour 4 par ligne */
+    box-sizing: border-box;
 }
 
-.artist-item a {
-    text-decoration: none;
-    color: #000;
+.artist-bubble {
+    background: #fff;
+    border-radius: 50%; /* Forme circulaire */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour l'effet de levitation */
+    transition: transform 0.3s; /* Animation pour l'effet au survol */
+}
+
+.artist-bubble:hover {
+    transform: translateY(-10px); /* Légère élévation au survol */
+}
+
+.artist-name {
     font-size: 1.2em;
-    transition: color 0.3s;
+    color: #000;
 }
 
-.artist-item a:hover {
-    color: #007BFF;
+.artist-bubble a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .no-artist {
@@ -58,7 +74,7 @@ body {
         padding: 10px;
     }
 
-    .artist-item a {
+    .artist-name {
         font-size: 1em;
     }
 }

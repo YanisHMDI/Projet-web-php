@@ -14,3 +14,10 @@
         <button class="btn_inscription" onclick="window.location.href='<?php echo site_url('user/register'); ?>'">inscription</button>
     </nav>
 </aside>
+<script>
+    function performSearch() {
+        var query = document.getElementById('search-input').value;
+        window.location.href = "<?php echo site_url('search'); ?>?query=" + query;
+    }
+</script>
+

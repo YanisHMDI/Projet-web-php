@@ -22,42 +22,48 @@
     margin-bottom: 10px;
 }
 
-.artist-list, .album-list {
+.artist-list, .album-list, .song-list {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
 }
 
-.artist, .album {
+.artist, .album, .song {
     flex: 1 1 calc(25% - 16px);
     box-sizing: border-box;
 }
 
-.artist-bubble, .album-bubble {
+.artist-bubble, .album-bubble, .song-bubble {
     background: #fff;
-    border-radius: 50%;
+    border-radius: 10px;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
 }
 
-.artist-bubble:hover, .album-bubble:hover {
+.artist-bubble:hover, .album-bubble:hover, .song-bubble:hover {
     transform: translateY(-10px);
 }
 
-.artist-name, .album-title {
+.artist-name, .album-title, .song-name {
     font-size: 1.2em;
     color: #000;
 }
 
-.artist-bubble a, .album-bubble a {
+.album-bubble a {
     text-decoration: none;
     color: inherit;
+    font-weight: bold; /* Mise en gras du nom de l'album */
 }
 
-.no-artist, .no-album {
+.album-title, .song-album {
+    font-size: 1em;
+    color: #666;
+}
+
+.no-artist, .no-album, .no-song {
     font-size: 1.2em;
     color: #666;
 }

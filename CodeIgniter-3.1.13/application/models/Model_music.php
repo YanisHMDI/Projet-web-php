@@ -17,6 +17,18 @@ class Model_music extends CI_Model {
         return $result->result();
     }
 
+    public function search_songs($query) {
+        $this->db->select('track.id, song.name as songName, album.name as albumName, artist.name as artistName');
+        $this->db->from('track');
+        $this->db->join('album', 'track.albumId = album.id');
+        $this->db->join('artist', 'album.artistId = artist.id');
+        $this->db->join('song', 'track.songId = song.id');
+        $this->db->like('song.name', $query ,'after');
+        $result = $this->db->get();
+        return $result->result();
+    }
+    
+
     public function getAlbums($argument1, $argument2) {
         // Utilise $argument1 et $argument2 dans ta requête SQL ou autre logique de traitement
         $query = $this->db->query("

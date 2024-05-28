@@ -14,7 +14,8 @@ class Search extends CI_Controller {
         $query = $this->input->get('query');
         $albums = $this->Model_music->search_albums($query);
         $artists = $this->Artist_model->search_artists($query);
-        $this->load->view('SearchView', ['albums' => $albums, 'artists' => $artists]);
+        $songs = $this->Model_music->search_songs($query); // Ajout de la recherche de titres
+        $this->load->view('SearchView', ['albums' => $albums, 'artists' => $artists, 'songs' => $songs]); // Passage des résultats de recherche de titres à la vue
     }
 }
 ?>

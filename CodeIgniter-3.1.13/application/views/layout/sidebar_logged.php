@@ -17,6 +17,6 @@
 <script>
     function performSearch() {
         var query = document.getElementById('search-input').value;
-        window.location.href = "<?php echo site_url('search'); ?>?query=" + query;
+        window.location.href = "<?php echo site_url('SearchView'); ?>?query=" + query;
     }
 </script>

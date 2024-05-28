@@ -9,7 +9,7 @@ class Artist_model extends CI_Model {
     }
 
     public function search_artists($query) {
-        $this->db->like('name', $query);
+        $this->db->like('name', $query ,'after');
         $result = $this->db->get('artist');
         return $result->result();
     }

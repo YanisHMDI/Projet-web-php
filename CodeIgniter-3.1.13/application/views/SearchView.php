@@ -9,7 +9,6 @@
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
-    <?php $this->load->view('Searchview.php'); ?>
 
     <section class="search-results">
         <h2>Résultats de Recherche</h2>

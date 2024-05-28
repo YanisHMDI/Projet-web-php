@@ -12,8 +12,7 @@ class Model_music extends CI_Model {
         $this->db->select('album.id, album.name, artist.name as artistName, year');
         $this->db->from('album');
         $this->db->join('artist', 'album.artistId = artist.id');
-        $this->db->like('album.name', $query);
-        $this->db->or_like('artist.name', $query);
+        $this->db->like('album.name', $query ,'after');
         $result = $this->db->get();
         return $result->result();
     }

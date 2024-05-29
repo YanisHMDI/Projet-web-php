@@ -7,7 +7,7 @@
 }
 
 body {
-    background: linear-gradient(45deg, #e2e2e2, #3F5EFB);
+    background: linear-gradient(45deg, #383636, #3F5EFB);
     height: 100%;
     font-family: arial, sans-serif;
     display: flex;
@@ -201,3 +201,15 @@ p {
     background: #fff;
 }
 
+@media (max-width: 768px) {
+    .side-header.open .navigation {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(45deg, #e2e2e2, #3F5EFB);
+        z-index: 100;
+    }
+}

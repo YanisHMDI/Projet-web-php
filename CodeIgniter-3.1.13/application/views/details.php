@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <title>Détails de l'album</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/detail.css'); ?>">
 </head>
 <body>

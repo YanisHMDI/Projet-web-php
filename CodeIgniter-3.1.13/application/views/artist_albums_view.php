@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albums de <?php echo $artist->name; ?></title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/albums_artist.css'); ?>">
 </head>
 <body>

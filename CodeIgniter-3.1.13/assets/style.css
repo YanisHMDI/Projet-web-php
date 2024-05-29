@@ -43,6 +43,9 @@ p {
     background: #FF0000;
     color: #fff;
     cursor: pointer;
+    margin-bottom: 10px; /* Ajouter un espacement entre les boutons */
+    width: 80%; /* Assurez-vous que les boutons ne prennent pas toute la largeur */
+    text-align: center; /* Centrer le texte des boutons */
 }
 
 .btn_inscription {
@@ -53,11 +56,14 @@ p {
     background: #ff8df0;
     color: #ffffff;
     cursor: pointer;
+    width: 80%; /* Assurez-vous que les boutons ne prennent pas toute la largeur */
+    text-align: center; /* Centrer le texte des boutons */
 }
+
 .side-header {
     width: 200px;
     height: 100vh;
-    background: rgba(250, 35, 59, 0.35);
+    background: #FA233B; /* Fond opaque */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,8 +78,8 @@ p {
     font-size: 2em;
     color: #fff;
     user-select: none;
-    margin-bottom: 10px; /* Réduire l'espace sous le logo */
-    margin-top: 10px;
+    margin-bottom: 20px; /* Augmenter l'espace sous le logo */
+    margin-top: 20px; /* Augmenter l'espace au-dessus du logo */
 }
 
 .logo img {
@@ -113,6 +119,7 @@ p {
     flex-direction: column;
     align-items: center;
     margin-top: 10px; /* Ajustement pour rapprocher les boutons du haut */
+    flex-grow: 1; /* Pour que l'espace soit pris par la navigation */
 }
 
 .navigation a {
@@ -143,6 +150,14 @@ p {
 .navigation a:hover::after {
     transform-origin: left;
     transform: scaleX(1);
+}
+
+.buttons {
+    margin-top: auto; /* Pour pousser les boutons vers le bas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Assurez-vous que les boutons sont centrés dans toute la largeur */
 }
 
 .presentation {
@@ -200,4 +215,3 @@ p {
     text-align: center;
     background: #fff;
 }
-

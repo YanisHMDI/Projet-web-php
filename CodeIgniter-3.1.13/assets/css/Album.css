@@ -1,22 +1,6 @@
-/* Réinitialisation */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Utilisation de la police Poppins comme police de base */
-}
-
-body {
-    background: linear-gradient(45deg, #e2e2e2, #3F5EFB);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .album-title {
     text-decoration: none;
-    color: #000;
+    color: #000000;
     font-size: 20px;
 }
 
@@ -25,7 +9,7 @@ body {
     flex-wrap: wrap;
     gap: 16px;
     padding: 16px;
-    margin-left: 220px; /* Pour laisser de l'espace pour la barre latérale */
+    margin-left: 220px;
 }
 
 .list div {
@@ -41,128 +25,7 @@ body {
     background: #fff;
 }
 
-.short-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Ajout d'une règle pour les images */
 .list article img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
-}
-
-/* Boutons pour AlbumView */
-.btn_connexion {
-    padding: 10px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    background: #FF0000;
-    color: #fff;
-    cursor: pointer;
-}
-
-.btn_inscription {
-    padding: 10px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    background: #ff8df0;
-    color: #fff;
-    cursor: pointer;
-}
-
-/* Barre latérale */
-.side-header {
-    width: 200px;
-    height: 100vh;
-    background: rgba(250, 35, 59, 0.35);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99;
-}
-
-.logo {
-    font-size: 2em;
-    color: #fff;
-    user-select: none;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-.logo img {
-    width: 150px;
-    height: auto;
-}
-
-.search-bar {
-    width: 80%;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.search-bar button {
-    padding: 10px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    background: #FF0000;
-    color: #fff;
-    cursor: pointer;
-}
-
-.navigation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.navigation a {
-    position: relative;
-    font-size: 1.1em;
-    color: #1d1d1d;
-    text-decoration: none;
-    font-weight: 500;
-    margin: 10px 0;
-    width: 100%;
-    text-align: center;
-}
-
-.navigation a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 3px;
-    background: #ffffff;
-    border-radius: 5px;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform .5s;
-}
-
-.navigation a:hover::after {
-    transform-origin: left;
-    transform: scaleX(1);
 }

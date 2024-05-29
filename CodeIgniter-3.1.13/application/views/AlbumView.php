@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <title>Binks</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/Album.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
 </head>
 <body>
     <!-- Inclure la barre latérale -->

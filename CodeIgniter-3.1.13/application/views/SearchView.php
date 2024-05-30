@@ -31,22 +31,21 @@
         <p class="no-song">Aucun titre trouvé.</p>
     <?php endif; ?>
     <h3>Artistes</h3>
-    <?php if (!empty($artists)): ?>
-        <div class="artist-list">
-            <?php foreach ($artists as $artist): ?>
-                <section class="artist">
-                    <div class="artist-bubble">
-                        <a href="<?php echo site_url('artist/view/' . $artist->id); ?>">
-                            <div class="artist-name"><?php echo $artist->name; ?></div>
-                        </a>
-                    </div>
-                </section>
-            <?php endforeach; ?>
-        </div>
-    <?php else: ?>
-        <p class="no-artist">Aucun artiste trouvé.</p>
-    <?php endif; ?>
-
+        <?php if (!empty($artists)): ?>
+            <div class="artist-list">
+                <?php foreach ($artists as $artist): ?>
+                    <section class="artist">
+                        <div class="artist-bubble">
+                            <a href="<?php echo site_url('artist/view/' . $artist->id); ?>">
+                                <div class="artist-name"><?php echo $artist->name; ?></div>
+                            </a>
+                        </div>
+                    </section>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <p class="no-artist">Aucun artiste trouvé.</p>
+        <?php endif; ?>
     <h3>Albums</h3>
     <?php if (!empty($albums)): ?>
         <div class="album-list">

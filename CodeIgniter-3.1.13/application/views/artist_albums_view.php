@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artistes</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/artist.css'); ?>">
+    <title>Albums de <?php echo $artist->name; ?></title>
+    <link rel="stylesheet" href="<?php echo base_url('assets/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/albums_artist.css'); ?>">
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
 
-    <section class="artist-section">
-        <h2>Artistes</h2>
-        <?php if (!empty($artists)): ?>
-            <div class="artist-list">
-                <?php foreach ($artists as $artist): ?>
-                    <section class="artist">
-                        <div class="artist-bubble">
-                            <a href="<?php echo site_url('artist/view/' . $artist->id); ?>">
-                                <div class="artist-name"><?php echo $artist->name; ?></div>
-                            </a>
-                        </div>
-                    </section>
+    <section class="artist-albums-section">
+        <h2>Albums de <?php echo $artist->name; ?></h2>
+        <?php if (!empty($albums)): ?>
+            <ul class="album-list">
+                <?php foreach ($albums as $album): ?>
+                    <li class="album-item">
+                        <a href="<?php echo site_url('album/details/' . $album->id); ?>">
+                            <?php echo $album->name; ?> (<?php echo $album->year; ?>)
+                        </a>
+                    </li>
                 <?php endforeach; ?>
-            </div>
+            </ul>
         <?php else: ?>
-            <p class="no-artist">Aucun artiste disponible.</p>
+            <p class="no-album">Aucun album disponible pour cet artiste.</p>
         <?php endif; ?>
     </section>
 </body>

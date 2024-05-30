@@ -73,5 +73,13 @@ class Model_music extends CI_Model {
 
         return $album_details;
     }
+    public function getTracks() {
+        $this->db->select('track.id, song.name'); // Sélectionnez les colonnes nécessaires
+        $this->db->from('track');
+        $this->db->join('song', 'track.songId = song.id'); // Joignez la table des chansons pour obtenir les noms des chansons
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
 }
 ?>

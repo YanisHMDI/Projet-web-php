@@ -6,7 +6,6 @@ class Artist extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Artist_model');
-        $this->load->library('session');
         $this->load->helper('url');
     }
 

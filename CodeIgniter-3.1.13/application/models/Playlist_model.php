@@ -38,6 +38,33 @@ class Playlist_model extends CI_Model {
         );
         $this->db->insert('playlist_track', $data);
     }
-}
 
+    public function get_playlist_details($playlist_id) {
+        // Obtenez les informations de base de la playlist
+        $this->db->select('playlist.*');
+        $this->db->from('playlist');
+        $this->db->where('playlist.id', $playlist_id);
+        $playlist_query = $this->db->get();
+
+        if ($playlist_query->num_rows() == 0) {
+            return null; // Si la playlist n'existe pas
+        }
+
+        $playlist = $playlist_query->row();
+
+        // Obtenez les pistes de la playlist
+        $this->db->select('track.*, song.name as songName, album.name as albumName, artist.name as artistName');
+        $this->db->from('track');
+        $this->db->join('song', 'track.songId = song.id');
+        $this->db->join('album', 'track.albumId = album.id');
+        $this->db->join('artist', 'album.artistId = artist.id');
+        $this->db->join('playlist_track', 'track.id = playlist_track.track_id');
+        $this->db->where('playlist_track.playlist_id', $playlist_id);
+        $tracks_query = $this->db->get();
+
+        $playlist->tracks = $tracks_query->result();
+
+        return $playlist;
+    }
+}
 ?>

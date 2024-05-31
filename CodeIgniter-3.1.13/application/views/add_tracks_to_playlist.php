@@ -11,7 +11,7 @@
     <?php $this->load->view('layout/sidebar'); ?>
 
     <section class="add-tracks-section">
-        <h2><?php echo $playlist_name; ?></h2>
+        <h2>Ajouter des albums/titres à la playlist</h2>
         <?php echo form_open('playlist/add_tracks_process'); ?>
             <input type="hidden" name="playlist_id" value="<?php echo $playlist_id; ?>">
 

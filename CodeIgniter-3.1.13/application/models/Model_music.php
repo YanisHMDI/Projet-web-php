@@ -27,7 +27,6 @@ class Model_music extends CI_Model {
         $result = $this->db->get();
         return $result->result();
     }
-    
 
     public function getAlbums($argument1, $argument2) {
         // Utilise $argument1 et $argument2 dans ta requête SQL ou autre logique de traitement
@@ -73,6 +72,7 @@ class Model_music extends CI_Model {
 
         return $album_details;
     }
+
     public function getTracks() {
         $this->db->select('track.id, song.name'); // Sélectionnez les colonnes nécessaires
         $this->db->from('track');
@@ -85,11 +85,10 @@ class Model_music extends CI_Model {
         // Sélectionnez les pistes qui ne sont pas déjà dans la playlist
         $this->db->select('track.id, song.name');
         $this->db->from('track');
-        $this->db->where_not_in('track.id', "(SELECT track.id FROM playlist WHERE playlist.id = $playlist_id)");
+        $this->db->join('song', 'track.songId = song.id');
+        $this->db->where_not_in('track.id', "(SELECT track_id FROM playlist_track WHERE playlist_id = $playlist_id)", FALSE);
         $query = $this->db->get();
         return $query->result();
     }
-    
-    
 }
 ?>

@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Playlist extends CI_Controller {
 
     public function __construct() {
@@ -58,7 +60,8 @@ class Playlist extends CI_Controller {
             redirect('user/login');
         } else {
             $data['albums'] = $this->Model_music->getAlbums(null, null);
-            $data['tracks'] = $this->Model_music->getTracks();
+            // Vous devez charger uniquement les albums et les titres qui ne sont pas déjà dans la playlist
+            $data['tracks'] = $this->Model_music->getTracksNotInPlaylist($playlist_id);
             $data['playlist_id'] = $playlist_id;
             $this->load->view('add_tracks_to_playlist', $data);
         }
@@ -88,5 +91,4 @@ class Playlist extends CI_Controller {
         }
     }
 }
-
 ?>

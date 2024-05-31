@@ -13,15 +13,23 @@
     <section class="playlist-section">
         <h2>Mes Playlists</h2>
         <?php if (!empty($playlists)): ?>
-            <ul>
+            <div class="playlists">
                 <?php foreach ($playlists as $playlist): ?>
-                    <li>
-                        <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>">
-                            <?php echo $playlist->name; ?>
-                        </a>
-                    </li>
+                    <div class="playlist">
+                        <img src="<?php echo base_url('uploads/' . $playlist->image); ?>" alt="<?php echo $playlist->name; ?>" class="playlist-image">
+                        <div class="playlist-info">
+                            <h3 class="playlist-title">
+                                <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
+                                <span class="playlist-options" onclick="openOptions(event, <?php echo $playlist->id; ?>)">...</span>
+                            </h3>
+                        </div>
+                        <div id="playlist-options-<?php echo $playlist->id; ?>" class="playlist-options-menu">
+                            <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>">Ajouter des titres</a>
+                            <!-- Ajouter d'autres options si nécessaire -->
+                        </div>
+                    </div>
                 <?php endforeach; ?>
-            </ul>
+            </div>
         <?php else: ?>
             <p>Vous n'avez pas encore de playlists.</p>
         <?php endif; ?>
@@ -66,6 +74,23 @@
         function closePopup() {
             document.getElementById('playlistPopup').style.display = 'none';
         }
+
+        function openOptions(event, playlistId) {
+            event.stopPropagation();
+            const optionsMenu = document.getElementById(`playlist-options-${playlistId}`);
+            if (optionsMenu.style.display === 'block') {
+                optionsMenu.style.display = 'none';
+            } else {
+                optionsMenu.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('click', function() {
+            const optionsMenus = document.querySelectorAll('.playlist-options-menu');
+            optionsMenus.forEach(menu => {
+                menu.style.display = 'none';
+            });
+        });
     </script>
 </body>
 </html>

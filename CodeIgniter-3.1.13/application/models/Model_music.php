@@ -80,6 +80,16 @@ class Model_music extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function getTracksNotInPlaylist($playlist_id) {
+        // Sélectionnez les pistes qui ne sont pas déjà dans la playlist
+        $this->db->select('track.id, song.name');
+        $this->db->from('track');
+        $this->db->where_not_in('track.id', "(SELECT track.id FROM playlist WHERE playlist.id = $playlist_id)");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
     
 }
 ?>

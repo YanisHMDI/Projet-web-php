@@ -122,12 +122,15 @@ body {
     }
 }
 
-/* CSS pour l'affichage des playlists */
+/* Styles pour les playlists */
 .playlists {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .playlist {
@@ -135,26 +138,53 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    text-align: center;
+    position: relative;
 }
 
-.playlist img {
+.playlist-image {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    height: 200px;
     object-fit: cover;
 }
 
 .playlist-info {
-    padding: 15px;
+    padding: 10px;
 }
 
 .playlist-title {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.playlist-description {
-    font-size: 0.9em;
-    color: #666;
+.playlist-options {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.playlist-options-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 100;
+    padding: 10px;
+}
+
+.playlist-options-menu a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.playlist-options-menu a:hover {
+    background-color: #f0f0f0;
 }

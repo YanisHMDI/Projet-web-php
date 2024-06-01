@@ -89,5 +89,18 @@ class Playlist extends CI_Controller {
             redirect('playlist');
         }
     }
+    public function view($playlist_id) {
+        if (!$this->session->userdata('username')) {
+            redirect('user/login');
+        }
+    
+        $data['playlist'] = $this->Playlist_model->get_playlist_details($playlist_id);
+        if ($data['playlist']) {
+            $this->load->view('view_user_playlists', $data);
+        } else {
+            show_404();
+        }
+    }
+    
 }
 ?>

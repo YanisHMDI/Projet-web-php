@@ -8,6 +8,8 @@ class User extends CI_Controller {
         $this->load->model('user_model');
         $this->load->library('form_validation'); // Charger la bibliothèque de validation de formulaire
         $this->load->library('session'); // Charger la bibliothèque de session
+        $this->load->helper('url');
+
     }
     
     
@@ -41,6 +43,8 @@ class User extends CI_Controller {
             $user = $this->user_model->check_login($email, $password);
     
             if ($user) {
+                // Définir les données de l'utilisateur dans la session
+                $this->session->set_userdata('user_id', $user->id); // Assurez-vous d'avoir une colonne id dans votre table d'utilisateurs
                 $this->session->set_userdata('username', $user->username);
                 $this->session->set_userdata('email', $user->email);
     
@@ -54,6 +58,7 @@ class User extends CI_Controller {
             }
         }
     }
+    
     
 
     public function login() {

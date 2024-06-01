@@ -67,9 +67,9 @@
     </div>
 
     <script>
-        function openPopup() {
-            document.getElementById('playlistPopup').style.display = 'block';
-        }
+function openPopup() {
+    document.getElementById('playlistPopup').classList.add('show-popup');
+}
 
         function closePopup() {
             document.getElementById('playlistPopup').style.display = 'none';

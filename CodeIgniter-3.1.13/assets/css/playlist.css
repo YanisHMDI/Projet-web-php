@@ -50,6 +50,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+.popup.show-popup {
+    display: flex; /* Changement de display pour afficher la popup */
+}
 
 .popup-content {
     background-color: #fff;

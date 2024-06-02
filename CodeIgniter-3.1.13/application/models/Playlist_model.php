@@ -104,7 +104,27 @@ class Playlist_model extends CI_Model {
     
         return $playlist;
     }
+
+    public function delete_playlist($playlist_id, $user_id) {
+        // Vérifier si la playlist appartient à l'utilisateur
+        $this->db->where('id', $playlist_id);
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get('playlist');
     
+        if ($query->num_rows() > 0) {
+            // Supprimer les entrées de la table playlist_track
+            $this->db->where('playlist_id', $playlist_id);
+            $this->db->delete('playlist_track');
+    
+            // Supprimer la playlist
+            $this->db->where('id', $playlist_id);
+            $this->db->delete('playlist');
+    
+            return true;
+        } else {
+            return false;
+        }
+    }
     
 }
 ?>

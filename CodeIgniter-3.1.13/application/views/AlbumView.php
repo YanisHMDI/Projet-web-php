@@ -25,6 +25,5 @@
             </div>
         <?php endforeach; ?>
     </section>
-    <script src="<?php echo base_url('assets/script.js'); ?>"></script>
 </body>
 </html>

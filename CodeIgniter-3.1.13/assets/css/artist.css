@@ -52,3 +52,66 @@
     box-sizing: border-box;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Section des albums */
+.artist-albums-section {
+    max-width: 90vw;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.artist-albums-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Liste des albums */
+.album-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.album-item {
+    flex: 1 1 calc(25% - 16px);
+    box-sizing: border-box;
+}
+
+.album-item article {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    background: #fff;
+}
+
+.album-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.no-album {
+    font-size: 1.2em;
+    color: #666;
+}

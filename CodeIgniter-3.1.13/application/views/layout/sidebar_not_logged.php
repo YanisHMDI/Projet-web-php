@@ -2,7 +2,7 @@
     <h2 class="logo"><img src="<?php echo base_url('assets/logo.png'); ?>" alt="Votre Logo" width="100"></h2>
 
     <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Rechercher artiste ou album">
+        <input type="text" id="search-input" placeholder="Recherche">
         <button onclick="performSearch()">Rechercher</button>
     </div>
     <nav class="navigation">

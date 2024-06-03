@@ -17,6 +17,6 @@
     <button onclick="addSong()">Essayer gratuitement</button>
     <img src="<?php echo base_url('assets/Macbook.png'); ?>" alt="Sample Image" class="sample-image">
 </section>
-<script src="<?php echo base_url('assets/script.js'); ?>"></script>
+
 </body>
 </html>

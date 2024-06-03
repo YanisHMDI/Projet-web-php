@@ -17,6 +17,22 @@ class User_model extends CI_Model {
         $this->db->insert('utilisateurs', $data); // Assurez-vous que 'utilisateurs' est le nom de votre table utilisateur
     }
 
+    public function get_user_by_id($user_id) {
+        $this->db->where('id', $user_id);
+        $query = $this->db->get('utilisateurs');
+        return $query->row();
+    }
+
+    public function update_password($user_id, $new_password) {
+        $this->db->where('id', $user_id);
+        $this->db->update('utilisateurs', array('password' => $new_password));
+    }
+
+    public function delete_user($user_id) {
+        $this->db->where('id', $user_id);
+        $this->db->delete('utilisateurs');
+    }
+
     public function check_login($email, $password) {
         $this->db->where('email', $email);
         $query = $this->db->get('utilisateurs'); // Assurez-vous que 'utilisateurs' est le nom de votre table utilisateur

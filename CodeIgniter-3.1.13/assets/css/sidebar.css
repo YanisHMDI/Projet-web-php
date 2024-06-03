@@ -1,6 +1,6 @@
 /* Styles pour les grands écrans (desktop) */
 .side-header {
-    width: 200px;
+    width: 250px;
     height: 100vh;
     background: linear-gradient(45deg, #000000, #000000);
     display: flex;

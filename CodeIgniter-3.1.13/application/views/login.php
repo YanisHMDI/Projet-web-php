@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login'); ?>">
 </head>
 <body>
+<?php $this->load->view('layout/sidebar');?>
 <div class="container">
         <h2>Connexion</h2>
     <?php if ($this->session->flashdata('error')): ?>

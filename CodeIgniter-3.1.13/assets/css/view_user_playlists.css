@@ -13,92 +13,61 @@ body {
     align-items: center;
 }
 
-.container {
-    display: flex;
-    max-width: 1200px; /* Ajustez la largeur maximale selon vos besoins */
-}
-
-.sidebar {
-    flex: 0 0 300px; /* Largeur de la barre latérale */
-    background-color: #f4f4f4;
+.playlist-details-section {
+    max-width: 800px;
+    margin: 20px;
     padding: 20px;
-}
-
-.album-details {
-    flex: 1; /* Remplir l'espace restant */
-    margin-left: 20px; /* Espace entre la barre latérale et le contenu principal */
-    background-color: #fff5;
-    backdrop-filter: blur(7px);
-    box-shadow: 0 .4rem .8rem #0005;
-    border-radius: .8rem;
-    overflow: hidden;
-}
-
-.album-cover {
-    margin: 20px;
-}
-
-.album-cover img {
-    max-width: 300px;
-    height: auto;
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.album-info {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.album-info h2 {
+.playlist-details-section h2 {
     font-size: 2em;
     margin-bottom: 10px;
 }
 
-.album-info p {
+.playlist-details-section .playlist-info {
+    margin-bottom: 20px;
+}
+
+.playlist-details-section .playlist-info img {
+    max-width: 300px;
+    border-radius: 10px;
     margin-bottom: 10px;
 }
 
-.album-info .artist, .album-info .year {
-    color: black; /* Set text color to black */
-}
-
-.track-list {
-    margin-top: 20px;
-}
-
-.track-list h3 {
+.playlist-details-section h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
 }
 
-.track-list table {
-    width: 100%;
-    border-collapse: collapse;
+.track-list {
+    list-style: none;
 }
 
-.track-list th, .track-list td {
-    padding: 1rem;
-    text-align: left;
+.track-list li {
+    padding: 10px;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.track-list thead th {
-    position: sticky;
-    top: 0;
-    background-color: #d5d1defe;
-    text-transform: capitalize;
+.track-list li:last-child {
+    border-bottom: none;
+}
+
+.track-list button {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
     cursor: pointer;
 }
 
-.track-list tbody tr:nth-child(even) {
-    background-color: #0000000b;
+.track-list button:hover {
+    background-color: #CC0000;
 }
 
-.track-list tbody tr {
-    transition: .5s ease-in-out;
-}
-
-.track-list tbody tr:hover {
-    background-color: #fff6 !important;
-}

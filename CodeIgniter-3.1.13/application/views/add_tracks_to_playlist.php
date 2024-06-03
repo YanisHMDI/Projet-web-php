@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter des albums/titres à la playlist</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/playlist.css'); ?>">
 </head>
 <body>
@@ -14,6 +14,16 @@
         <h2>Ajouter des albums/titres à la playlist</h2>
         <?php echo form_open('playlist/add_tracks_process'); ?>
             <input type="hidden" name="playlist_id" value="<?php echo $playlist_id; ?>">
+
+            <div class="search-bar">
+                <input type="text" name="search_query" placeholder="Recherche...">
+                <select name="filter">
+                    <option value="album">Album</option>
+                    <option value="title">Titre</option>
+                    <option value="artist">Artiste</option>
+                </select>
+                <button type="submit">Rechercher</button>
+            </div>
 
             <h3>Albums</h3>
             <div class="albums">

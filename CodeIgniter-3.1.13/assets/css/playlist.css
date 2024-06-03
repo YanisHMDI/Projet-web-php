@@ -3,11 +3,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background: linear-gradient(45deg, #e2e2e2, #3F5EFB);
     height: 100%;
     display: flex;
     align-items: center;
@@ -50,8 +49,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .popup.show-popup {
-    display: flex; /* Changement de display pour afficher la popup */
+    display: flex;
 }
 
 .popup-content {
@@ -114,17 +114,6 @@ body {
     background-color: #CC0000;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 /* Styles pour les playlists */
 .playlists {
     display: grid;
@@ -181,13 +170,20 @@ body {
     padding: 10px;
 }
 
-.playlist-options-menu a {
+.playlist-options-menu a,
+.playlist-options-menu button {
     display: block;
     padding: 5px 10px;
     text-decoration: none;
     color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
 }
 
-.playlist-options-menu a:hover {
+.playlist-options-menu a:hover,
+.playlist-options-menu button:hover {
     background-color: #f0f0f0;
 }

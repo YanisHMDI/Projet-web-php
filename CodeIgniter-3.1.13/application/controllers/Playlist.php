@@ -118,6 +118,23 @@ class Playlist extends CI_Controller {
     
         redirect('playlist');
     }
+
+    public function delete_track($playlist_id, $track_id) {
+        if (!$this->session->userdata('username')) {
+            redirect('user/login');
+        }
+    
+        $user_id = $this->session->userdata('user_id');
+        $success = $this->Playlist_model->delete_track_from_playlist($playlist_id, $track_id, $user_id);
+    
+        if ($success) {
+            $this->session->set_flashdata('message', 'Chanson supprimée de la playlist avec succès.');
+        } else {
+            $this->session->set_flashdata('error', 'Impossible de supprimer la chanson de la playlist.');
+        }
+    
+        redirect('playlist/view/' . $playlist_id);
+    }
     
 }
 ?>

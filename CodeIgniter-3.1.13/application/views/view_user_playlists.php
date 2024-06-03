@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la Playlist</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/playlist.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/view_user_playlist.css'); ?>">
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
@@ -24,6 +24,7 @@
                 <?php foreach ($playlist->tracks as $track): ?>
                     <li>
                         <?php echo $track->songName; ?> - <?php echo $track->artistName; ?> (<?php echo $track->albumName; ?>)
+                        <button onclick="confirmDelete(<?php echo $playlist->id; ?>, <?php echo $track->id; ?>)">Supprimer</button>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -31,5 +32,13 @@
             <p>Cette playlist ne contient aucun titre.</p>
         <?php endif; ?>
     </section>
+
+    <script>
+        function confirmDelete(playlistId, trackId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cette chanson de la playlist ?')) {
+                window.location.href = '<?php echo site_url('playlist/delete_track/'); ?>' + playlistId + '/' + trackId;
+            }
+        }
+    </script>
 </body>
 </html>

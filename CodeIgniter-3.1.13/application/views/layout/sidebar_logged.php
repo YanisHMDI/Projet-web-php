@@ -13,7 +13,7 @@
         <a href="<?php echo site_url('coups_de_coeur'); ?>">Coups de Cœur</a>
     </nav>
     <div class="buttons">
-        <a href="<?php echo site_url('user/profile'); ?>">Profil</a>
-        <button class="btn_deconnexion" onclick="window.location.href='<?php echo site_url('user/logout'); ?>'">déconnexion</button>
+        <a class="btn_profil" href="<?php echo site_url('user/profile'); ?>">Profil</a>
+        <button class="btn_deconnexion" onclick="window.location.href='<?php echo site_url('user/logout'); ?>'">Déconnexion</button>
     </div>
 </aside>

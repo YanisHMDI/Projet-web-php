@@ -10,12 +10,26 @@ class Album extends CI_Controller {
         $this->load->library('session');
     }
 
-    public function index() {
+    public function index($page = 1) {
+        $per_page = 10; // Nombre d'albums par page
+        $start_index = ($page - 1) * $per_page; // Index de départ pour la requête SQL
         $argument1 = 'valeur_argument1';
         $argument2 = 'valeur_argument2';
-        $albums = $this->Model_music->getAlbums($argument1, $argument2);
-        $this->load->view('AlbumView', ['albums' => $albums]);
+        $total_albums = $this->Model_music->countAlbums(); // Nombre total d'albums
+        $total_pages = ceil($total_albums / $per_page); // Calcul du nombre total de pages
+    
+        // Récupérer les albums pour la page actuelle
+        $albums = $this->Model_music->getAlbumsPaginated($argument1, $argument2, $start_index, $per_page);
+    
+        $data = [
+            'albums' => $albums,
+            'total_pages' => $total_pages,
+            'current_page' => $page
+        ];
+    
+        $this->load->view('AlbumView', $data);
     }
+    
 
     public function details($album_id) {
         $album = $this->Model_music->get_album_details($album_id);

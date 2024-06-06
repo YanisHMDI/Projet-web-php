@@ -1,8 +1,8 @@
 /* CSS pour la page d'artistes */
 
 .artist-section {
-    max-width: 90vw;
-    margin-left: 220px; /
+    max-width: calc(90vw - 220px); /* Largeur de la vue moins la largeur de la sidebar */
+    margin-left: 220px; /* Largeur de la sidebar */
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(7px);
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
@@ -11,6 +11,7 @@
     text-align: center;
     margin: 20px auto;
 }
+
 
 .artist-section h2 {
     font-size: 2em;

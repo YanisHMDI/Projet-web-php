@@ -37,30 +37,30 @@ class Playlist extends CI_Controller {
             $playlist_name = $this->input->post('playlist_name');
             $user_id = $this->session->userdata('user_id');
             $visibility = $this->input->post('visibility');
-
+    
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
             $this->load->library('upload', $config);
-
+    
             if (!$this->upload->do_upload('playlist_image')) {
                 $error = array('error' => $this->upload->display_errors());
-                $image_path = null;
+                $image_path = 'denis.jpg'; 
             } else {
                 $data = $this->upload->data();
                 $image_path = 'uploads/' . $data['file_name'];
             }
-
+    
             $this->Playlist_model->create_playlist($playlist_name, $user_id, $visibility, $image_path);
             redirect('playlist');
         }
     }
+    
 
     public function add_tracks($playlist_id) {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
         } else {
             $data['albums'] = $this->Model_music->getAlbums(null, null);
-            // Vous devez charger uniquement les albums et les titres qui ne sont pas déjà dans la playlist
             $data['tracks'] = $this->Model_music->getTracksNotInPlaylist($playlist_id);
             $data['playlist_id'] = $playlist_id;
             $this->load->view('add_tracks_to_playlist', $data);

@@ -14,7 +14,7 @@ class User_model extends CI_Model {
             'email' => $email,
             'password' => $password
         );
-        $this->db->insert('utilisateurs', $data); 
+        $this->db->insert('utilisateurs', $data); // Assurez-vous que 'utilisateurs' est le nom de votre table utilisateur
     }
 
     public function get_user_by_id($user_id) {
@@ -29,24 +29,13 @@ class User_model extends CI_Model {
     }
 
     public function delete_user($user_id) {
-        $this->db->query("DELETE playlist_track FROM playlist_track 
-                          JOIN playlist ON playlist_track.playlist_id = playlist.id 
-                          WHERE playlist.user_id = ?", array($user_id));
-    
-        $this->db->where('user_id', $user_id);
-        $this->db->delete('playlist');
-        
         $this->db->where('id', $user_id);
         $this->db->delete('utilisateurs');
     }
-    
-    
-    
-    
 
     public function check_login($email, $password) {
         $this->db->where('email', $email);
-        $query = $this->db->get('utilisateurs'); 
+        $query = $this->db->get('utilisateurs'); // Assurez-vous que 'utilisateurs' est le nom de votre table utilisateur
         
         if ($query->num_rows() == 1) {
             $user = $query->row();

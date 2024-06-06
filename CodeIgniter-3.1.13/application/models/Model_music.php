@@ -28,7 +28,7 @@ class Model_music extends CI_Model {
         return $result->result();
     }
 
-    public function getAlbums() {
+    public function getAlbums($argument1, $argument2) {
         // Utilise $argument1 et $argument2 dans ta requête SQL ou autre logique de traitement
         $query = $this->db->query("
             SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 

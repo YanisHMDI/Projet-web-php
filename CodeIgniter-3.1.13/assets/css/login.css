@@ -4,7 +4,7 @@ body {
     height: 100vh;
     font-family: Arial, sans-serif;
     display: flex;
-    align-items: center; /* Centre verticalement */
+    align-items: center; 
     justify-content: center;
     margin: 0;
     padding: 0;
@@ -22,8 +22,8 @@ body {
     -webkit-backdrop-filter: blur(10px);
     -moz-backdrop-filter: blur(10px);
     box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
-    display: inline-block; /* Ajustement de la largeur au contenu */
-    text-align: center; /* Centre horizontalement */
+    display: inline-block; 
+    text-align: center; 
 }
 
 h1 {
@@ -36,7 +36,7 @@ label {
     margin-bottom: 5px;
 }
 
-/* Vos styles pour les inputs et boutons */
+
 input[type="text"],
 input[type="email"],
 input[type="password"] {

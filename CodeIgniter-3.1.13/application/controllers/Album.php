@@ -6,14 +6,13 @@ class Album extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Model_music');
+        $this->load->model('Playlist_model');
         $this->load->helper('url');
         $this->load->library('session');
     }
 
     public function index() {
-        $argument1 = 'valeur_argument1';
-        $argument2 = 'valeur_argument2';
-        $albums = $this->Model_music->getAlbums($argument1, $argument2);
+        $albums = $this->Model_music->getAlbums();
         $this->load->view('AlbumView', ['albums' => $albums]);
     }
 
@@ -22,8 +21,10 @@ class Album extends CI_Controller {
         if (!$album) {
             show_404();
         }
-        $this->load->view('details', ['album' => $album]);
+        $user_id = $this->session->userdata('user_id');
+        $playlists = $this->Playlist_model->get_playlists_by_user($user_id);
+        $this->load->view('details', ['album' => $album, 'playlists' => $playlists]);
     }
 }
-?>
 
+?>

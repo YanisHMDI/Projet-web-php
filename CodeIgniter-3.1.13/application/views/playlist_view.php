@@ -95,10 +95,10 @@
         <?php endif; ?>
     </section>
 
-    <!-- Bouton + -->
+  
     <button class="btn-add-playlist" onclick="openPopup()">+</button>
 
-    <!-- Popup pour créer une nouvelle playlist -->
+
     <div id="playlistPopup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>

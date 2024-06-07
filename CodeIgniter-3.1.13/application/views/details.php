@@ -35,7 +35,9 @@
                                     <th>Numéro</th>
                                     <th>Nom de la chanson</th>
                                     <th>Durée</th>
-                                    <th>Ajouter à la playlist</th>
+                                    <?php if ($this->session->userdata('username')): ?>
+                                        <th>Ajouter à la playlist</th>    
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,14 +46,18 @@
                                         <td><?php echo $index + 1; ?></td>
                                         <td><?php echo $track->songName; ?></td>
                                         <td><?php echo floor($track->duration / 60) . ':' . sprintf("%02d", $track->duration % 60); ?></td>
-                                        <td>
-                                            <button onclick="showPlaylists('track', '<?php echo $track->id; ?>')">+</button>
-                                        </td>
+                                        <?php if ($this->session->userdata('username')): ?>
+                                            <td>
+                                                <button onclick="showPlaylists('<?php echo $track->songName; ?>', '<?php echo $album->name; ?>', '<?php echo $track->id; ?>', 'track')">+</button>
+                                            </td>
+                                        <?php endif; ?>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <button onclick="showPlaylists('album', '<?php echo $album->id; ?>')">Ajouter l'album à la playlist</button>
+                        <?php if ($this->session->userdata('username')): ?>
+                            <button onclick="showPlaylists('<?php echo $album->name; ?>', '<?php echo $album->name; ?>', '<?php echo $album->id; ?>', 'album')">Ajouter l'album à la playlist</button>
+                        <?php endif; ?>
                     </div>
                 <?php else: ?>
                     <p>Aucune chanson trouvée pour cet album.</p>
@@ -61,48 +67,51 @@
             <?php endif; ?>
         </div>
     </section>
+    
+    <?php if ($this->session->userdata('username')): ?>
+        <div id="playlistModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>Ajouter à la playlist</h3>
+                <p id="modalTrackName"></p>
+                <p id="modalAlbumName"></p>
+                <ul>
+                    <?php foreach ($playlists as $playlist): ?>
+                        <li>
+                            <a href="#" onclick="addToPlaylist('<?php echo $playlist->id; ?>')"><?php echo $playlist->name; ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    <?php endif; ?>
 
-    <div id="playlistModal" class="modal" style="display:none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h3>Ajouter à la playlist</h3>
-        <p id="modalTrackName"></p>
-        <p id="modalAlbumName"></p>
-        <ul>
-            <?php foreach ($playlists as $playlist): ?>
-                <li>
-                    <a href="#" onclick="addToPlaylist('<?php echo $playlist->id; ?>')"><?php echo $playlist->name; ?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-</div>
-
-<script>
-    function showPlaylists(trackName, albumName) {
-        document.getElementById('modalTrackName').innerHTML = "Titre de la chanson : " + trackName;
-        document.getElementById('modalAlbumName').innerHTML = "Nom de l'album : " + albumName;
-        document.getElementById('playlistModal').style.display = 'block';
-    }
-
-    function closeModal() {
-        document.getElementById('playlistModal').style.display = 'none';
-    }
-
-    function addToPlaylist(playlistId) {
-        var type = window.playlistType;
-        var id = window.playlistItemId;
-
-        var url = '';
-        if (type === 'album') {
-            url = '<?php echo site_url('playlist/add_album_to_playlist'); ?>/' + playlistId + '/' + id;
-        } else if (type === 'track') {
-            url = '<?php echo site_url('playlist/add_track_to_playlist'); ?>/' + playlistId + '/' + id;
+    <script>
+        function showPlaylists(trackName, albumName, itemId, type) {
+            document.getElementById('modalTrackName').innerHTML = "Titre de la chanson : " + trackName;
+            document.getElementById('modalAlbumName').innerHTML = "Nom de l'album : " + albumName;
+            window.playlistItemId = itemId;
+            window.playlistType = type;
+            document.getElementById('playlistModal').style.display = 'block';
         }
 
-        window.location.href = url;
-    }
-</script>
+        function closeModal() {
+            document.getElementById('playlistModal').style.display = 'none';
+        }
 
+        function addToPlaylist(playlistId) {
+            var type = window.playlistType;
+            var id = window.playlistItemId;
+
+            var url = '';
+            if (type === 'album') {
+                url = '<?php echo site_url('playlist/add_album_to_playlist'); ?>/' + playlistId + '/' + id;
+            } else if (type === 'track') {
+                url = '<?php echo site_url('playlist/add_track_to_playlist'); ?>/' + playlistId + '/' + id;
+            }
+
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>

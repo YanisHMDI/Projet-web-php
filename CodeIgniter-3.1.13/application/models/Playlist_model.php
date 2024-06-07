@@ -7,10 +7,15 @@ class Playlist_model extends CI_Model {
     }
 
     public function get_playlists_by_user($user_id) {
-        $this->db->select('*');
-        $this->db->from('playlist');
-        $this->db->where('(visibility = "public" OR user_id = ' . $this->db->escape($user_id) . ')');
-        $query = $this->db->get();
+        if ($user_id === null) {
+            // Si l'utilisateur n'est pas connecté, ne retourner que les playlists publiques
+            $this->db->where('visibility', 'public');
+        } else {
+            // Si l'utilisateur est connecté, retourner les playlists publiques et celles de l'utilisateur
+            $this->db->where('visibility', 'public');
+            $this->db->or_where('user_id', $user_id);
+        }
+        $query = $this->db->get('playlist');
         return $query->result();
     }
     

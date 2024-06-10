@@ -39,10 +39,6 @@ class Album extends CI_Controller {
         $this->load->view('details', ['album' => $album]);
     }
 }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> e39d33765b4fec2450044096e3b2086661ea28bf
 ?>
 

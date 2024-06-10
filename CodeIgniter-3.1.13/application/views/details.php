@@ -35,12 +35,11 @@
                                     <th>Numéro</th>
                                     <th>Nom de la chanson</th>
                                     <th>Durée</th>
-<<<<<<< HEAD
-=======
+
                                     <?php if ($this->session->userdata('username')): ?>
                                         <th>Ajouter à la playlist</th>    
                                     <?php endif; ?>
->>>>>>> 0c6dece16a8d7fe724453833ca705e9ae92bd1e7
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,24 +48,22 @@
                                         <td><?php echo $index + 1; ?></td>
                                         <td><?php echo $track->songName; ?></td>
                                         <td><?php echo floor($track->duration / 60) . ':' . sprintf("%02d", $track->duration % 60); ?></td>
-<<<<<<< HEAD
-=======
+
                                         <?php if ($this->session->userdata('username')): ?>
                                             <td>
                                                 <button onclick="showPlaylists('<?php echo $track->songName; ?>', '<?php echo $album->name; ?>', '<?php echo $track->id; ?>', 'track')">+</button>
                                             </td>
                                         <?php endif; ?>
->>>>>>> 0c6dece16a8d7fe724453833ca705e9ae92bd1e7
+
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-<<<<<<< HEAD
-=======
+
                         <?php if ($this->session->userdata('username')): ?>
                             <button onclick="showPlaylists('<?php echo $album->name; ?>', '<?php echo $album->name; ?>', '<?php echo $album->id; ?>', 'album')">Ajouter l'album à la playlist</button>
                         <?php endif; ?>
->>>>>>> 0c6dece16a8d7fe724453833ca705e9ae92bd1e7
+
                     </div>
                 <?php else: ?>
                     <p>Aucune chanson trouvée pour cet album.</p>
@@ -77,6 +74,7 @@
         </div>
     </section>
     
+     
     <?php if ($this->session->userdata('username')): ?>
         <div id="playlistModal" class="modal">
             <div class="modal-content">
@@ -94,10 +92,6 @@
             </div>
         </div>
     <?php endif; ?>
-
-<<<<<<< HEAD
-    <script src="<?php echo base_url('assets/script.js'); ?>"></script>
-=======
     <script>
         function showPlaylists(trackName, albumName, itemId, type) {
             document.getElementById('modalTrackName').innerHTML = "Titre de la chanson : " + trackName;
@@ -125,6 +119,6 @@
             window.location.href = url;
         }
     </script>
->>>>>>> 0c6dece16a8d7fe724453833ca705e9ae92bd1e7
+
 </body>
 </html>

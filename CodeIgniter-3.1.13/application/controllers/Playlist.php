@@ -6,8 +6,10 @@ class Playlist extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
-        $this->load->helper(['url', 'form']);
-        $this->load->model(['Playlist_model', 'Model_music']);
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->model('Playlist_model');
+        $this->load->model('Model_music');
     }
 
     public function index() {
@@ -35,22 +37,24 @@ class Playlist extends CI_Controller {
             $playlist_name = $this->input->post('playlist_name');
             $user_id = $this->session->userdata('user_id');
             $visibility = $this->input->post('visibility');
-
+    
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
             $this->load->library('upload', $config);
-
+    
             if (!$this->upload->do_upload('playlist_image')) {
-                $image_path = null;
+                $error = array('error' => $this->upload->display_errors());
+                $image_path = 'denis.jpg'; 
             } else {
                 $data = $this->upload->data();
                 $image_path = 'uploads/' . $data['file_name'];
             }
-
+    
             $this->Playlist_model->create_playlist($playlist_name, $user_id, $visibility, $image_path);
             redirect('playlist');
         }
     }
+    
 
     public function add_tracks($playlist_id) {
         if (!$this->session->userdata('username')) {
@@ -85,12 +89,11 @@ class Playlist extends CI_Controller {
             redirect('playlist');
         }
     }
-
     public function view($playlist_id) {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
         }
-
+    
         $data['playlist'] = $this->Playlist_model->get_playlist_details($playlist_id);
         if ($data['playlist']) {
             $this->load->view('view_user_playlists', $data);
@@ -103,16 +106,16 @@ class Playlist extends CI_Controller {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
         }
-
+    
         $user_id = $this->session->userdata('user_id');
         $success = $this->Playlist_model->delete_playlist($playlist_id, $user_id);
-
+    
         if ($success) {
             $this->session->set_flashdata('message', 'Playlist supprimée avec succès.');
         } else {
             $this->session->set_flashdata('error', 'Impossible de supprimer la playlist.');
         }
-
+    
         redirect('playlist');
     }
 
@@ -120,31 +123,18 @@ class Playlist extends CI_Controller {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
         }
-
+    
         $user_id = $this->session->userdata('user_id');
         $success = $this->Playlist_model->delete_track_from_playlist($playlist_id, $track_id, $user_id);
-
+    
         if ($success) {
             $this->session->set_flashdata('message', 'Chanson supprimée de la playlist avec succès.');
         } else {
             $this->session->set_flashdata('error', 'Impossible de supprimer la chanson de la playlist.');
         }
-
+    
         redirect('playlist/view/' . $playlist_id);
     }
-
-    public function add_album_to_playlist($playlist_id, $album_id) {
-        $user_id = $this->session->userdata('user_id');
-        $this->Playlist_model->add_album_to_playlist($playlist_id, $album_id);
-        redirect('album/details/' . $album_id);
-    }
-
-    public function add_track_to_playlist($playlist_id, $track_id) {
-        $user_id = $this->session->userdata('user_id');
-        $this->Playlist_model->add_track_to_playlist($playlist_id, $track_id);
-        // Assuming we know the album ID somehow to redirect back to the correct page
-        // You might need to adjust this if the track ID alone isn't enough
-        redirect('album/details/' . $track_id);
-    }
+    
 }
 ?>

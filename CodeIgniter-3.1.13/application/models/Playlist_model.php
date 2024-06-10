@@ -124,6 +124,26 @@ class Playlist_model extends CI_Model {
             return false;
         }
     }
+<<<<<<< HEAD
+    public function delete_track_from_playlist($playlist_id, $track_id, $user_id) {
+        // Vérifier si la playlist appartient à l'utilisateur
+        $this->db->where('id', $playlist_id);
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get('playlist');
+    
+        if ($query->num_rows() > 0) {
+            // Supprimer l'entrée de la table playlist_track
+            $this->db->where('playlist_id', $playlist_id);
+            $this->db->where('track_id', $track_id);
+            $this->db->delete('playlist_track');
+    
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+=======
 
     public function delete_track_from_playlist($playlist_id, $track_id, $user_id) {
         // Assurez-vous que l'utilisateur est le propriétaire de la playlist et que la piste appartient à cette playlist
@@ -144,5 +164,6 @@ class Playlist_model extends CI_Model {
         $this->db->where('id', $user_id);
         $this->db->delete('utilisateurs');
     }
+>>>>>>> 0c6dece16a8d7fe724453833ca705e9ae92bd1e7
 }
 ?>

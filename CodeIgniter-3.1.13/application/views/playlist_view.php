@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/playlist.css'); ?>">
     <style>
-        /* Inclure la police Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     </style>
 </head>
 <body>
@@ -49,7 +47,7 @@
                 <?php foreach ($private_playlists as $playlist): ?>
                     <div class="playlist">
                         <?php 
-                        $image_path = $playlist->image ? base_url($playlist->image) : base_url('assets/images/default_playlist.png');
+                        $image_path = $playlist->image ? base_url($playlist->image) : base_url('denis.jpg');
                         ?>
                         <img src="<?php echo $image_path; ?>" alt="<?php echo $playlist->name; ?>" class="playlist-image">
                         <div class="playlist-info">
@@ -76,7 +74,7 @@
                 <?php foreach ($public_playlists as $playlist): ?>
                     <div class="playlist">
                         <?php 
-                        $image_path = $playlist->image ? base_url($playlist->image) : base_url('assets/images/default_playlist.png');
+                        $image_path = $playlist->image ? base_url($playlist->image) : base_url('denis.jpg');
                         ?>
                         <img src="<?php echo $image_path; ?>" alt="<?php echo $playlist->name; ?>" class="playlist-image">
                         <div class="playlist-info">
@@ -95,10 +93,10 @@
         <?php endif; ?>
     </section>
 
-  
+    <!-- Bouton + -->
     <button class="btn-add-playlist" onclick="openPopup()">+</button>
 
-
+    <!-- Popup pour créer une nouvelle playlist -->
     <div id="playlistPopup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>
@@ -157,10 +155,6 @@
                 menu.style.display = 'none';
             });
         });
-        document.addEventListener('click', function() {
-            const optionsMenus = document.querySelectorAll('.playlist-options-menu');
-            optionsMenus.forEach(menu => {
-                menu.style.display = 'none';
-            });
-        });
     </script>
+</body>
+</html>

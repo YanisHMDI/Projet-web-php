@@ -6,9 +6,6 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.container {
     display: flex;
 }
 
@@ -148,7 +145,8 @@ body {
     background: #0056b3;
 }
 
-.album-details {
+.container {
     margin-left: 250px; /* Ajuster la marge gauche pour éviter que le contenu soit caché par la barre latérale */
     padding: 20px; /* Ajouter un padding pour l'espace entre le contenu et le cadre */
+    width: calc(100% - 250px); /* Assurez-vous que la largeur du conteneur principal prend en compte la barre latérale */
 }

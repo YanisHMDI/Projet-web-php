@@ -27,4 +27,5 @@ class Album extends CI_Controller {
     }
 }
 
+
 ?>

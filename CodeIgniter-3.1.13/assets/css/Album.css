@@ -29,3 +29,31 @@
     max-width: 100%;
     height: auto;
 }
+
+.pagination {
+    text-align: center;
+    overflow: hidden;
+}
+
+.pagination ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination ul li {
+    display: inline;
+    margin: 0 5px;
+    color:white;
+    background-color: #10a739; /* Couleur de fond pour les boutons de pagination */
+    padding: 5px 10px; /* Ajoute du padding pour séparer les boutons de la bordure */
+    border-radius: 5px; /* Ajoute un peu de courbure aux coins */
+}
+
+.pagination ul li.active a {
+    font-weight: bold;
+}
+
+.pagination ul li:last-child {
+    float: right;
+}

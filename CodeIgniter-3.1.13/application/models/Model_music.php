@@ -9,9 +9,10 @@ class Model_music extends CI_Model {
     }
 
     public function search_albums($query) {
-        $this->db->select('album.id, album.name, artist.name as artistName, year');
+        $this->db->select('album.id, album.name, artist.name as artistName, year, genre.name');
         $this->db->from('album');
         $this->db->join('artist', 'album.artistId = artist.id');
+        $this->db->join('genre', 'album.genreId = genre.id');
         $this->db->like('album.name', $query ,'after');
         $result = $this->db->get();
         return $result->result();

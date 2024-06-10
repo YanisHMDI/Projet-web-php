@@ -22,6 +22,9 @@
                 <?php if(isset($album->artistName)): ?>
                     <p class="artist">Artiste: <?php echo $album->artistName; ?></p>
                 <?php endif; ?>
+                <?php if(isset($album->genreName)): ?>
+                    <p class="artist">Genre: <?php echo $album->genreName; ?></p>
+                <?php endif; ?>
                 <p class="year">Année: <?php echo $album->year; ?></p>
                 <?php if(isset($album->description)): ?>
                     <p>Description: <?php echo $album->description; ?></p>

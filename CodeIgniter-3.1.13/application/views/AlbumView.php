@@ -20,7 +20,7 @@
                     <?php echo anchor("album/details/{$album->id}", "<h2 class='album-title'>{$album->name}</h2>"); ?>
                 </header>
                 <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
-                <footer class='short-text'><?php echo "{$album->year} - {$album->artistName}"; ?></footer>
+                <footer class='short-text'><?php echo "{$album->year} - {$album->artistName} - {$album->genreName}"; ?></footer>
             </article>
         </div>
     <?php endforeach; ?>

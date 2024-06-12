@@ -6,6 +6,8 @@
     <title>Inscription</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/inscription'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>

@@ -6,6 +6,8 @@
     <title>Albums de <?php echo $artist->name; ?></title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/albums_artist.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>

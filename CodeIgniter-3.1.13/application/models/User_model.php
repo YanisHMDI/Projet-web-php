@@ -29,9 +29,15 @@ class User_model extends CI_Model {
     }
 
     public function delete_user($user_id) {
+        // Supprimer les enregistrements associés dans la table playlist_track
+        $this->db->where('user_id', $user_id);
+        $this->db->delete('playlist_track');
+    
+        // Supprimer l'utilisateur
         $this->db->where('id', $user_id);
         $this->db->delete('utilisateurs');
     }
+    
 
     public function check_login($email, $password) {
         $this->db->where('email', $email);
@@ -50,3 +56,4 @@ class User_model extends CI_Model {
         }
     }
 }
+?>

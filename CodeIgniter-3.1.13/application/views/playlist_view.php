@@ -6,6 +6,8 @@
     <title>Mes Playlists</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/playlist.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+
     <style>
     </style>
 </head>

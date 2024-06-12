@@ -9,12 +9,14 @@
     flex-wrap: wrap;
     gap: 16px;
     padding: 16px;
-    margin-left: 220px;
+    width: 100%; /* Utilisez toute la largeur disponible du conteneur parent */
+    box-sizing: border-box; /* Ajoutez cette ligne pour inclure les bordures et le padding dans la largeur totale */
 }
 
 .list div {
     flex: 1 1 calc(25% - 16px);
     box-sizing: border-box;
+    margin-bottom: 16px;
 }
 
 .list article {
@@ -23,6 +25,7 @@
     border-radius: 8px;
     text-align: center;
     background: #fff;
+    width: 100%; /* Prenez toute la largeur du conteneur */
 }
 
 .list article img {
@@ -33,6 +36,7 @@
 .pagination {
     text-align: center;
     overflow: hidden;
+    margin: 20px 0; /* Ajoutez une marge pour espacer de la liste */
 }
 
 .pagination ul {
@@ -44,8 +48,8 @@
 .pagination ul li {
     display: inline;
     margin: 0 5px;
-    color:white;
-    background-color: #10a739; /* Couleur de fond pour les boutons de pagination */
+    color: white;
+    background-color: #10a2a7; /* Couleur de fond pour les boutons de pagination */
     padding: 5px 10px; /* Ajoute du padding pour séparer les boutons de la bordure */
     border-radius: 5px; /* Ajoute un peu de courbure aux coins */
 }
@@ -54,6 +58,44 @@
     font-weight: bold;
 }
 
-.pagination ul li:last-child {
-    float: right;
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .list div {
+        flex: 1 1 calc(33.33% - 16px); /* 3 items par ligne */
+    }
+}
+
+@media (max-width: 992px) {
+    .list div {
+        flex: 1 1 calc(50% - 16px); /* 2 items par ligne */
+    }
+}
+
+@media (max-width: 768px) {
+    .list {
+        padding: 8px; /* Réduisez le padding pour les petits écrans */
+        gap: 8px;
+    }
+    .list div {
+        flex: 1 1 calc(50% - 8px); /* 2 items par ligne */
+        margin-bottom: 8px;
+    }
+    .list article {
+        padding: 8px; /* Réduisez le padding pour les petits écrans */
+    }
+}
+
+@media (max-width: 576px) {
+    .list div {
+        flex: 1 1 calc(100% - 16px); /* 1 item par ligne */
+    }
+}
+
+@media (max-width: 480px) {
+    .album-title {
+        font-size: 16px; /* Réduisez la taille de la police pour les petits écrans */
+    }
+    .pagination ul li {
+        padding: 5px 8px; /* Réduisez le padding pour les petits écrans */
+    }
 }

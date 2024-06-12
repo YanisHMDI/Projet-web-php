@@ -12,25 +12,10 @@ class Search extends CI_Controller {
 
     public function index() {
         $query = $this->input->get('query');
-        $filter = $this->input->get('filter');
-
-        // Initialisation des variables
-        $albums = [];
-        $artists = [];
-        $songs = [];
-
-        // Recherche selon le filtre
-        if ($filter == 'songs' || $filter == 'all') {
-            $songs = $this->Model_music->search_songs($query);
-        }
-        if ($filter == 'artists' || $filter == 'all') {
-            $artists = $this->Artist_model->search_artists($query);
-        }
-        if ($filter == 'albums' || $filter == 'all') {
-            $albums = $this->Model_music->search_albums($query);
-        }
-
-        $this->load->view('SearchView', ['albums' => $albums, 'artists' => $artists, 'songs' => $songs]);
+        $albums = $this->Model_music->search_albums($query);
+        $artists = $this->Artist_model->search_artists($query);
+        $songs = $this->Model_music->search_songs($query); // Ajout de la recherche de titres
+        $this->load->view('SearchView', ['albums' => $albums, 'artists' => $artists, 'songs' => $songs]); // Passage des résultats de recherche de titres à la vue
     }
 }
 ?>

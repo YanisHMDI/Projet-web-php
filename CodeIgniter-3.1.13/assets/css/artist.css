@@ -1,8 +1,6 @@
 /* CSS pour la page d'artistes */
 
 .artist-section {
-    max-width: calc(90vw - 220px); /* Largeur de la vue moins la largeur de la sidebar */
-    margin-left: 220px; /* Largeur de la sidebar */
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(7px);
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
@@ -10,8 +8,8 @@
     padding: 20px;
     text-align: center;
     margin: 20px auto;
+    max-width: 90vw;
 }
-
 
 .artist-section h2 {
     font-size: 2em;
@@ -53,29 +51,16 @@
     box-sizing: border-box;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* Section des albums */
 .artist-albums-section {
     max-width: 90vw;
-    background-color: #fff5;
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(7px);
-    box-shadow: 0 .4rem .8rem #0005;
-    border-radius: .8rem;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
+    border-radius: 0.8rem;
     padding: 20px;
     text-align: center;
+    margin: 20px auto;
 }
 
 .artist-albums-section h2 {
@@ -115,4 +100,73 @@ body {
 .no-album {
     font-size: 1.2em;
     color: #666;
+}
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .artist, .album-item {
+        flex: 1 1 calc(33.333% - 16px);
+    }
+}
+
+@media (max-width: 992px) {
+    .artist, .album-item {
+        flex: 1 1 calc(50% - 16px);
+    }
+
+    .artist-section h2, .artist-albums-section h2 {
+        font-size: 1.8em;
+    }
+
+    .artist-bubble, .album-item article {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .artist, .album-item {
+        flex: 1 1 calc(100% - 16px);
+    }
+
+    .artist-section h2, .artist-albums-section h2 {
+        font-size: 1.6em;
+    }
+
+    .artist-bubble, .album-item article {
+        padding: 10px;
+    }
+
+    .artist-name {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 576px) {
+    .artist-section, .artist-albums-section {
+        padding: 15px;
+    }
+
+    .artist-section h2, .artist-albums-section h2 {
+        font-size: 1.4em;
+    }
+
+    .artist-bubble, .album-item article {
+        padding: 10px;
+    }
+
+    .artist-name {
+        font-size: 0.9em;
+    }
 }

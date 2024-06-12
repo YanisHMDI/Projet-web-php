@@ -157,3 +157,112 @@ a:active {
     bottom: 170px; left: 90px;
     z-index: -1;
 }
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    p {
+        font-size: 1.2rem;
+    }
+
+    form {
+        padding: 2.5rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.8rem;
+    }
+
+    button[type="submit"] {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 992px) {
+    p {
+        font-size: 1rem;
+    }
+
+    form {
+        padding: 2rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.7rem;
+    }
+
+    button[type="submit"] {
+        padding: 7px;
+    }
+}
+
+@media (max-width: 768px) {
+    p {
+        font-size: 0.9rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.6rem;
+    }
+
+    button[type="submit"] {
+        padding: 6px;
+    }
+}
+
+@media (max-width: 576px) {
+    p {
+        font-size: 0.8rem;
+    }
+
+    form {
+        padding: 1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.5rem;
+    }
+
+    button[type="submit"] {
+        padding: 5px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    p {
+        font-size: 0.7rem;
+    }
+
+    form {
+        padding: 0.8rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.4rem;
+    }
+
+    button[type="submit"] {
+        padding: 4px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}

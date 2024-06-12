@@ -127,24 +127,46 @@ class Playlist_model extends CI_Model {
 
 
     public function delete_track_from_playlist($playlist_id, $track_id, $user_id) {
-        // Assurez-vous que l'utilisateur est le propriétaire de la playlist et que la piste appartient à cette playlist
-        $this->db->where('playlist_id', $playlist_id);
-        $this->db->where('track_id', $track_id);
-        $this->db->where('user_id', $user_id); // Vérifie que l'utilisateur est le propriétaire de la playlist et que la piste appartient à cette playlist
-        
-        return $this->db->delete('playlist_track'); // 'playlist_track' est le nom de la table où les relations playlist-track sont stockées
-    }
+        // Vérifier si la playlist appartient à l'utilisateur
+        $this->db->where('id', $playlist_id);
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get('playlist');
     
+        if ($query->num_rows() > 0) {
+            // Supprimer l'entrée de la table playlist_track
+            $this->db->where('playlist_id', $playlist_id);
+            $this->db->where('track_id', $track_id);
+            $this->db->delete('playlist_track');
+    
+            return true;
+        } else {
+            return false;
+        }
+    }  
 
     public function delete_user_and_playlists($user_id) {
         // Supprimer d'abord les playlists associées à l'utilisateur
         $this->db->where('user_id', $user_id);
         $this->db->delete('playlist');
-
-        // Ensuite, supprimez l'utilisateur
+    
+        // Ensuite, supprimer l'utilisateur
         $this->db->where('id', $user_id);
         $this->db->delete('utilisateurs');
     }
+    
+    public function get_playlists_for_user($user_id) {
+        if ($user_id === null) {
+            // Si l'utilisateur n'est pas connecté, ne retourner que les playlists publiques
+            $this->db->where('visibility', 'public');
+        } else {
+            // Si l'utilisateur est connecté, retourner les playlists publiques et celles de l'utilisateur
+            $this->db->where('visibility', 'public');
+            $this->db->or_where('user_id', $user_id);
+        }
+        $query = $this->db->get('playlist');
+        return $query->result();
+    }
+
 }
 
 ?>

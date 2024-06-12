@@ -31,5 +31,15 @@ class Artist_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_songs_by_artist($artist_id) {
+        $this->db->select('song.id, song.name');
+        $this->db->from('song');
+        $this->db->join('track', 'song.id = track.songId');
+        $this->db->join('album', 'track.albumId = album.id');
+        $this->db->where('album.artistId', $artist_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

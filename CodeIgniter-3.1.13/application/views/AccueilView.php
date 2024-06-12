@@ -5,6 +5,8 @@
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <title>Binks</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/accueil.css'); ?>">
+
 </head>
 <body>
 

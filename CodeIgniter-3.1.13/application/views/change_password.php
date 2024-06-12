@@ -6,6 +6,8 @@
     <title>Modifier le mot de passe</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/profil.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>  

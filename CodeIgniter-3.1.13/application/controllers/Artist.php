@@ -6,7 +6,7 @@ class Artist extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Artist_model');
-        $this->load->model('Model_music');
+        $this->load->model('Model_music'); // Assurez-vous que ce modèle est correctement utilisé
         $this->load->helper('url');
     }
 
@@ -19,6 +19,12 @@ class Artist extends CI_Controller {
         $data['artist'] = $this->Artist_model->get_artist_by_id($artist_id);
         $data['albums'] = $this->Artist_model->get_albums_by_artist($artist_id);
         $this->load->view('artist_albums_view', $data);
+    }
+
+    public function view_songs($artist_id) {
+        $data['artist'] = $this->Artist_model->get_artist_by_id($artist_id);
+        $data['songs'] = $this->Artist_model->get_songs_by_artist($artist_id);
+        $this->load->view('artist_songs_view', $data);
     }
 }
 ?>

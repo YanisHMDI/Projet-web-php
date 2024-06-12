@@ -206,15 +206,25 @@ class Playlist extends CI_Controller {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
         }
-
+    
         // Récupérer les détails de la playlist à dupliquer
         $playlist_details = $this->Playlist_model->get_playlist_details($playlist_id);
-
+    
         if ($playlist_details) {
             // Créer une nouvelle playlist avec les mêmes détails que la playlist d'origine
-            $new_playlist_id = $this->Playlist_model->create_playlist($playlist_details->name, $playlist_details->user_id, $playlist_details->visibility, $playlist_details->image);
-
+            $new_playlist_id = $this->Playlist_model->create_playlist($playlist_details->name, $this->session->userdata('user_id'), $playlist_details->visibility, $playlist_details->image);
+    
             if ($new_playlist_id) {
+                // Récupérer les pistes de la playlist d'origine
+                $tracks = $this->Playlist_model->get_tracks_by_playlist($playlist_id);
+    
+                // Ajouter ces pistes à la nouvelle playlist
+                if (!empty($tracks)) {
+                    foreach ($tracks as $track) {
+                        $this->Playlist_model->add_track_to_playlist($new_playlist_id, $track->id);
+                    }
+                }
+    
                 // Rediriger avec un message de succès
                 $this->session->set_flashdata('message', 'Playlist dupliquée avec succès.');
             } else {
@@ -225,10 +235,11 @@ class Playlist extends CI_Controller {
             // Rediriger avec un message d'erreur si la playlist n'existe pas
             $this->session->set_flashdata('error', 'La playlist à dupliquer n\'existe pas.');
         }
-
+    
         // Rediriger vers la page des playlists
         redirect('playlist');
     }
+    
     
 }
 ?>

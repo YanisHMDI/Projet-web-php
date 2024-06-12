@@ -111,6 +111,14 @@ class Model_music extends CI_Model {
         $query = $this->db->get('playlist');
         return $query->result();
     }
+
+    public function get_tracks_by_genre($genre_id, $limit) {
+        $this->db->where('genre_id', $genre_id);
+        $this->db->limit($limit);
+        $query = $this->db->get('tracks');
+        return $query->result();
+    }
+    
     
     
     

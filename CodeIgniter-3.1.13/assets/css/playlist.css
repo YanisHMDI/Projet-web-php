@@ -173,3 +173,12 @@ body {
     }
 }
 
+/* Media Query pour les écrans plus petits */
+@media (max-width: 1024px) {
+    body {
+        margin-left: 0;
+    }
+    .btn-add-playlist {
+        right: 10px;
+    }
+}

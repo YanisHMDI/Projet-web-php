@@ -1,3 +1,27 @@
+/* Ajouter un style pour le conteneur principal */
+.content {
+    margin-left: 220px; /* Correspond à la largeur de la sidebar */
+    padding: 20px;
+    width: calc(100% - 220px); /* Assurez-vous que le contenu prend le reste de la largeur */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur totale */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .content {
+        margin-left: 100px; /* Correspond à la largeur de la sidebar réduite */
+        width: calc(100% - 100px);
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        margin-left: 60px; /* Correspond à la largeur de la sidebar encore plus réduite */
+        width: calc(100% - 60px);
+    }
+}
+
+/* Styles existants */
 .album-title {
     text-decoration: none;
     color: #000000;

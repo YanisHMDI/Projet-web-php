@@ -150,6 +150,12 @@ body {
     box-sizing: border-box;
 }
 
+/* Style pour le contenu principal */
+.content {
+    margin-left: 240px; /* Largeur de la sidebar + écart souhaité */
+    padding: 20px; /* Optionnel : pour ajouter du padding à l'intérieur du contenu */
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .side-header {
@@ -157,8 +163,8 @@ body {
     }
 
     .content {
-        margin-left: 100px;
-        width: calc(100% - 100px);
+        margin-left: 120px; /* Ajustez en fonction de la largeur de la sidebar pour les petits écrans */
+        padding: 10px;
     }
 
     .logo img {
@@ -181,8 +187,8 @@ body {
     }
 
     .content {
-        margin-left: 60px;
-        width: calc(100% - 60px);
+        margin-left: 80px; /* Ajustez en fonction de la largeur de la sidebar pour les petits écrans */
+        padding: 5px;
     }
 
     .logo img {

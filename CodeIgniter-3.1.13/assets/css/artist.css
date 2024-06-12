@@ -8,7 +8,8 @@
     padding: 20px;
     text-align: center;
     margin: 20px auto;
-    max-width: 90vw;
+    margin-left: 20px; /* Ajustez cette valeur pour correspondre à l'écart souhaité */
+    max-width: calc(100% - 240px); /* Ajustez cette valeur pour correspondre à la largeur de la sidebar + écart souhaité */
 }
 
 .artist-section h2 {
@@ -53,7 +54,7 @@
 
 /* Section des albums */
 .artist-albums-section {
-    max-width: 90vw;
+    max-width: calc(100% - 240px); /* Ajustez cette valeur pour correspondre à la largeur de la sidebar + écart souhaité */
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(7px);
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
@@ -61,6 +62,7 @@
     padding: 20px;
     text-align: center;
     margin: 20px auto;
+    margin-left: 20px; /* Ajustez cette valeur pour correspondre à l'écart souhaité */
 }
 
 .artist-albums-section h2 {
@@ -119,6 +121,11 @@ body {
     .artist, .album-item {
         flex: 1 1 calc(33.333% - 16px);
     }
+
+    .artist-section, .artist-albums-section {
+        max-width: calc(100% - 220px); /* Ajustez en fonction de la largeur de la sidebar pour ce point de rupture */
+        margin-left: 100px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -132,6 +139,11 @@ body {
 
     .artist-bubble, .album-item article {
         padding: 15px;
+    }
+
+    .artist-section, .artist-albums-section {
+        max-width: calc(100% - 100px); /* Ajustez en fonction de la largeur de la sidebar pour ce point de rupture */
+        margin-left: 100px;
     }
 }
 
@@ -151,11 +163,18 @@ body {
     .artist-name {
         font-size: 1em;
     }
+
+    .artist-section, .artist-albums-section {
+        max-width: calc(100% - 100px); /* Ajustez en fonction de la largeur de la sidebar pour ce point de rupture */
+        margin-left: 100px;
+    }
 }
 
 @media (max-width: 576px) {
     .artist-section, .artist-albums-section {
         padding: 15px;
+        max-width: calc(100% - 60px); /* Ajustez en fonction de la largeur de la sidebar pour ce point de rupture */
+        margin-left: 60px;
     }
 
     .artist-section h2, .artist-albums-section h2 {

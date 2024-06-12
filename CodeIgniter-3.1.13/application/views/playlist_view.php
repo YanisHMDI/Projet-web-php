@@ -41,33 +41,33 @@
                 }
             }
         ?>
-
-        <!-- Afficher les playlists privées -->
-        <?php if (!empty($private_playlists)): ?>
-            <h3>Playlists Privées :</h3>
-            <div class="playlists">
-                <?php foreach ($private_playlists as $playlist): ?>
-                    <div class="playlist">
-                        <?php 
-                        $image_path = $playlist->image ? base_url($playlist->image) : base_url('denis.jpg');
-                        ?>
-                        <img src="<?php echo $image_path; ?>" alt="<?php echo $playlist->name; ?>" class="playlist-image">
-                        <div class="playlist-info">
-                            <h3 class="playlist-title">
-                                <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
-                                <span class="playlist-options" onclick="openOptions(event, <?php echo $playlist->id; ?>)">...</span>
-                            </h3>
-                            <div id="playlist-options-<?php echo $playlist->id; ?>" class="playlist-options-menu">
-                                <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>">Ajouter des titres</a>
-                                <button onclick="confirmDelete(<?php echo $playlist->id; ?>)">Supprimer</button>
-                            </div>
-                        </div>
+<!-- Afficher les playlists privées -->
+<?php if (!empty($private_playlists)): ?>
+    <h3>Playlists Privées :</h3>
+    <div class="playlists">
+        <?php foreach ($private_playlists as $playlist): ?>
+            <div class="playlist">
+                <?php 
+                $image_path = $playlist->image ? base_url($playlist->image) : base_url('denis.jpg');
+                ?>
+                <img src="<?php echo $image_path; ?>" alt="<?php echo $playlist->name; ?>" class="playlist-image">
+                <div class="playlist-info">
+                    <h3 class="playlist-title">
+                        <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
+                        <span class="playlist-options" onclick="openOptions(event, <?php echo $playlist->id; ?>)">...</span>
+                    </h3>
+                    <div id="playlist-options-<?php echo $playlist->id; ?>" class="playlist-options-menu">
+                        <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>">Ajouter des titres</a>
+                        <a href="<?php echo site_url('playlist/duplicate/' . $playlist->id); ?>">Dupliquer</a>
+                        <button onclick="confirmDelete(<?php echo $playlist->id; ?>)">Supprimer</button>
                     </div>
-                <?php endforeach; ?>
+                </div>
             </div>
-        <?php else: ?>
-            <p>Vous n'avez pas encore de playlists privées.</p>
-        <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p>Vous n'avez pas encore de playlists privées.</p>
+<?php endif; ?>
 
         <!-- Afficher les playlists publiques -->
         <?php if (!empty($public_playlists)): ?>

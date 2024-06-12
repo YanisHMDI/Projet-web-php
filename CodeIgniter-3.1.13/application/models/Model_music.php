@@ -106,9 +106,15 @@ class Model_music extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_user_playlists($user_id) {
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get('playlist');
+        return $query->result();
+    }
+    
+    
     
 }
-
 
 
 ?>

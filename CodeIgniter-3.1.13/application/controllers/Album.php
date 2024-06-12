@@ -36,8 +36,20 @@ class Album extends CI_Controller {
         if (!$album) {
             show_404();
         }
-        $this->load->view('details', ['album' => $album]);
+    
+        // Récupérer les playlists de l'utilisateur
+        $user_id = $this->session->userdata('user_id');
+        $playlists = $this->Model_music->get_user_playlists($user_id);
+    
+        // Débogage: Afficher les playlists dans le journal pour vérifier qu'elles sont bien récupérées
+        log_message('debug', 'Playlists: ' . print_r($playlists, true));
+    
+        $this->load->view('details', [
+            'album' => $album,
+            'playlists' => $playlists
+        ]);
     }
+    
 }
 
 ?>

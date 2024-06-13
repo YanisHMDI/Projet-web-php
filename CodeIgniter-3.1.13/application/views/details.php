@@ -20,7 +20,7 @@
         <div class="album-info">
             <?php if(isset($album)): ?>
                 <h2><?php echo $album->name; ?></h2>
-                <p class="artist">Artiste: <?php echo $album->artistName; ?></p>
+                <a href="<?php echo site_url('artist/view/' . $album->id); ?>">Artiste: <?php echo $album->artistName; ?></a>
                 <p class="genre">Genre: <?php echo $album->genreName; ?></p>
                 <p class="year">Année: <?php echo $album->year; ?></p>
                 

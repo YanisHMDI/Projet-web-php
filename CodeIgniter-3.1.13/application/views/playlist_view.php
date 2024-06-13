@@ -41,6 +41,28 @@
                 }
             }
         ?>
+<section class="random-playlist-section">
+    <h2>Générer une Playlist Aléatoire</h2>
+    <?php echo form_open('playlist/generate_random'); ?>
+        <div>
+            <label for="genre">Genre :</label>
+            <select name="genre" required>
+                <option value="">Sélectionner un genre</option>
+                <!-- Remplir les options avec les genres disponibles -->
+                <?php foreach ($genres as $genre): ?>
+                    <option value="<?php echo $genre->id; ?>"><?php echo $genre->name; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div>
+            <label for="num_tracks">Nombre de musiques :</label>
+            <input type="number" name="num_tracks" min="1" required>
+        </div>
+        <div>
+            <button type="submit">Générer</button>
+        </div>
+    <?php echo form_close(); ?>
+</section>
 <!-- Afficher les playlists privées -->
 <?php if (!empty($private_playlists)): ?>
     <h3>Playlists Privées :</h3>

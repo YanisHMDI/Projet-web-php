@@ -46,6 +46,11 @@ body {
     background-color: #CC0000;
 }
 
+.btn-add-playlist:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.4);
+}
+
 /* Popup */
 .popup {
     display: none;
@@ -124,6 +129,11 @@ body {
     background-color: #CC0000;
 }
 
+.popup-content button[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.4);
+}
+
 /* Styles pour les playlists */
 .playlists {
     display: grid;
@@ -159,6 +169,33 @@ body {
     font-size: 0.9em;
     color: #666;
     padding: 0 10px 10px;
+}
+
+/* Generate Playlist Form */
+.generate-playlist {
+    margin: 20px 0;
+}
+
+.generate-playlist form div {
+    margin-bottom: 10px;
+}
+
+.generate-playlist button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.generate-playlist button:hover {
+    background-color: #0056b3;
+}
+
+.generate-playlist button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4);
 }
 
 /* Animation */

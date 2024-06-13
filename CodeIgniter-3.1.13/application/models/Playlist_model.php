@@ -150,5 +150,18 @@ class Playlist_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_random_tracks($genre_id, $num_tracks) {
+        $this->db->select('track.id');
+        $this->db->from('track');
+        $this->db->join('album', 'track.albumId = album.id');
+        $this->db->join('genre', 'album.genreId = genre.id');
+        $this->db->where('genre.id', $genre_id);
+        $this->db->order_by('rand()');
+        $this->db->limit($num_tracks);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
 }
 ?>

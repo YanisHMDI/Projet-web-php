@@ -18,6 +18,23 @@ class Model_music extends CI_Model {
         return $result->result();
     }
 
+    public function getGenres() {
+        $query = $this->db->get('genre');
+        return $query->result();   
+    }
+
+    public function get_random_tracks($genre_id, $num_tracks) {
+        $this->db->select('track.id');
+        $this->db->from('track');
+        $this->db->join('album', 'track.albumId = album.id');
+        $this->db->join('genre', 'album.genreId = genre.id');
+        $this->db->where('genre.id', $genre_id);
+        $this->db->order_by('rand()');
+        $this->db->limit($num_tracks);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function search_songs($query) {
         $this->db->select('track.id, song.name as songName, album.name as albumName, artist.name as artistName');
         $this->db->from('track');

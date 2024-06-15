@@ -17,6 +17,7 @@ class Playlist extends CI_Controller {
             redirect('user/login');
         } else {
             $data['playlists'] = $this->Playlist_model->get_playlists_by_user($this->session->userdata('user_id'));
+            $data['genres'] = $this->Model_music->getGenres(); // Ajout de cette ligne
             $this->load->view('playlist_view', $data);
         }
     }
@@ -240,6 +241,35 @@ class Playlist extends CI_Controller {
         redirect('playlist');
     }
     
+    public function generate_random() {
+        if (!$this->session->userdata('username')) {
+            redirect('user/login');
+        } else {
+            $genre_id = $this->input->post('genre');
+            $num_tracks = $this->input->post('num_tracks');
+            $user_id = $this->session->userdata('user_id');
+            
+            $tracks = $this->Model_music->get_random_tracks($genre_id, $num_tracks);
+            
+            if (!empty($tracks)) {
+                $playlist_name = 'Playlist Aléatoire - ' . date('Y-m-d H:i:s');
+                $visibility = 'private';
+                $image_path = 'denis.jpg'; // Utilisez une image par défaut ou laissez l'utilisateur télécharger une image.
+                
+                $playlist_id = $this->Playlist_model->create_playlist($playlist_name, $user_id, $visibility, $image_path);
+                
+                foreach ($tracks as $track) {
+                    $this->Playlist_model->add_track_to_playlist($playlist_id, $track->id);
+                }
+                
+                $this->session->set_flashdata('message', 'Playlist aléatoire générée avec succès.');
+            } else {
+                $this->session->set_flashdata('error', 'Aucune musique trouvée pour les critères sélectionnés.');
+            }
+            
+            redirect('playlist');
+        }
+    }
     
 }
 ?>

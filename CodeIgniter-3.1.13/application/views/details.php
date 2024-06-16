@@ -1,3 +1,4 @@
+<!-- details.php -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,16 +10,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
 </head>
 <body>
-    <?php 
-    // Inclusion dynamique de la barre latérale en fonction de la connexion de l'utilisateur
-    $user_logged_in = $this->session->userdata('username');
-    if ($user_logged_in) {
-        $this->load->view('layout/sidebar_logged');
-    } else {
-        $this->load->view('layout/sidebar_not_logged');
-    }
-    ?>
-
+    <?php $this->load->view('layout/sidebar'); ?>
     <section class="album-details">
         <div class="album-cover">
             <?php if(isset($album->jpeg) && !is_null($album->jpeg)): ?>
@@ -40,9 +32,7 @@
                                 <th>Numéro</th>
                                 <th>Nom de la chanson</th>
                                 <th>Durée</th>
-                                <?php if ($user_logged_in) { ?>
-                                    <th>Playlist</th>
-                                <?php } ?>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,25 +41,20 @@
                                     <td><?php echo $index + 1; ?></td>
                                     <td><?php echo $track->songName; ?></td>
                                     <td><?php echo floor($track->duration / 60) . ':' . sprintf("%02d", $track->duration % 60); ?></td>
-                                    <?php if ($user_logged_in): ?>
-                                        <td>
-                                            <!-- Formulaire pour ajouter cette musique à la playlist -->
-                                            <form action="<?php echo base_url('index.php/playlist/add_track_to_playlist'); ?>" method="post">
-                                                <input type="hidden" name="track_id" value="<?php echo $track->id; ?>">
-                                                <input type="hidden" name="album_id" value="<?php echo $album->id; ?>">
-                                                <!-- Liste déroulante des playlists de l'utilisateur -->
-                                                <select name="playlist_select">
-                                                    <?php foreach ($playlists as $user_playlist): ?>
-                                                        <?php if (!is_null($user_playlist->id)): ?>
-                                                            <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                                <!-- Bouton pour ajouter cette musique à la playlist -->
-                                                <button type="submit">Ajouter à la playlist</button>
-                                            </form>
-                                        </td>
-                                    <?php endif; ?>
+                                    <td>
+                                        <!-- Formulaire pour ajouter cette musique à la playlist -->
+                                        <form action="<?php echo site_url('playlist/add_track_to_playlist'); ?>" method="post">
+                                            <input type="hidden" name="track_id" value="<?php echo $track->id; ?>">
+                                            <!-- Liste déroulante des playlists de l'utilisateur -->
+                                            <select name="playlist_id">
+                                                <?php foreach ($playlists as $user_playlist): ?>
+                                                    <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <!-- Bouton pour ajouter cette musique à la playlist -->
+                                            <button type="submit">Ajouter à la playlist</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -77,25 +62,29 @@
                 </div>
 
                 <!-- Formulaire pour ajouter toutes les chansons de l'album à une playlist -->
-                <?php if ($user_logged_in): ?>
-                    <form action="<?php echo base_url('index.php/playlist/add_album_to_playlist'); ?>" method="post">
-                        <input type="hidden" name="album_id" value="<?php echo $album->id; ?>">
-                        <select name="playlist_select">
+                <div class="add-all-tracks">
+                    <form action="<?php echo site_url('playlist/add_tracks_process'); ?>" method="post">
+                        <!-- Liste déroulante des playlists de l'utilisateur -->
+                        <select name="playlist_id">
                             <?php foreach ($playlists as $user_playlist): ?>
-                                <?php if (!is_null($user_playlist->id)): ?>
-                                    <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
-                                <?php endif; ?>
+                                <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <!-- Ajout de tous les identifiants des chansons de l'album -->
+                        <?php foreach($album->tracks as $track): ?>
+                            <input type="hidden" name="selected_tracks[]" value="<?php echo $track->id; ?>">
+                        <?php endforeach; ?>
+                        <!-- Bouton pour ajouter toutes les chansons à la playlist -->
                         <button type="submit">Ajouter toutes les chansons à la playlist</button>
                     </form>
-                <?php endif; ?>
+                </div>
                 
             <?php else: ?>
                 <p>Album non trouvé.</p>
             <?php endif; ?>
         </div>
     </section>
+    
     <script>
         function performSearch() {
             var query = document.getElementById('search-input').value;

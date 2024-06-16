@@ -31,6 +31,7 @@ class Playlist extends CI_Controller {
         }
     }
 
+
     public function create_process() {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
@@ -71,23 +72,29 @@ class Playlist extends CI_Controller {
     public function add_track_to_playlist() {
         // Assure-toi que l'utilisateur est connecté
         if (!$this->session->userdata('username')) {
-            // Redirige vers la page de connexion
-            redirect('login');
+            // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+            redirect('user/login');
         }
     
         // Récupère les données du formulaire
         $track_id = $this->input->post('track_id');
-        $album_id = $this->input->post('album_id');
-        $playlist_id = $this->input->post('playlist_select');
+        $playlist_id = $this->input->post('playlist_id');
+    
+        // Vérifie si playlist_id est défini et non vide
+        if (!isset($playlist_id) || empty($playlist_id)) {
+            // Gérer l'erreur ici ou rediriger vers une page d'erreur
+            show_error('Playlist ID is missing or empty.');
+        }
     
         // Ajoute la piste à la playlist
         $this->Playlist_model->add_track_to_playlist($playlist_id, $track_id);
     
-        // Redirige vers la page des détails de l'album ou une autre page appropriée
-        redirect('album/details/' . $album_id);
+        // Redirige vers la page de la playlist après l'ajout
+        redirect('playlist/view/' . $playlist_id);
     }
     
-
+    
+    
     public function add_tracks_process() {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
@@ -95,20 +102,18 @@ class Playlist extends CI_Controller {
             $playlist_id = $this->input->post('playlist_id');
             $selected_albums = $this->input->post('selected_albums');
             $selected_tracks = $this->input->post('selected_tracks');
-    
+
             if (!empty($selected_albums)) {
                 foreach ($selected_albums as $album_id) {
-                    $this->Playlist_model->add_track_to_playlist($playlist_id, $album_id);
+                    $this->Playlist_model->add_album_to_playlist($playlist_id, $album_id);
                 }
             }
-    
+
             if (!empty($selected_tracks)) {
                 foreach ($selected_tracks as $track_id) {
                     $this->Playlist_model->add_track_to_playlist($playlist_id, $track_id);
                 }
             }
-    
-            // Redirigez vers la page de la playlist une fois les chansons ou albums ajoutés
             redirect('playlist/view/' . $playlist_id);
         }
     }

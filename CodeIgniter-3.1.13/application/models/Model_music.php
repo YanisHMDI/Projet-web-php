@@ -61,36 +61,31 @@ class Model_music extends CI_Model {
 
 // Modèle Model_music
 public function get_album_details($album_id) {
-    // Récupérer les détails de l'album
-    $album_query = $this->db->query("
-        SELECT album.id, album.name, album.artistId, album.year, artist.name as artistName, genre.name as genreName, cover.jpeg 
-        FROM album 
-        JOIN artist ON album.artistId = artist.id
-        JOIN genre ON genre.id = album.genreId
-        JOIN cover ON cover.id = album.coverId
-        WHERE album.id = ?", array($album_id)
-    );
+    $this->db->select('album.id, album.name, album.artistId, album.year, artist.name as artistName, genre.id as genreId, genre.name as genreName, cover.jpeg');
+    $this->db->from('album');
+    $this->db->join('artist', 'album.artistId = artist.id');
+    $this->db->join('genre', 'album.genreId = genre.id');
+    $this->db->join('cover', 'album.coverId = cover.id');
+    $this->db->where('album.id', $album_id);
+    $album_query = $this->db->get();
 
-    // Vérifier si l'album existe
     if ($album_query->num_rows() == 0) {
-        return null; // Retourner null si l'album n'existe pas
+        return null;
     }
 
-    // Récupérer les pistes de l'album avec les noms des chansons
-    $tracks_query = $this->db->query("
-        SELECT track.id, track.diskNumber, track.number, track.duration, song.name as songName
-        FROM track
-        JOIN song ON track.songId = song.id
-        WHERE track.albumId = ?
-        ORDER BY track.diskNumber, track.number", array($album_id)
-    );
+    $this->db->select('track.id, track.diskNumber, track.number, track.duration, song.name as songName');
+    $this->db->from('track');
+    $this->db->join('song', 'track.songId = song.id');
+    $this->db->where('track.albumId', $album_id);
+    $this->db->order_by('track.diskNumber, track.number');
+    $tracks_query = $this->db->get();
 
-    // Créer un objet avec les détails de l'album et ses pistes
     $album_details = $album_query->row();
     $album_details->tracks = $tracks_query->result();
 
     return $album_details;
 }
+
 
 
     public function getTracks() {

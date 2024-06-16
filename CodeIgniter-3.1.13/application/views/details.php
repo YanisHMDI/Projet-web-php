@@ -21,7 +21,7 @@
             <?php if(isset($album)): ?>
                 <h2><?php echo $album->name; ?></h2>
                 <a href="<?php echo site_url('artist/view/' . $artistId); ?>">Artiste: <?php echo $album->artistName; ?></a>
-                <p class="genre">Genre: <?php echo $album->genreName; ?></p>
+                <a href="<?php echo site_url('album/index/' . $album->genreId); ?>">Genre: <?php echo $album->genreName; ?></a></p>
                 <p class="year">Année: <?php echo $album->year; ?></p>
                 
                 <div class="track-list">

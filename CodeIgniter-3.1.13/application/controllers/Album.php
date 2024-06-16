@@ -41,8 +41,9 @@ class Album extends CI_Controller {
             show_404();
         }
     
-        // Passer artistId à la vue
+        // Passer artistId et genreId à la vue
         $data['artistId'] = $data['album']->artistId; // Assurez-vous que c'est artistId tel que retourné par la requête SQL
+        $data['genreId'] = $data['album']->genreId; // Assurez-vous que c'est genreId tel que retourné par la requête SQL
     
         // Récupérer l'ID de l'utilisateur connecté depuis la session
         $user_id = $this->session->userdata('user_id');
@@ -53,12 +54,9 @@ class Album extends CI_Controller {
         // Passer l'ID de l'utilisateur connecté à la vue
         $data['user_id'] = $user_id;
     
-        // Passer un exemple de playlist_id à la vue (adapter selon votre logique)
-        $data['playlist_id'] = 1; // Exemple de playlist_id à passer à la vue
-    
         // Charger la vue avec les données de l'album et des playlists
         $this->load->view('details', $data);
-    }
+    }    
     
 }
     

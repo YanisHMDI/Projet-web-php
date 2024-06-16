@@ -137,6 +137,20 @@ public function get_album_details($album_id) {
         $query = $this->db->get('tracks');
         return $query->result();
     }
+    public function getAlbumsByGenre($genre_id = null) {
+        $this->db->select('album.id, album.name, artist.name as artistName, year, genre.name as genreName, cover.jpeg');
+        $this->db->from('album');
+        $this->db->join('artist', 'album.artistId = artist.id');
+        $this->db->join('genre', 'album.genreId = genre.id');
+        $this->db->join('cover', 'album.coverId = cover.id');
+        
+        if ($genre_id !== null) {
+            $this->db->where('genre.id', $genre_id);
+        }
+    
+        $query = $this->db->get();
+        return $query->result();
+    }
     
     
     

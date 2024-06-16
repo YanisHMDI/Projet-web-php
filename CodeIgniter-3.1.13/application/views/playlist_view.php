@@ -41,55 +41,53 @@
                 }
             }
         ?>
-<section class="random-playlist-section">
-    <h2>Générer une Playlist Aléatoire</h2>
-    <?php echo form_open('playlist/generate_random'); ?>
-        <div>
-            <label for="genre">Genre :</label>
-            <select name="genre" required>
-                <option value="">Sélectionner un genre</option>
-                <!-- Remplir les options avec les genres disponibles -->
-                <?php foreach ($genres as $genre): ?>
-                    <option value="<?php echo $genre->id; ?>"><?php echo $genre->name; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div>
-            <label for="num_tracks">Nombre de musiques :</label>
-            <input type="number" name="num_tracks" min="1" required>
-        </div>
-        <div>
-            <button type="submit">Générer</button>
-        </div>
-    <?php echo form_close(); ?>
-</section>
-<!-- Afficher les playlists privées -->
-<?php if (!empty($private_playlists)): ?>
-    <h3>Playlists Privées :</h3>
-    <div class="playlists">
-        <?php foreach ($private_playlists as $playlist): ?>
-            <div class="playlist">
-                <?php 
-                $image_path = $playlist->image ? base_url($playlist->image) : base_url('denis.jpg');
-                ?>
-                <img src="<?php echo $image_path; ?>" alt="<?php echo $playlist->name; ?>" class="playlist-image">
-                <div class="playlist-info">
-                    <h3 class="playlist-title">
-                        <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
-                        <span class="playlist-options" onclick="openOptions(event, <?php echo $playlist->id; ?>)">...</span>
-                    </h3>
-                    <div id="playlist-options-<?php echo $playlist->id; ?>" class="playlist-options-menu">
-                        <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>">Ajouter des titres</a>
-                        <a href="<?php echo site_url('playlist/duplicate/' . $playlist->id); ?>">Dupliquer</a>
-                        <button onclick="confirmDelete(<?php echo $playlist->id; ?>)">Supprimer</button>
-                    </div>
+        <section class="generate-playlist">
+            <h2>Générer une Playlist Aléatoire</h2>
+            <?php echo form_open('playlist/generate_random'); ?>
+                <div class="form-group">
+                    <label for="genre">Genre :</label>
+                    <select name="genre" required>
+                        <option value="">Sélectionner un genre</option>
+                        <!-- Remplir les options avec les genres disponibles -->
+                        <?php foreach ($genres as $genre): ?>
+                            <option value="<?php echo $genre->id; ?>"><?php echo $genre->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label for="num_tracks">Nombre de musiques :</label>
+                    <input type="number" name="num_tracks" min="1" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Générer</button>
+                </div>
+            <?php echo form_close(); ?>
+        </section>
+
+        <!-- Afficher les playlists privées -->
+        <?php if (!empty($private_playlists)): ?>
+            <h3>Playlists Privées :</h3>
+            <div class="playlists">
+                <?php foreach ($private_playlists as $playlist): ?>
+                    <div class="playlist">
+                        <?php 
+                        ?>
+                            <h3 class="playlist-title">
+                                <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
+                            </h3>
+                            <div class="playlist-buttons">
+                                <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>" class="btn">Ajouter des titres</a>
+                                <a href="<?php echo site_url('playlist/duplicate/' . $playlist->id); ?>" class="btn">Dupliquer</a>
+                                <button onclick="confirmDelete(<?php echo $playlist->id; ?>)" class="btn-delete">Supprimer</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-        <?php endforeach; ?>
-    </div>
-<?php else: ?>
-    <p>Vous n'avez pas encore de playlists privées.</p>
-<?php endif; ?>
+        <?php else: ?>
+            <p>Vous n'avez pas encore de playlists privées.</p>
+        <?php endif; ?>
 
         <!-- Afficher les playlists publiques -->
         <?php if (!empty($public_playlists)): ?>
@@ -100,15 +98,11 @@
                         <?php 
                         $image_path = $playlist->image ? base_url($playlist->image) : base_url('denis.jpg');
                         ?>
-                        <img src="<?php echo $image_path; ?>" alt="<?php echo $playlist->name; ?>" class="playlist-image">
-                        <div class="playlist-info">
                             <h3 class="playlist-title">
                                 <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
                                 <span class="playlist-options" onclick="openOptions(event, <?php echo $playlist->id; ?>)">...</span>
                             </h3>
                             <div id="playlist-options-<?php echo $playlist->id; ?>" class="playlist-options-menu">
-                                <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>">Ajouter des titres</a>
-                                <button onclick="confirmDelete(<?php echo $playlist->id; ?>)">Supprimer</button>
                             </div>
                         </div>
                     </div>
@@ -138,10 +132,6 @@
                     </select>
                 </div>
                 <div>
-                    <label for="playlist_image">Image de la playlist :</label>
-                    <input type="file" name="playlist_image" accept="image/*">
-                </div>
-                <div>
                     <button type="submit">Créer</button>
                 </div>
             <?php echo form_close(); ?>
@@ -149,7 +139,7 @@
     </div>
 
     <script>
-        function confirmDelete(playlistId) {
+          function confirmDelete(playlistId) {
             if (confirm('Êtes-vous sûr de vouloir supprimer cette playlist ?')) {
                 window.location.href = '<?php echo site_url('playlist/delete/'); ?>' + playlistId;
             }
@@ -173,12 +163,6 @@
             }
         }
 
-        document.addEventListener('click', function() {
-            const optionsMenus = document.querySelectorAll('.playlist-options-menu');
-            optionsMenus.forEach(menu => {
-                menu.style.display = 'none';
-            });
-        });
     </script>
 </body>
 </html>

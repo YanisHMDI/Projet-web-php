@@ -59,37 +59,39 @@ class Model_music extends CI_Model {
         return $query->result();
     }
 
-    public function get_album_details($album_id) {
-        // Récupérer les détails de l'album
-        $album_query = $this->db->query("
-            SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
-            FROM album 
-            JOIN artist ON album.artistid = artist.id
-            JOIN genre ON genre.id = album.genreid
-            JOIN cover ON cover.id = album.coverid
-            WHERE album.id = ?", array($album_id)
-        );
+// Modèle Model_music
+public function get_album_details($album_id) {
+    // Récupérer les détails de l'album
+    $album_query = $this->db->query("
+        SELECT album.id, album.name, album.artistId, album.year, artist.name as artistName, genre.name as genreName, cover.jpeg 
+        FROM album 
+        JOIN artist ON album.artistId = artist.id
+        JOIN genre ON genre.id = album.genreId
+        JOIN cover ON cover.id = album.coverId
+        WHERE album.id = ?", array($album_id)
+    );
 
-        // Vérifier si l'album existe
-        if ($album_query->num_rows() == 0) {
-            return null; // Retourne null si l'album n'existe pas
-        }
-
-        // Récupérer les pistes de l'album avec les noms des chansons
-        $tracks_query = $this->db->query("
-            SELECT track.id, track.diskNumber, track.number, track.duration, song.name as songName
-            FROM track
-            JOIN song ON track.songId = song.id
-            WHERE track.albumId = ?
-            ORDER BY track.diskNumber, track.number", array($album_id)
-        );
-
-        // Créer un objet avec les détails de l'album et ses pistes
-        $album_details = $album_query->row();
-        $album_details->tracks = $tracks_query->result();
-
-        return $album_details;
+    // Vérifier si l'album existe
+    if ($album_query->num_rows() == 0) {
+        return null; // Retourner null si l'album n'existe pas
     }
+
+    // Récupérer les pistes de l'album avec les noms des chansons
+    $tracks_query = $this->db->query("
+        SELECT track.id, track.diskNumber, track.number, track.duration, song.name as songName
+        FROM track
+        JOIN song ON track.songId = song.id
+        WHERE track.albumId = ?
+        ORDER BY track.diskNumber, track.number", array($album_id)
+    );
+
+    // Créer un objet avec les détails de l'album et ses pistes
+    $album_details = $album_query->row();
+    $album_details->tracks = $tracks_query->result();
+
+    return $album_details;
+}
+
 
     public function getTracks() {
         $this->db->select('track.id, song.name'); // Sélectionnez les colonnes nécessaires

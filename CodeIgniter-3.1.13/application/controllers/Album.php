@@ -32,25 +32,22 @@ class Album extends CI_Controller {
     
 
     public function details($album_id) {
-        $album = $this->Model_music->get_album_details($album_id);
-        if (!$album) {
+        // Charger les détails de l'album en utilisant le modèle
+        $data['album'] = $this->Model_music->get_album_details($album_id);
+    
+        // Vérifiez si l'album est trouvé
+        if (!$data['album']) {
             show_404();
         }
     
-        // Récupérer les playlists de l'utilisateur
-        $user_id = $this->session->userdata('user_id');
-        $playlists = $this->Model_music->get_user_playlists($user_id);
+        // Passer artistId à la vue
+        $data['artistId'] = $data['album']->artistId; // Assurez-vous que c'est artistId tel que retourné par la requête SQL
     
-        // Débogage: Afficher les playlists dans le journal pour vérifier qu'elles sont bien récupérées
-        log_message('debug', 'Playlists: ' . print_r($playlists, true));
-    
-        $this->load->view('details', [
-            'album' => $album,
-            'playlists' => $playlists
-        ]);
+        // Charger la vue avec les données de l'album
+        $this->load->view('details', $data);
     }
-    
 }
+    
 
 ?>
 

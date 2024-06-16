@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <title>Détails de l'album</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/detail.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
 </head>
@@ -20,7 +20,9 @@
         <div class="album-info">
             <?php if(isset($album)): ?>
                 <h2><?php echo $album->name; ?></h2>
-                <a href="<?php echo site_url('artist/view/' . $album->id); ?>">Artiste: <?php echo $album->artistName; ?></a>
+               <!-- Vue details.php -->
+<a href="<?php echo site_url('artist/view/' . $artistId); ?>">Artiste: <?php echo $album->artistName; ?></a>
+
                 <p class="genre">Genre: <?php echo $album->genreName; ?></p>
                 <p class="year">Année: <?php echo $album->year; ?></p>
                 
@@ -29,12 +31,12 @@
                     <table>
                         <thead>
                             <tr>
-                            <th>Numéro</th>
-                            <th>Nom de la chanson</th>
-                            <th>Durée</th>
-                            <?php if ($this->session->userdata('username')) { ?>
-                            <th>Playlist</th>
-                            <?php } ?>
+                                <th>Numéro</th>
+                                <th>Nom de la chanson</th>
+                                <th>Durée</th>
+                                <?php if ($this->session->userdata('username')) { ?>
+                                <th>Playlist</th>
+                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,17 +64,13 @@
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-
                         </tbody>
                     </table>
-                    
-
-
-
                 </div>
             <?php else: ?>
                 <p>Album non trouvé.</p>
             <?php endif; ?>
         </div>
     </section>
+</body>
 </html>

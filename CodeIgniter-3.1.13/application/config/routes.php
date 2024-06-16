@@ -62,6 +62,8 @@ $route['playlist/create_process'] = 'playlist/create_process';
 $route['playlist'] = 'playlist/index';
 $route['artist'] = 'artist/index';
 $route['artist/view/(:num)'] = 'artist/view/$1';
+$route['album/details/(:num)'] = 'album/details/$1';
+
 
 
 

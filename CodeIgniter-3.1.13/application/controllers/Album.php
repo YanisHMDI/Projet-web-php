@@ -10,44 +10,44 @@ class Album extends CI_Controller {
         $this->load->library('session');
     }
 
-    public function index($page = 1) {
-        $per_page = 10; // Nombre d'albums par page
-        $start_index = ($page - 1) * $per_page; // Index de départ pour la requête SQL
-        $argument1 = 'valeur_argument1';
-        $argument2 = 'valeur_argument2';
-        $total_albums = $this->Model_music->countAlbums(); // Nombre total d'albums
-        $total_pages = ceil($total_albums / $per_page); // Calcul du nombre total de pages
+    public function index($genre_id = null) {
+        $this->load->model('Model_music');
+        
+        // Charger les genres pour la vue
+        $data['genres'] = $this->Model_music->getGenres();
     
-        // Récupérer les albums pour la page actuelle
-        $albums = $this->Model_music->getAlbumsPaginated($argument1, $argument2, $start_index, $per_page);
+        // Charger les albums en fonction du genre sélectionné
+        if ($genre_id !== null) {
+            $data['albums'] = $this->Model_music->getAlbumsByGenre($genre_id);
+        } else {
+            // Passer les arguments requis à getAlbums()
+            $argument1 = ''; // Remplacez par la valeur de votre premier argument
+            $argument2 = ''; // Remplacez par la valeur de votre deuxième argument
+            $data['albums'] = $this->Model_music->getAlbums($argument1, $argument2);
+        }
     
-        $data = [
-            'albums' => $albums,
-            'total_pages' => $total_pages,
-            'current_page' => $page
-        ];
-    
+        // Charger la vue avec les données
         $this->load->view('AlbumView', $data);
     }
-    
-
     public function details($album_id) {
-        // Charger les détails de l'album en utilisant le modèle
-        $data['album'] = $this->Model_music->get_album_details($album_id);
-    
-        // Vérifiez si l'album est trouvé
-        if (!$data['album']) {
+        $album = $this->Model_music->get_album_details($album_id);
+        if (!$album) {
             show_404();
         }
     
-        // Passer artistId à la vue
-        $data['artistId'] = $data['album']->artistId; // Assurez-vous que c'est artistId tel que retourné par la requête SQL
+        // Récupérer les playlists de l'utilisateur
+        $user_id = $this->session->userdata('user_id');
+        $playlists = $this->Model_music->get_user_playlists($user_id);
     
-        // Charger la vue avec les données de l'album
-        $this->load->view('details', $data);
+        // Débogage: Afficher les playlists dans le journal pour vérifier qu'elles sont bien récupérées
+        log_message('debug', 'Playlists: ' . print_r($playlists, true));
+    
+        $this->load->view('details', [
+            'album' => $album,
+            'playlists' => $playlists
+        ]);
     }
-}
     
+}
 
 ?>
-

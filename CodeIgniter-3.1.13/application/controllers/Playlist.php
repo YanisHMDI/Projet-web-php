@@ -68,26 +68,6 @@ class Playlist extends CI_Controller {
         }
     }
 
-    public function add_track_to_playlist() {
-        // Assure-toi que l'utilisateur est connecté
-        if (!$this->session->userdata('username')) {
-            // Redirige vers la page de connexion
-            redirect('login');
-        }
-    
-        // Récupère les données du formulaire
-        $track_id = $this->input->post('track_id');
-        $album_id = $this->input->post('album_id');
-        $playlist_id = $this->input->post('playlist_select');
-    
-        // Ajoute la piste à la playlist
-        $this->Playlist_model->add_track_to_playlist($playlist_id, $track_id);
-    
-        // Redirige vers la page des détails de l'album ou une autre page appropriée
-        redirect('album/details/' . $album_id);
-    }
-    
-
     public function add_tracks_process() {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
@@ -108,11 +88,10 @@ class Playlist extends CI_Controller {
                 }
             }
     
-            // Redirigez vers la page de la playlist une fois les chansons ou albums ajoutés
-            redirect('playlist/view/' . $playlist_id);
+            // Redirection vers details.php une fois les chansons ou albums ajoutés
+            redirect('details.php');
         }
     }
-    
     public function view($playlist_id) {
         if (!$this->session->userdata('username')) {
             redirect('user/login');

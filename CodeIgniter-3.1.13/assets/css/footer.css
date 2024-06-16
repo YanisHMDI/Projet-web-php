@@ -1,17 +1,9 @@
-/* Styles pour le footer */
 .footer {
     background: #333;
     color: #fff;
     padding: 20px 0;
     font-family: Arial, sans-serif;
-    position: fixed; /* Position fixe pour rester en bas de la fenêtre */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 98; /* Assurez-vous que le z-index est inférieur à celui de la sidebar */
 }
-
-
 
 .footer-content {
     display: flex;

@@ -47,7 +47,7 @@ class Model_music extends CI_Model {
     }
 
     public function getAlbums($argument1, $argument2) {
-        // Utilise $argument1 et $argument2 dans ta requête SQL ou autre logique de traitement
+        // Utilisez $argument1 et $argument2 dans votre requête SQL ou autre logique de traitement
         $query = $this->db->query("
             SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
             FROM album 
@@ -58,40 +58,38 @@ class Model_music extends CI_Model {
         ");
         return $query->result();
     }
+    
+    public function get_album_details($album_id) {
+        // Récupérer les détails de l'album
+        $album_query = $this->db->query("
+            SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
+            FROM album 
+            JOIN artist ON album.artistid = artist.id
+            JOIN genre ON genre.id = album.genreid
+            JOIN cover ON cover.id = album.coverid
+            WHERE album.id = ?", array($album_id)
+        );
 
-// Modèle Model_music
-public function get_album_details($album_id) {
-    // Récupérer les détails de l'album
-    $album_query = $this->db->query("
-        SELECT album.id, album.name, album.artistId, album.year, artist.name as artistName, genre.name as genreName, cover.jpeg 
-        FROM album 
-        JOIN artist ON album.artistId = artist.id
-        JOIN genre ON genre.id = album.genreId
-        JOIN cover ON cover.id = album.coverId
-        WHERE album.id = ?", array($album_id)
-    );
+        // Vérifier si l'album existe
+        if ($album_query->num_rows() == 0) {
+            return null; // Retourne null si l'album n'existe pas
+        }
 
-    // Vérifier si l'album existe
-    if ($album_query->num_rows() == 0) {
-        return null; // Retourner null si l'album n'existe pas
+        // Récupérer les pistes de l'album avec les noms des chansons
+        $tracks_query = $this->db->query("
+            SELECT track.id, track.diskNumber, track.number, track.duration, song.name as songName
+            FROM track
+            JOIN song ON track.songId = song.id
+            WHERE track.albumId = ?
+            ORDER BY track.diskNumber, track.number", array($album_id)
+        );
+
+        // Créer un objet avec les détails de l'album et ses pistes
+        $album_details = $album_query->row();
+        $album_details->tracks = $tracks_query->result();
+
+        return $album_details;
     }
-
-    // Récupérer les pistes de l'album avec les noms des chansons
-    $tracks_query = $this->db->query("
-        SELECT track.id, track.diskNumber, track.number, track.duration, song.name as songName
-        FROM track
-        JOIN song ON track.songId = song.id
-        WHERE track.albumId = ?
-        ORDER BY track.diskNumber, track.number", array($album_id)
-    );
-
-    // Créer un objet avec les détails de l'album et ses pistes
-    $album_details = $album_query->row();
-    $album_details->tracks = $tracks_query->result();
-
-    return $album_details;
-}
-
 
     public function getTracks() {
         $this->db->select('track.id, song.name'); // Sélectionnez les colonnes nécessaires
@@ -115,33 +113,37 @@ public function get_album_details($album_id) {
         return $this->db->count_all('album');
     }
     
-    public function getAlbumsPaginated($argument1, $argument2, $start_index, $per_page) {
-        $this->db->select('album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg');
-        $this->db->from('album');
-        $this->db->join('artist', 'album.artistid = artist.id');
-        $this->db->join('genre', 'genre.id = album.genreid');
-        $this->db->join('cover', 'cover.id = album.coverid');
-        $this->db->limit($per_page, $start_index); // Limiter les résultats pour la pagination
-        $query = $this->db->get();
-        return $query->result();
-    }
+    
+    
+
     public function get_user_playlists($user_id) {
         $this->db->where('user_id', $user_id);
         $query = $this->db->get('playlist');
         return $query->result();
     }
 
-    public function get_tracks_by_genre($genre_id, $limit) {
-        $this->db->where('genre_id', $genre_id);
-        $this->db->limit($limit);
-        $query = $this->db->get('tracks');
+    public function countAlbumsByGenre($genre_id) {
+        $this->db->where('genreId', $genre_id);
+        return $this->db->count_all_results('album');
+    }
+
+    public function getAlbumsByGenre($genre_id = null) {
+        $this->db->select('album.id, album.name, artist.name as artistName, year, genre.name as genreName, cover.jpeg');
+        $this->db->from('album');
+        $this->db->join('artist', 'album.artistId = artist.id');
+        $this->db->join('genre', 'album.genreId = genre.id');
+        $this->db->join('cover', 'album.coverId = cover.id');
+        
+        if ($genre_id !== null) {
+            $this->db->where('genre.id', $genre_id);
+        }
+    
+        $query = $this->db->get();
         return $query->result();
     }
     
-    
-    
-    
 }
+
 
 
 ?>

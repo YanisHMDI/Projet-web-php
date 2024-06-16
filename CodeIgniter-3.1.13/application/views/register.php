@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/inscription'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
-
 
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
-
     <div class="container">
         <?php echo validation_errors(); ?>
         <?php echo form_open('user/register'); ?>
@@ -38,6 +35,4 @@
         <?php echo form_close(); ?>
     </div>
 </body>
-<?php $this->load->view('layout/footer'); ?>
-
 </html>

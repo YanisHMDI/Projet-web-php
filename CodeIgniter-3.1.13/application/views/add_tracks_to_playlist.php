@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/playlist.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
-
 
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
-
 
     <section class="add-tracks-section">
         <h2>Ajouter des albums/titres à la playlist</h2>
@@ -53,7 +50,5 @@
             <button type="submit">Ajouter à la playlist</button>
         <?php echo form_close(); ?>
     </section>
-    <?php $this->load->view('layout/footer'); ?>
-
 </body>
 </html>

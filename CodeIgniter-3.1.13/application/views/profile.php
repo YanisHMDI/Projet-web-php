@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/profil.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
-
 
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>  
-
     <div class="main-content">
         <h2>Profil</h2>
         <div class="profile-info">
@@ -26,7 +23,5 @@
         </div>
         <a class="btn btn-logout" href="<?php echo site_url('user/logout'); ?>">Se déconnecter</a>
     </div>
-    <?php $this->load->view('layout/footer'); ?>
-
 </body>
 </html>

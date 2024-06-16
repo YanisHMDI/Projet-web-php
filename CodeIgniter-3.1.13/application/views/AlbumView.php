@@ -6,17 +6,22 @@
     <title>Binks</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/Album.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
-
 </head>
 <body>
     <!-- Inclure la barre latérale -->
     <?php $this->load->view('layout/sidebar'); ?>
 
-
     <!-- Contenu de la page -->
     <div class="content">
+        <!-- Filtre par genre -->
+        <select onchange="window.location.href=this.value">
+            <option value="<?php echo site_url('album/index'); ?>">Tous les genres</option>
+            <?php foreach ($genres as $genre): ?>
+                <option value="<?php echo site_url('album/index/' . $genre->id); ?>"><?php echo $genre->name; ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <!-- Liste des albums -->
         <section class="list">
             <?php foreach($albums as $album): ?>
                 <div>
@@ -30,27 +35,6 @@
                 </div>
             <?php endforeach; ?>
         </section>
-
-        <!-- Pagination -->
-        <div class="pagination">
-            <ul>
-                <?php if ($current_page > 1): ?>
-                    <li><?php echo anchor("album/index/" . ($current_page - 1), 'Page précédente'); ?></li>
-                <?php endif; ?>
-
-                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                    <li class="<?php echo ($current_page == $i) ? 'active' : ''; ?>">
-                        <?php echo anchor("album/index/{$i}", $i); ?>
-                    </li>
-                <?php endfor; ?>
-
-                <?php if ($current_page < $total_pages): ?>
-                    <li><?php echo anchor("album/index/" . ($current_page + 1), 'Page suivante'); ?></li>
-                <?php endif; ?>
-            </ul>
-        </div>
     </div>
-    <?php $this->load->view('layout/footer'); ?>
-
 </body>
 </html>

@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/accueil.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
-
-
 </head>
 <body>
 
 <?php $this->load->view('layout/sidebar'); ?>
-
 
 <section class="presentation">
     <h2 class="logo"><img src="<?php echo base_url('assets/logo.png'); ?>" alt="Votre Logo" width="100"></h2>
@@ -22,7 +19,5 @@
     <img src="<?php echo base_url('assets/Macbook.png'); ?>" alt="Sample Image" class="sample-image">
 </section>
 <?php $this->load->view('layout/footer'); ?>
-
-
 </body>
 </html>

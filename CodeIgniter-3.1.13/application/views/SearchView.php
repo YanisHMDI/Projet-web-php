@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/search.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
-
 
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
-
 
     <section class="search-results">
     <h2>Résultats de Recherche</h2>
@@ -70,6 +67,4 @@
 
 
 </body>
-<?php $this->load->view('layout/footer'); ?>
-
 </html>

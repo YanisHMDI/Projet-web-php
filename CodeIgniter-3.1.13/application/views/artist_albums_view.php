@@ -2,31 +2,34 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <title>Albums de <?php echo $artist->name; ?></title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/albums_artist.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/Album.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
-
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
 
-    <section class="artist-albums-section">
+    <div class="content">
         <h2>Albums de <?php echo $artist->name; ?></h2>
-        <?php if (!empty($albums)): ?>
-            <ul class="album-list">
+        <section class="list">
+            <?php if (!empty($albums)): ?>
                 <?php foreach ($albums as $album): ?>
-                    <li class="album-item">
-                        <a href="<?php echo site_url('album/details/' . $album->id); ?>">
-                            <?php echo $album->name; ?> (<?php echo $album->year; ?>)
-                        </a>
-                    </li>
+                    <div>
+                        <article>
+                            <header class='short-text'>
+                                <?php echo anchor("album/details/{$album->id}", "<h2 class='album-title'>{$album->name}</h2>"); ?>
+                            </header>
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" />
+                            <footer class='short-text'><?php echo "{$album->year} - {$artist->name}"; ?></footer>
+                        </article>
+                    </div>
                 <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <p class="no-album">Aucun album disponible pour cet artiste.</p>
-        <?php endif; ?>
-    </section>
+            <?php else: ?>
+                <p class="no-album">Aucun album disponible pour cet artiste.</p>
+            <?php endif; ?>
+        </section>
+    </div>
 </body>
 </html>

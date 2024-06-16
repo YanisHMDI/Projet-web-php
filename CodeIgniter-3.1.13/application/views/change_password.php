@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/profil.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
+
 
 </head>
 <body>
-    <?php $this->load->view('layout/sidebar'); ?>  
+    <?php $this->load->view('layout/sidebar'); ?> 
+ 
     <div class="main-content">
         <h2>Modifier le mot de passe</h2>
         <?php if ($this->session->flashdata('error')): ?>
@@ -38,5 +41,7 @@
             <button type="submit" class="btn btn-primaire">Modifier le mot de passe</button>
         <?php echo form_close(); ?>
     </div>
+    <?php $this->load->view('layout/footer'); ?>
+
 </body>
 </html>

@@ -6,9 +6,12 @@
     <title>Connexion</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
+
 </head>
 <body>
 <?php $this->load->view('layout/sidebar');?>
+
 <div class="container">
         <h2>Connexion</h2>
     <?php if ($this->session->flashdata('error')): ?>
@@ -22,5 +25,7 @@
         <button type="submit">Se connecter</button>
     <?php echo form_close(); ?>
     <p>Pas encore inscrit ? <a href="<?php echo site_url('user/register'); ?>">Inscrivez-vous ici</a></p>
+    <?php $this->load->view('layout/footer'); ?>
+
 </body>
 </html>

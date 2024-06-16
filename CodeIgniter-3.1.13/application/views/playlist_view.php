@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/playlist.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
+
 
     <style>
     </style>
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
+
 
     <section class="playlist-section">
         <h2>Mes Playlists</h2>
@@ -180,5 +183,7 @@
             });
         });
     </script>
+        <?php $this->load->view('layout/footer'); ?>
+
 </body>
 </html>

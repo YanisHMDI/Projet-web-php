@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/Album.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
+
 </head>
 <body>
     <!-- Inclure la barre latérale -->
     <?php $this->load->view('layout/sidebar'); ?>
+
 
     <!-- Contenu de la page -->
     <div class="content">
@@ -47,5 +50,7 @@
             </ul>
         </div>
     </div>
+    <?php $this->load->view('layout/footer'); ?>
+
 </body>
 </html>

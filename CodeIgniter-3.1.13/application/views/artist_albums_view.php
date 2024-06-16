@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/Album.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
+
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
+
 
     <div class="content">
         <h2>Albums de <?php echo $artist ? $artist->name : 'Artiste Inconnu'; ?></h2>
@@ -32,5 +35,7 @@
             <?php endif; ?>
         </section>
     </div>
+    <?php $this->load->view('layout/footer'); ?>
+
 </body>
 </html>

@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/view_user_playlists.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/footer.css'); ?>">
+
 
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
+    <?php $this->load->view('layout/footer'); ?>
+
 
     <section class="playlist-details-section">
         <h2><?php echo $playlist->name; ?></h2>

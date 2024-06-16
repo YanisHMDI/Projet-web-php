@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemple de Footer</title>
-    <link rel="stylesheet" href="asset/css/footer.css">
-</head>
-<body>
-    <div class="sidebar">
+<div class="sidebar">
         <!-- Contenu de la sidebar -->
     </div>
     <div class="main-content">
@@ -40,13 +31,6 @@
                 <a href="#"><img src="asset/icons/twitter.png" alt="Twitter"></a>
                 <a href="#"><img src="asset/icons/instagram.png" alt="Instagram"></a>
                 <a href="#"><img src="asset/icons/linkedin.png" alt="LinkedIn"></a>
-            </div>
-            <div class="footer-section newsletter">
-                <h3>Newsletter</h3>
-                <form action="#" method="post">
-                    <input type="email" name="email" placeholder="Votre email">
-                    <button type="submit">S'inscrire</button>
-                </form>
             </div>
         </div>
         <div class="footer-bottom">

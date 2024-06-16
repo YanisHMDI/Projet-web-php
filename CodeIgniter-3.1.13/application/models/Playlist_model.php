@@ -36,35 +36,39 @@ class Playlist_model extends CI_Model {
     }
 
     public function add_track_to_playlist($playlist_id, $track_id) {
+        // Vérifier si le track existe
         $this->db->select('id');
         $this->db->from('track');
         $this->db->where('id', $track_id);
         $query = $this->db->get();
-
+    
         if ($query->num_rows() > 0) {
-            $track_info = $query->row();
-            $data = array(
-                'playlist_id' => $playlist_id,
-                'track_id' => $track_info->id
-            );
-            $this->db->insert('playlist_track', $data);
+            // Vérifier si la musique est déjà dans la playlist
+            $this->db->select('id');
+            $this->db->from('playlist_track');
+            $this->db->where('playlist_id', $playlist_id);
+            $this->db->where('track_id', $track_id);
+            $check_query = $this->db->get();
+    
+            if ($check_query->num_rows() == 0) {
+                // Ajouter la musique à la playlist si elle n'est pas déjà présente
+                $track_info = $query->row();
+                $data = array(
+                    'playlist_id' => $playlist_id,
+                    'track_id' => $track_info->id
+                );
+                $this->db->insert('playlist_track', $data);
+            } else {
+                // Optionnel: Gérer le cas où la musique est déjà présente dans la playlist
+                echo "Cette musique est déjà présente dans la playlist.";
+            }
+        } else {
+            // Optionnel: Gérer le cas où le track_id n'existe pas
+            echo "La musique spécifiée n'existe pas.";
         }
     }
+    
 
-    public function add_album_to_playlist($playlist_id, $album_id) {
-        $this->db->select('id');
-        $this->db->where('albumId', $album_id);
-        $query = $this->db->get('track');
-        $tracks = $query->result();
-
-        foreach ($tracks as $track) {
-            $data = array(
-                'playlist_id' => $playlist_id,
-                'track_id' => $track->id
-            );
-            $this->db->insert('playlist_track', $data);
-        }
-    }
 
     public function get_playlist_details($playlist_id) {
         $playlist_query = $this->db->get_where('playlist', array('id' => $playlist_id));

@@ -6,48 +6,49 @@
     <title>Ajouter des albums/titres à la playlist</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/sidebar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/playlist.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/global.css'); ?>">
-
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/addtacks.css'); ?>">
 </head>
 <body>
     <?php $this->load->view('layout/sidebar'); ?>
-
+    
     <section class="add-tracks-section">
         <h2>Ajouter des albums/titres à la playlist</h2>
         <?php echo form_open('playlist/add_tracks_process'); ?>
             <input type="hidden" name="playlist_id" value="<?php echo $playlist_id; ?>">
-
-            <div class="search-bar">
-                <input type="text" name="search_query" placeholder="Recherche...">
-                <select name="filter">
-                    <option value="album">Album</option>
-                    <option value="title">Titre</option>
-                    <option value="artist">Artiste</option>
+            
+            <div class="form-group">
+                <label for="track">Titre :</label>
+                <select name="track" id="track">
+                    <option value="">Sélectionner un titre</option>
+                    <?php foreach ($tracks as $track): ?>
+                        <option value="<?php echo $track->id; ?>"><?php echo $track->name; ?></option>
+                    <?php endforeach; ?>
                 </select>
-                <button type="submit">Rechercher</button>
             </div>
-
-            <h3>Albums</h3>
-            <div class="albums">
-                <?php foreach ($albums as $album): ?>
-                    <div class="album">
-                        <input type="checkbox" name="selected_albums[]" value="<?php echo $album->id; ?>">
-                        <label><?php echo $album->name; ?></label>
-                    </div>
-                <?php endforeach; ?>
+            
+            <div class="form-group">
+                <label for="artist">Artiste :</label>
+                <select name="artist" id="artist">
+                    <option value="">Sélectionner un artiste</option>
+                    <?php foreach ($artists as $artist): ?>
+                        <option value="<?php echo $artist->id; ?>"><?php echo $artist->name; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
-
-            <h3>Titres</h3>
-            <div class="tracks">
-                <?php foreach ($tracks as $track): ?>
-                    <div class="track">
-                        <input type="checkbox" name="selected_tracks[]" value="<?php echo $track->id; ?>">
-                        <label><?php echo $track->name; ?></label>
-                    </div>
-                <?php endforeach; ?>
+            
+            <div class="form-group">
+                <label for="album">Album :</label>
+                <select name="album" id="album">
+                    <option value="">Sélectionner un album</option>
+                    <?php foreach ($albums as $album): ?>
+                        <option value="<?php echo $album->id; ?>"><?php echo $album->name; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
-
-            <button type="submit">Ajouter à la playlist</button>
+            
+            <div class="form-group">
+                <button type="submit">Ajouter à la playlist</button>
+            </div>
         <?php echo form_close(); ?>
     </section>
 </body>

@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://dwarves.iut-fbleau.fr/~foulou/DEV3.01/SAE_S2.02/CodeIgniter-3.1.13/';
+$config['base_url'] = 'https://dwarves.iut-fbleau.fr/~hamoudi/SAE_S2.02/CodeIgniter-3.1.13/';
 
 /*
 |--------------------------------------------------------------------------

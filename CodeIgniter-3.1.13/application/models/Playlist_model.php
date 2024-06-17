@@ -38,25 +38,15 @@ class Playlist_model extends CI_Model {
     }
 
     public function add_track_to_playlist($playlist_id, $track_id) {
-        // Récupérer l'ID de la piste à partir de la table track
-        $this->db->select('id');
-        $this->db->from('track');
-        $this->db->where('id', $track_id);
-        $query = $this->db->get();
-    
-        if ($query->num_rows() > 0) {
-            // Si la piste existe, insérer son ID dans la table playlist_track
-            $track_info = $query->row();
-            $data = array(
-                'playlist_id' => $playlist_id,
-                'track_id' => $track_info->id
-            );
-            $this->db->insert('playlist_track', $data);
-        } else {
-            // Gérer le cas où la piste n'existe pas
-            // Vous pouvez générer une erreur ou prendre d'autres mesures selon vos besoins
-        }
+        $data = array(
+            'playlist_id' => $playlist_id,
+            'track_id' => $track_id
+        );
+        $this->db->insert('playlist_track', $data);
     }
+    
+
+    
     
     public function add_album_to_playlist($playlist_id, $album_id) {
         // Récupérer tous les morceaux de l'album

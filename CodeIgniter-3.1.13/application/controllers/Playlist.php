@@ -17,7 +17,7 @@ class Playlist extends CI_Controller {
             redirect('user/login');
         } else {
             $data['playlists'] = $this->Playlist_model->get_playlists_by_user($this->session->userdata('user_id'));
-            $data['genres'] = $this->Model_music->getGenres(); // Ajout de cette ligne
+            $data['genres'] = $this->Model_music->getGenres();
             $this->load->view('playlist_view', $data);
         }
     }
@@ -30,7 +30,6 @@ class Playlist extends CI_Controller {
             $this->load->view('create_playlist_view', $data);
         }
     }
-
 
     public function create_process() {
         if (!$this->session->userdata('username')) {
@@ -56,7 +55,6 @@ class Playlist extends CI_Controller {
             redirect('playlist');
         }
     }
-    
 
     public function add_tracks($playlist_id) {
         if (!$this->session->userdata('username')) {
@@ -65,36 +63,28 @@ class Playlist extends CI_Controller {
             $data['albums'] = $this->Model_music->getAlbums(null, null);
             $data['tracks'] = $this->Model_music->getTracksNotInPlaylist($playlist_id);
             $data['playlist_id'] = $playlist_id;
+            $this->load->model('Artist_model');
+            $data['artists'] = $this->Artist_model->get_all_artists();
             $this->load->view('add_tracks_to_playlist', $data);
         }
     }
 
     public function add_track_to_playlist() {
-        // Assure-toi que l'utilisateur est connecté
         if (!$this->session->userdata('username')) {
-            // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
             redirect('user/login');
         }
     
-        // Récupère les données du formulaire
         $track_id = $this->input->post('track_id');
         $playlist_id = $this->input->post('playlist_id');
     
-        // Vérifie si playlist_id est défini et non vide
         if (!isset($playlist_id) || empty($playlist_id)) {
-            // Gérer l'erreur ici ou rediriger vers une page d'erreur
             show_error('Playlist ID is missing or empty.');
         }
     
-        // Ajoute la piste à la playlist
         $this->Playlist_model->add_track_to_playlist($playlist_id, $track_id);
-    
-        // Redirige vers la page de la playlist après l'ajout
         redirect('playlist/view/' . $playlist_id);
     }
-    
-    
-    
+
     public function add_tracks_process() {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
@@ -117,7 +107,7 @@ class Playlist extends CI_Controller {
             redirect('playlist/view/' . $playlist_id);
         }
     }
-    
+
     public function view($playlist_id) {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
@@ -130,9 +120,6 @@ class Playlist extends CI_Controller {
             show_404();
         }
     }
-
-    
-    
 
     public function delete($playlist_id) {
         if (!$this->session->userdata('username')) {
@@ -150,7 +137,7 @@ class Playlist extends CI_Controller {
     
         redirect('playlist');
     }
-    
+
     public function change_visibility($playlist_id, $new_visibility) {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
@@ -184,14 +171,13 @@ class Playlist extends CI_Controller {
     
         redirect('playlist/view/' . $playlist_id);
     }
+
     public function delete_track_from_playlist($playlist_id, $track_id, $user_id) {
-        // Vérifier si la playlist appartient à l'utilisateur
         $this->db->where('id', $playlist_id);
         $this->db->where('user_id', $user_id);
         $query = $this->db->get('playlist');
     
         if ($query->num_rows() > 0) {
-            // Supprimer l'entrée de la table playlist_track
             $this->db->where('playlist_id', $playlist_id);
             $this->db->where('track_id', $track_id);
             $this->db->delete('playlist_track');
@@ -200,24 +186,20 @@ class Playlist extends CI_Controller {
         } else {
             return false;
         }
-    }  
+    }
 
     public function delete_user_and_playlists($user_id) {
-        // Supprimer d'abord les playlists associées à l'utilisateur
         $this->db->where('user_id', $user_id);
         $this->db->delete('playlist');
     
-        // Ensuite, supprimer l'utilisateur
         $this->db->where('id', $user_id);
         $this->db->delete('utilisateurs');
     }
-    
+
     public function get_playlists_for_user($user_id) {
         if ($user_id === null) {
-            // Si l'utilisateur n'est pas connecté, ne retourner que les playlists publiques
             $this->db->where('visibility', 'public');
         } else {
-            // Si l'utilisateur est connecté, retourner les playlists publiques et celles de l'utilisateur
             $this->db->where('visibility', 'public');
             $this->db->or_where('user_id', $user_id);
         }
@@ -230,36 +212,28 @@ class Playlist extends CI_Controller {
             redirect('user/login');
         }
     
-        // Récupérer les détails de la playlist à dupliquer
         $playlist_details = $this->Playlist_model->get_playlist_details($playlist_id);
     
         if ($playlist_details) {
-            // Créer une nouvelle playlist avec les mêmes détails que la playlist d'origine
             $new_playlist_id = $this->Playlist_model->create_playlist($playlist_details->name, $this->session->userdata('user_id'), $playlist_details->visibility, $playlist_details->image);
     
             if ($new_playlist_id) {
-                // Récupérer les pistes de la playlist d'origine
                 $tracks = $this->Playlist_model->get_tracks_by_playlist($playlist_id);
     
-                // Ajouter ces pistes à la nouvelle playlist
                 if (!empty($tracks)) {
                     foreach ($tracks as $track) {
                         $this->Playlist_model->add_track_to_playlist($new_playlist_id, $track->id);
                     }
                 }
     
-                // Rediriger avec un message de succès
                 $this->session->set_flashdata('message', 'Playlist dupliquée avec succès.');
             } else {
-                // Rediriger avec un message d'erreur
                 $this->session->set_flashdata('error', 'Erreur lors de la duplication de la playlist.');
             }
         } else {
-            // Rediriger avec un message d'erreur si la playlist n'existe pas
             $this->session->set_flashdata('error', 'La playlist à dupliquer n\'existe pas.');
         }
     
-        // Rediriger vers la page des playlists
         redirect('playlist');
     }
     

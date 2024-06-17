@@ -9,6 +9,7 @@ class Search extends CI_Controller {
         $this->load->model('Artist_model');
         $this->load->helper('url');
         $this->load->model('Playlist_model');
+        $this->load->library('session');
     }
 
     public function index() {
@@ -20,16 +21,19 @@ class Search extends CI_Controller {
         // Récupérer les playlists de l'utilisateur pour la vue
         $user_id = $this->session->userdata('user_id');
         $playlists = $this->Playlist_model->get_playlists_by_user($user_id);
+
+        // Définir si l'utilisateur est connecté ou non
+        $user_logged_in = !empty($user_id);
     
         $data = [
             'albums' => $albums,
             'artists' => $artists,
             'songs' => $songs,
-            'playlists' => $playlists  // Assurez-vous que $playlists est correctement défini
+            'playlists' => $playlists,
+            'user_logged_in' => $user_logged_in
         ];
     
         $this->load->view('SearchView', $data);
     }
-    
 }
 ?>

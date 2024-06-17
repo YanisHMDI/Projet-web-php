@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Playlist_model extends CI_Model {
 
     public function __construct() {
@@ -56,8 +58,6 @@ class Playlist_model extends CI_Model {
         }
     }
     
-    
-
     public function add_album_to_playlist($playlist_id, $album_id) {
         // Récupérer tous les morceaux de l'album
         $this->db->select('id');
@@ -74,8 +74,6 @@ class Playlist_model extends CI_Model {
             $this->db->insert('playlist_track', $data);
         }
     }
-    
-
 
     public function get_playlist_details($playlist_id) {
         $playlist_query = $this->db->get_where('playlist', array('id' => $playlist_id));
@@ -142,7 +140,6 @@ class Playlist_model extends CI_Model {
         $this->db->delete('utilisateurs');
     }
     
-
     public function get_tracks_by_playlist($playlist_id) {
         $this->db->select('track.id');
         $this->db->from('playlist_track');
@@ -163,6 +160,39 @@ class Playlist_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
+    public function update_playlist_visibility($playlist_id, $visibility) {
+        $data = array(
+            'visibility' => $visibility
+        );
+        $this->db->where('id', $playlist_id);
+        $this->db->update('playlist', $data);
+    }
+
+    public function update_playlist_name($playlist_id, $name) {
+        $data = array(
+            'name' => $name
+        );
+        $this->db->where('id', $playlist_id);
+        $this->db->update('playlist', $data);
+    }
+
+    public function update_playlist_image($playlist_id, $image_path) {
+        $data = array(
+            'image' => $image_path
+        );
+        $this->db->where('id', $playlist_id);
+        $this->db->update('playlist', $data);
+    }
+
+    public function change_visibility($playlist_id, $new_visibility, $user_id) {
+        $this->db->where('id', $playlist_id);
+        $this->db->where('user_id', $user_id);
+        $data = array(
+            'visibility' => $new_visibility
+        );
+        $this->db->update('playlist', $data);
+        return $this->db->affected_rows() > 0;
+    }
 }
 ?>

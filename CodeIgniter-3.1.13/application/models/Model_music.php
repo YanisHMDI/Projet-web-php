@@ -109,17 +109,7 @@ public function get_album_details($album_id) {
     public function countAlbums() {
         return $this->db->count_all('album');
     }
-    
-    public function getAlbumsPaginated($argument1, $argument2, $start_index, $per_page) {
-        $this->db->select('album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg');
-        $this->db->from('album');
-        $this->db->join('artist', 'album.artistid = artist.id');
-        $this->db->join('genre', 'genre.id = album.genreid');
-        $this->db->join('cover', 'cover.id = album.coverid');
-        $this->db->limit($per_page, $start_index); // Limiter les résultats pour la pagination
-        $query = $this->db->get();
-        return $query->result();
-    }
+
     public function get_user_playlists($user_id) {
         $this->db->where('user_id', $user_id);
         $query = $this->db->get('playlist');
@@ -146,7 +136,19 @@ public function get_album_details($album_id) {
         $query = $this->db->get();
         return $query->result();
     }
+    public function getSongsByArtist($artist_id) {
+        $this->db->select('song.*');
+        $this->db->from('track');
+        $this->db->join('album', 'album.id = track.albumId');
+        $this->db->join('song', 'song.id = track.songId');
+        $this->db->where('album.artistId', $artist_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     
+    
+
+
     
     
     

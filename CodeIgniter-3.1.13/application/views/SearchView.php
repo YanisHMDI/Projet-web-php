@@ -24,17 +24,19 @@
                                 <div class="song-name"><?php echo $song->songName; ?></div>
                                 <div class="song-album"><?php echo $song->albumName; ?> - <?php echo $song->artistName; ?></div>
                             </div>
-                            <div class="song-actions">
-                                <form action="<?php echo site_url('playlist/add_track_to_playlist'); ?>" method="post">
-                                    <input type="hidden" name="track_id" value="<?php echo $song->id; ?>">
-                                    <select name="playlist_id">
-                                        <?php foreach ($playlists as $user_playlist): ?>
-                                            <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <button type="submit">Ajouter à la playlist</button>
-                                </form>
-                            </div>
+                            <?php if ($user_logged_in): ?>
+                                <div class="song-actions">
+                                    <form action="<?php echo site_url('playlist/add_track_to_playlist'); ?>" method="post">
+                                        <input type="hidden" name="track_id" value="<?php echo $song->id; ?>">
+                                        <select name="playlist_id">
+                                            <?php foreach ($playlists as $user_playlist): ?>
+                                                <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <button type="submit">Ajouter à la playlist</button>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </section>
                 <?php endforeach; ?>

@@ -40,7 +40,11 @@
                             <?php foreach($album->tracks as $index => $track): ?>
                                 <tr>
                                     <td><?php echo $index + 1; ?></td>
-                                    <td><?php echo $track->songName; ?></td>
+                                    <td>
+                                        <a href="<?php echo site_url('song/view/' . $track->id); ?>">
+                                            <?php echo $track->songName; ?>
+                                        </a>
+                                    </td>
                                     <td><?php echo floor($track->duration / 60) . ':' . sprintf("%02d", $track->duration % 60); ?></td>
                                     <?php if($user_logged_in): ?>
                                         <td>

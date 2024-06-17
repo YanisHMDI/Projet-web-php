@@ -1,268 +1,78 @@
-/* Style de base */
+/* Style général pour le corps */
 body {
-    background: linear-gradient(45deg, #FC466B, #3F5EFB);
-    min-height: 100vh; /* Assurez-vous que le dégradé couvre toute la hauteur */
     font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #f0f2f5;
     margin: 0;
     padding: 0;
-}
-
-.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    text-align: center;
+    height: 100vh;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Vos styles pour les inputs et boutons */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    background: transparent;
-    border: none;
-    border-left: 1px solid rgba(255, 255, 255, .3);
-    border-top: 1px solid rgba(255, 255, 255, .3);
-    padding: 1rem;
-    width: calc(100% - 2rem);
-    max-width: 100%;
-    border-radius: 50px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    -moz-backdrop-filter: blur(5px);
-    box-shadow: 4px 4px 60px rgba(0, 0, 0, .2);
-    color: white;
-    font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
-    transition: all .3s;
-    margin-bottom: 1em;
-}
-
-button[type="submit"] {
-    margin-top: 10px;
+/* Container principal */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    max-width: 400px;
+    text-align: center;
 }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
+/* Titre de la page */
+.container h2 {
+    margin-bottom: 20px;
+    color: #333333;
 }
 
-/* Vos styles pour les interactions */
-input:hover,
-input[type="email"]:focus,
-input[type="password"]:focus {
-    background: rgba(255,255,255,0.1);
-    box-shadow: 4px 4px 60px 8px rgba(0,0,0,0.2);
-}
-
-::placeholder {
-    color: #fff;
-}
-
-/* Vos styles pour le fond et le formulaire */
-form {
-    background: rgba(255, 255, 255, .3);
-    padding: 3rem;
-    border-radius: 20px;
-    border-left: 1px solid rgba(255, 255, 255, .3);
-    border-top: 1px solid rgba(255, 255, 255, .3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    -moz-backdrop-filter: blur(10px);
-    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Style pour les messages d'erreur de validation */
+.container .error {
+    color: #ff4d4d;
+    margin-top: 5px;
     text-align: left;
 }
 
-p {
+/* Style des labels */
+.container label {
+    display: block;
+    margin-top: 10px;
+    color: #333333;
+    text-align: left;
+}
+
+/* Style des champs de saisie */
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style du bouton d'inscription */
+.container button {
+    background-color: #007bff;
     color: white;
-    font-weight: 500;
-    opacity: .7;
-    font-size: 1.4rem;
-    margin-bottom: 60px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-a {
-    text-decoration: none;
-    color: #ddd;
-    font-size: 12px;
+.container button:hover {
+    background-color: #0056b3;
 }
 
-a:hover {
-    text-shadow: 2px 2px 6px #00000040;
-}
-
-a:active {
-    text-shadow: none;
-}
-
-.drop {
-    background: rgba(255, 255, 255, .3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 10px;
-    border-left: 1px solid rgba(255, 255, 255, .3);
-    border-top: 1px solid rgba(255, 255, 255, .3);
-    box-shadow: 10px 10px 60px -8px rgba(0,0,0,0.2);
-    position: absolute;
-    transition: all 0.2s ease;
-}
-
-.drop-1 {
-    height: 80px; width: 80px;
-    top: -20px; left: -40px;
-    z-index: -1;
-}
-
-.drop-2 {
-    height: 80px; width: 80px;
-    bottom: -30px; right: -10px;
-}
-
-.drop-3 {
-    height: 100px; width: 100px;
-    bottom: 120px; right: -50px;
-    z-index: -1;
-}
-
-.drop-4 {
-    height: 120px; width: 120px;
-    top: -60px; right: -60px;
-}
-
-.drop-5 {
-    height: 60px; width: 60px;
-    bottom: 170px; left: 90px;
-    z-index: -1;
-}
-
-/* Responsive styles */
-@media (max-width: 1200px) {
-    p {
-        font-size: 1.2rem;
-    }
-
-    form {
-        padding: 2.5rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        padding: 0.8rem;
-    }
-
-    button[type="submit"] {
-        padding: 8px;
-    }
-}
-
-@media (max-width: 992px) {
-    p {
-        font-size: 1rem;
-    }
-
-    form {
-        padding: 2rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        padding: 0.7rem;
-    }
-
-    button[type="submit"] {
-        padding: 7px;
-    }
-}
-
-@media (max-width: 768px) {
-    p {
-        font-size: 0.9rem;
-    }
-
-    form {
-        padding: 1.5rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        padding: 0.6rem;
-    }
-
-    button[type="submit"] {
-        padding: 6px;
-    }
-}
-
-@media (max-width: 576px) {
-    p {
-        font-size: 0.8rem;
-    }
-
-    form {
-        padding: 1rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        padding: 0.5rem;
-    }
-
-    button[type="submit"] {
-        padding: 5px;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    p {
-        font-size: 0.7rem;
-    }
-
-    form {
-        padding: 0.8rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        padding: 0.4rem;
-    }
-
-    button[type="submit"] {
-        padding: 4px;
-    }
-
-    h2 {
-        font-size: 1.2rem;
+/* Media queries pour les petits écrans */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
     }
 }

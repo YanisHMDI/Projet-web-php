@@ -37,33 +37,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($album->tracks as $index => $track): ?>
-                                <tr>
-                                    <td><?php echo $index + 1; ?></td>
-                                    <td>
-                                        <a href="<?php echo site_url('song/view/' . $track->id); ?>">
-                                            <?php echo $track->songName; ?>
-                                        </a>
-                                    </td>
-                                    <td><?php echo floor($track->duration / 60) . ':' . sprintf("%02d", $track->duration % 60); ?></td>
-                                    <?php if($user_logged_in): ?>
-                                        <td>
-                                            <!-- Formulaire pour ajouter cette musique à la playlist -->
-                                            <form action="<?php echo site_url('playlist/add_track_to_playlist'); ?>" method="post">
-                                                <input type="hidden" name="track_id" value="<?php echo $track->id; ?>">
-                                                <!-- Liste déroulante des playlists de l'utilisateur -->
-                                                <select name="playlist_id">
-                                                    <?php foreach ($playlists as $user_playlist): ?>
-                                                        <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                                <!-- Bouton pour ajouter cette musique à la playlist -->
-                                                <button type="submit">Ajouter à la playlist</button>
-                                            </form>
-                                        </td>
-                                    <?php endif; ?>
-                                </tr>
-                            <?php endforeach; ?>
+                        <?php foreach($album->tracks as $index => $track): ?>
+                        <tr>
+                            <td><?php echo $index + 1; ?></td>
+                            <td>
+                                    <?php echo $track->songName; ?>
+                                </a>
+                            </td>
+                            <td><?php echo floor($track->duration / 60) . ':' . sprintf("%02d", $track->duration % 60); ?></td>
+                            <?php if($user_logged_in): ?>
+                                <td>
+                                    <!-- Formulaire pour ajouter cette musique à la playlist -->
+                                    <form action="<?php echo site_url('playlist/add_track_to_playlist'); ?>" method="post">
+                                        <input type="hidden" name="track_id" value="<?php echo $track->id; ?>">
+                                        <!-- Liste déroulante des playlists de l'utilisateur -->
+                                        <select name="playlist_id">
+                                            <?php foreach ($playlists as $user_playlist): ?>
+                                                <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <!-- Bouton pour ajouter cette musique à la playlist -->
+                                        <button type="submit">Ajouter à la playlist</button>
+                                    </form>
+                                </td>
+                            <?php endif; ?>
+                        </tr>
+                    <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

@@ -266,28 +266,28 @@ class Playlist extends CI_Controller {
             redirect('playlist');
         }
     }
-    // Contrôleur Playlist
+    
 public function add_all_tracks_to_playlist() {
     if (!$this->session->userdata('username')) {
         redirect('user/login');
     }
     
-    // Récupère les données du formulaire
+   
     $artist_id = $this->input->post('artist_id');
     $playlist_id = $this->input->post('playlist_id');
     
-    // Récupère tous les titres de l'artiste
+  
     $songs = $this->Model_music->getSongsByArtist($artist_id);
     
-    // Vérifie si des titres ont été trouvés
+ 
     if (!empty($songs)) {
         foreach ($songs as $song) {
-            // Ajoute chaque titre à la playlist
+        
             $this->Playlist_model->add_track_to_playlist($playlist_id, $song->id);
         }
     }
     
-    // Redirige vers la page de la playlist après l'ajout
+   
     redirect('playlist/view/' . $playlist_id);
 }
 

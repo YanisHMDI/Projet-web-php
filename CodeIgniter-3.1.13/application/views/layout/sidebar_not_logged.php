@@ -10,7 +10,6 @@
         <a href="<?php echo site_url('album'); ?>">Album</a>
         <a href="<?php echo site_url('artist'); ?>">Artistes</a>
         <a href="<?php echo site_url('playlist'); ?>">Playlist</a>
-        <a href="<?php echo site_url('coups_de_coeur'); ?>">Coups de Cœur</a>
     </nav>
     <div class="buttons">
         <button class="btn_connexion" onclick="window.location.href='<?php echo site_url('user/login'); ?>'">connexion</button>

@@ -29,10 +29,20 @@ class User_model extends CI_Model {
     }
 
     public function delete_user($user_id) {
-        // Supprimer les enregistrements associés dans la table playlist_track
+        // Supprimer les playlists de l'utilisateur
         $this->db->where('user_id', $user_id);
-        $this->db->delete('playlist_track');
+        $playlists = $this->db->get('playlist')->result();
+        
+        // Pour chaque playlist de l'utilisateur, supprimer les enregistrements associés dans la table playlist_track
+        foreach ($playlists as $playlist) {
+            $this->db->where('playlist_id', $playlist->id);
+            $this->db->delete('playlist_track');
+        }
     
+        // Supprimer les playlists de l'utilisateur
+        $this->db->where('user_id', $user_id);
+        $this->db->delete('playlist');
+        
         // Supprimer l'utilisateur
         $this->db->where('id', $user_id);
         $this->db->delete('utilisateurs');

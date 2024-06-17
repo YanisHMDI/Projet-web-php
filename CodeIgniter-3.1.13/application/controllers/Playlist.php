@@ -291,6 +291,21 @@ public function add_all_tracks_to_playlist() {
     redirect('playlist/view/' . $playlist_id);
 }
 
+public function edit_name() {
+    if (!$this->session->userdata('username')) {
+        redirect('user/login');
+    } else {
+        $playlist_id = $this->input->post('playlist_id');
+        $new_name = $this->input->post('new_playlist_name');
+
+        if ($this->Playlist_model->update_playlist_name($playlist_id, $new_name)) {
+            $this->session->set_flashdata('message', 'Nom de la playlist modifié avec succès.');
+        } else {
+            $this->session->set_flashdata('error', 'Impossible de modifier le nom de la playlist.');
+        }
+        redirect('playlist/view/' . $playlist_id);
+    }
+}
     
 }
 ?>

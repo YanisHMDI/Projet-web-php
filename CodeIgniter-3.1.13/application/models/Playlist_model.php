@@ -38,15 +38,25 @@ class Playlist_model extends CI_Model {
     }
 
     public function add_track_to_playlist($playlist_id, $track_id) {
-        $data = array(
-            'playlist_id' => $playlist_id,
-            'track_id' => $track_id
-        );
-        $this->db->insert('playlist_track', $data);
+        // Récupérer l'ID de la piste à partir de la table track
+        $this->db->select('id');
+        $this->db->from('track');
+        $this->db->where('id', $track_id);
+        $query = $this->db->get();
+    
+        if ($query->num_rows() > 0) {
+            // Si la piste existe, insérer son ID dans la table playlist_track
+            $track_info = $query->row();
+            $data = array(
+                'playlist_id' => $playlist_id,
+                'track_id' => $track_info->id
+            );
+            $this->db->insert('playlist_track', $data);
+        } else {
+            // Gérer le cas où la piste n'existe pas
+            // Vous pouvez générer une erreur ou prendre d'autres mesures selon vos besoins
+        }
     }
-    
-
-    
     
     public function add_album_to_playlist($playlist_id, $album_id) {
         // Récupérer tous les morceaux de l'album
@@ -151,28 +161,10 @@ class Playlist_model extends CI_Model {
         return $query->result();
     }
 
-    public function update_playlist_visibility($playlist_id, $visibility) {
-        $data = array(
-            'visibility' => $visibility
-        );
+    public function update_playlist_name($playlist_id, $new_name) {
+        $this->db->set('name', $new_name);
         $this->db->where('id', $playlist_id);
-        $this->db->update('playlist', $data);
-    }
-
-    public function update_playlist_name($playlist_id, $name) {
-        $data = array(
-            'name' => $name
-        );
-        $this->db->where('id', $playlist_id);
-        $this->db->update('playlist', $data);
-    }
-
-    public function update_playlist_image($playlist_id, $image_path) {
-        $data = array(
-            'image' => $image_path
-        );
-        $this->db->where('id', $playlist_id);
-        $this->db->update('playlist', $data);
+        return $this->db->update('playlist');
     }
 
     public function change_visibility($playlist_id, $new_visibility, $user_id) {

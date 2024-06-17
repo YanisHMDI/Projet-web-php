@@ -16,7 +16,6 @@
         <div class="playlist-info">
             <p>Visibilité : <?php echo $playlist->visibility; ?></p>
             <?php if ($playlist->image): ?>
-                <img src="<?php echo base_url($playlist->image); ?>" alt="<?php echo $playlist->name; ?>" class="playlist-detail-image">
             <?php endif; ?>
         </div>
         <h3>Titres de la playlist :</h3>
@@ -39,14 +38,15 @@
             <button onclick="showEditNameForm()">Modifier le Nom</button>
         </div>
 
-        <div id="editNameForm" style="display: none;">
-            <form action="<?php echo site_url('playlist/edit_name'); ?>" method="post">
-                <input type="hidden" name="playlist_id" value="<?php echo $playlist->id; ?>">
-                <label for="newPlaylistName">Nouveau Nom :</label>
-                <input type="text" id="newPlaylistName" name="new_playlist_name" required>
-                <button type="submit">Modifier</button>
-            </form>
-        </div>
+        <button onclick="showEditNameForm()">Modifier le Nom</button>
+            <div id="editNameForm" style="display: none;">
+                <form action="<?php echo site_url('playlist/edit_name'); ?>" method="post">
+                 <input type="hidden" name="playlist_id" value="<?php echo $playlist->id; ?>">
+                    <label for="newPlaylistName">Nouveau Nom :</label>
+                    <input type="text" id="newPlaylistName" name="new_playlist_name" required>
+                     <button type="submit">Modifier</button>
+    </form>
+</div>
     </section>
 
     <script>

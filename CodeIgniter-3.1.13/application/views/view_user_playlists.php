@@ -38,7 +38,6 @@
             <button onclick="showEditNameForm()">Modifier le Nom</button>
         </div>
 
-        <button onclick="showEditNameForm()">Modifier le Nom</button>
             <div id="editNameForm" style="display: none;">
                 <form action="<?php echo site_url('playlist/edit_name'); ?>" method="post">
                  <input type="hidden" name="playlist_id" value="<?php echo $playlist->id; ?>">

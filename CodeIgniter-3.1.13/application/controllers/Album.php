@@ -54,9 +54,13 @@ class Album extends CI_Controller {
         // Passer l'ID de l'utilisateur connecté à la vue
         $data['user_id'] = $user_id;
     
+        // Définir si l'utilisateur est connecté ou non
+        $data['user_logged_in'] = !empty($user_id);
+    
         // Charger la vue avec les données de l'album et des playlists
         $this->load->view('details', $data);
-    }    
+    }
+    
     
 }
     

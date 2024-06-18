@@ -41,7 +41,6 @@
                                 <h2 class='song-title'><?php echo $song->name; ?></h2>
                             </header>
                             <?php if ($this->session->userdata('username')): ?>
-                                <!-- Form to add this song to the playlist -->
                                 <form action="<?php echo site_url('playlist/add_track_to_playlist'); ?>" method="post">
                                     <input type="hidden" name="track_id" value="<?php echo $song->id; ?>">
                                     <select name="playlist_id">
@@ -49,7 +48,6 @@
                                             <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <!-- Button to add this song to the playlist -->
                                     <button type="submit">Ajouter à la playlist</button>
                                 </form>
                             <?php endif; ?>
@@ -58,7 +56,6 @@
                 <?php endforeach; ?>
 
                 <?php if ($this->session->userdata('username')): ?>
-                    <!-- Form to add all songs of the artist to a playlist -->
                     <div>
                         <form action="<?php echo site_url('playlist/add_all_tracks_to_playlist'); ?>" method="post">
                             <input type="hidden" name="artist_id" value="<?php echo $artist->id; ?>">

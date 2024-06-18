@@ -27,16 +27,13 @@
                                 <p><strong>Album:</strong> <?php echo $song->albumName; ?></p>
                                 <p><strong>Durée:</strong> <?php echo $song->duration; ?> secondes</p>
                             </div>
-                            <!-- Form to add this song to the playlist -->
                             <form action="<?php echo site_url('playlist/add_track_to_playlist'); ?>" method="post">
                                 <input type="hidden" name="track_id" value="<?php echo $song->trackId; ?>">
-                                <!-- Dropdown list of user playlists -->
                                 <select name="playlist_id">
                                     <?php foreach ($playlists as $user_playlist): ?>
                                         <option value="<?php echo $user_playlist->id; ?>"><?php echo $user_playlist->name; ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <!-- Button to add this song to the playlist -->
                                 <button type="submit">Ajouter à la playlist</button>
                             </form>
                         </article>

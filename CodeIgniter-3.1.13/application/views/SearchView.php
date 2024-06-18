@@ -13,6 +13,8 @@
 
     <section class="search-results">
         <h2>Résultats de Recherche</h2>
+
+
         
         <h3>Titres</h3>
         <?php if (!empty($songs)): ?>

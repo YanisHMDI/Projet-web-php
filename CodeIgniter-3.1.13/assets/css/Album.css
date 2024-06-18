@@ -2,21 +2,21 @@
 .content {
     margin-left: 220px; /* Correspond à la largeur de la sidebar */
     padding: 20px;
-    width: calc(100% - 220px); /* Assurez-vous que le contenu prend le reste de la largeur */
-    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur totale */
+    width: calc(100% - 220px); 
+    box-sizing: border-box; 
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
     .content {
-        margin-left: 100px; /* Correspond à la largeur de la sidebar réduite */
+        margin-left: 100px; 
         width: calc(100% - 100px);
     }
 }
 
 @media (max-width: 480px) {
     .content {
-        margin-left: 60px; /* Correspond à la largeur de la sidebar encore plus réduite */
+        margin-left: 60px; 
         width: calc(100% - 60px);
     }
 }
@@ -33,8 +33,8 @@
     flex-wrap: wrap;
     gap: 16px;
     padding: 16px;
-    width: 100%; /* Utilisez toute la largeur disponible du conteneur parent */
-    box-sizing: border-box; /* Ajoutez cette ligne pour inclure les bordures et le padding dans la largeur totale */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .list div {
@@ -49,7 +49,7 @@
     border-radius: 8px;
     text-align: center;
     background: #fff;
-    width: 100%; /* Prenez toute la largeur du conteneur */
+    width: 100%; 
 }
 
 .list article img {
@@ -60,7 +60,7 @@
 .pagination {
     text-align: center;
     overflow: hidden;
-    margin: 20px 0; /* Ajoutez une marge pour espacer de la liste */
+    margin: 20px 0;
 }
 
 .pagination ul {
@@ -73,53 +73,46 @@
     display: inline;
     margin: 0 5px;
     color: white;
-    background-color: #10a2a7; /* Couleur de fond pour les boutons de pagination */
-    padding: 5px 10px; /* Ajoute du padding pour séparer les boutons de la bordure */
-    border-radius: 5px; /* Ajoute un peu de courbure aux coins */
+    background-color: #10a2a7; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
 }
 
 .pagination ul li.active a {
     font-weight: bold;
 }
 
-/* Responsive styles */
+
 @media (max-width: 1200px) {
     .list div {
-        flex: 1 1 calc(33.33% - 16px); /* 3 items par ligne */
+        flex: 1 1 calc(33.33% - 16px);
     }
 }
 
 @media (max-width: 992px) {
     .list div {
-        flex: 1 1 calc(50% - 16px); /* 2 items par ligne */
+        flex: 1 1 calc(50% - 16px); 
     }
 }
 
 @media (max-width: 768px) {
     .list {
-        padding: 8px; /* Réduisez le padding pour les petits écrans */
+        padding: 8px; 
         gap: 8px;
     }
     .list div {
-        flex: 1 1 calc(50% - 8px); /* 2 items par ligne */
+        flex: 1 1 calc(50% - 8px); 
         margin-bottom: 8px;
     }
     .list article {
-        padding: 8px; /* Réduisez le padding pour les petits écrans */
+        padding: 8px; 
     }
 }
 
 @media (max-width: 576px) {
     .list div {
-        flex: 1 1 calc(100% - 16px); /* 1 item par ligne */
+        flex: 1 1 calc(100% - 16px); 
     }
 }
 
-@media (max-width: 480px) {
-    .album-title {
-        font-size: 16px; /* Réduisez la taille de la police pour les petits écrans */
-    }
-    .pagination ul li {
-        padding: 5px 8px; /* Réduisez le padding pour les petits écrans */
-    }
-}
+

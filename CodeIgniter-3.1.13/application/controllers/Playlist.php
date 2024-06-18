@@ -73,17 +73,73 @@ class Playlist extends CI_Controller {
         if (!$this->session->userdata('username')) {
             redirect('user/login');
         }
-    
+
         $track_id = $this->input->post('track_id');
         $playlist_id = $this->input->post('playlist_id');
-    
-        if (!isset($playlist_id) || empty($playlist_id)) {
-            show_error('Playlist ID is missing or empty.');
+
+        if (!empty($track_id) && !empty($playlist_id)) {
+            $this->Playlist_model->add_track_to_playlist($playlist_id, $track_id);
+            $this->session->set_flashdata('message', 'Titre ajouté à la playlist avec succès.');
+        } else {
+            $this->session->set_flashdata('error', 'Veuillez sélectionner un titre.');
         }
-    
-        $this->Playlist_model->add_track_to_playlist($playlist_id, $track_id);
+
         redirect('playlist/view/' . $playlist_id);
     }
+
+    public function add_all_tracks_to_playlist() {
+        if (!$this->session->userdata('username')) {
+            redirect('user/login');
+        }
+
+        $artist_id = $this->input->post('artist_id');
+        $playlist_id = $this->input->post('playlist_id');
+
+        if (!empty($artist_id) && !empty($playlist_id)) {
+            $songs = $this->Model_music->getSongsByArtist($artist_id);
+
+            if (!empty($songs)) {
+                foreach ($songs as $song) {
+                    $this->Playlist_model->add_track_to_playlist($playlist_id, $song->id);
+                }
+                $this->session->set_flashdata('message', 'Toutes les musiques de l\'artiste ont été ajoutées à la playlist.');
+            } else {
+                $this->session->set_flashdata('error', 'Aucune musique trouvée pour cet artiste.');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Veuillez sélectionner un artiste.');
+        }
+
+        redirect('playlist/view/' . $playlist_id);
+    }
+
+
+    public function add_album_to_playlist() {
+        if (!$this->session->userdata('username')) {
+            redirect('user/login');
+        }
+
+        $album_id = $this->input->post('album_id');
+        $playlist_id = $this->input->post('playlist_id');
+
+        if (!empty($album_id) && !empty($playlist_id)) {
+            $songs = $this->Model_music->getSongsByAlbum($album_id);
+
+            if (!empty($songs)) {
+                foreach ($songs as $song) {
+                    $this->Playlist_model->add_track_to_playlist($playlist_id, $song->id);
+                }
+                $this->session->set_flashdata('message', 'Toutes les musiques de l\'album ont été ajoutées à la playlist.');
+            } else {
+                $this->session->set_flashdata('error', 'Aucune musique trouvée pour cet album.');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Veuillez sélectionner un album.');
+        }
+
+        redirect('playlist/view/' . $playlist_id);
+    }
+
 
     public function add_tracks_process() {
         if (!$this->session->userdata('username')) {
@@ -250,7 +306,7 @@ class Playlist extends CI_Controller {
             if (!empty($tracks)) {
                 $playlist_name = 'Playlist Aléatoire - ' . date('Y-m-d H:i:s');
                 $visibility = 'private';
-                $image_path = 'denis.jpg'; // Utilisez une image par défaut ou laissez l'utilisateur télécharger une image.
+             
                 
                 $playlist_id = $this->Playlist_model->create_playlist($playlist_name, $user_id, $visibility, $image_path);
                 
@@ -266,30 +322,7 @@ class Playlist extends CI_Controller {
             redirect('playlist');
         }
     }
-    
-public function add_all_tracks_to_playlist() {
-    if (!$this->session->userdata('username')) {
-        redirect('user/login');
-    }
-    
-   
-    $artist_id = $this->input->post('artist_id');
-    $playlist_id = $this->input->post('playlist_id');
-    
-  
-    $songs = $this->Model_music->getSongsByArtist($artist_id);
-    
- 
-    if (!empty($songs)) {
-        foreach ($songs as $song) {
-        
-            $this->Playlist_model->add_track_to_playlist($playlist_id, $song->id);
-        }
-    }
-    
-   
-    redirect('playlist/view/' . $playlist_id);
-}
+
 
 public function edit_name() {
     if (!$this->session->userdata('username')) {

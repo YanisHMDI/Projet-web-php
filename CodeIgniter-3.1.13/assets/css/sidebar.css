@@ -1,13 +1,5 @@
 
 
-/* Styles pour les grands écrans (desktop) */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: fixed;
-}
-
 .side-header {
     width: 220px; /* Ajustez cette valeur pour correspondre à la largeur de la sidebar */
     height: 100vh;

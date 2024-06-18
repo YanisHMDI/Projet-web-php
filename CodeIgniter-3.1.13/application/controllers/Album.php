@@ -20,10 +20,9 @@ class Album extends CI_Controller {
         if ($genre_id !== null) {
             $data['albums'] = $this->Model_music->getAlbumsByGenre($genre_id);
         } else {
-            // Ici, vous devrez remplacer les arguments requis pour getAlbums()
-            // avec les valeurs appropriées selon votre application.
-            $argument1 = ''; // Remplacez par la valeur de votre premier argument
-            $argument2 = ''; // Remplacez par la valeur de votre deuxième argument
+         
+            $argument1 = ''; 
+            $argument2 = ''; 
             $data['albums'] = $this->Model_music->getAlbums($argument1, $argument2);
         }
     
@@ -36,14 +35,14 @@ class Album extends CI_Controller {
         // Charger les détails de l'album en utilisant le modèle Model_music
         $data['album'] = $this->Model_music->get_album_details($album_id);
     
-        // Vérifier si l'album est trouvé
+        // Vérifie si l'album est trouvé
         if (!$data['album']) {
             show_404();
         }
     
         // Passer artistId et genreId à la vue
-        $data['artistId'] = $data['album']->artistId; // Assurez-vous que c'est artistId tel que retourné par la requête SQL
-        $data['genreId'] = $data['album']->genreId; // Assurez-vous que c'est genreId tel que retourné par la requête SQL
+        $data['artistId'] = $data['album']->artistId; 
+        $data['genreId'] = $data['album']->genreId; 
     
         // Récupérer l'ID de l'utilisateur connecté depuis la session
         $user_id = $this->session->userdata('user_id');

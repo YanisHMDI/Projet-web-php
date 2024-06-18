@@ -14,7 +14,7 @@ class User_model extends CI_Model {
             'email' => $email,
             'password' => $password
         );
-        $this->db->insert('utilisateurs', $data); // Assurez-vous que 'utilisateurs' est le nom de votre table utilisateur
+        $this->db->insert('utilisateurs', $data); 
     }
 
     public function get_user_by_id($user_id) {
@@ -51,11 +51,11 @@ class User_model extends CI_Model {
 
     public function check_login($email, $password) {
         $this->db->where('email', $email);
-        $query = $this->db->get('utilisateurs'); // Assurez-vous que 'utilisateurs' est le nom de votre table utilisateur
+        $query = $this->db->get('utilisateurs'); 
         
         if ($query->num_rows() == 1) {
             $user = $query->row();
-            // Vérifiez si le mot de passe est correct
+            // Vérifie si le mot de passe est correct
             if (password_verify($password, $user->password)) {
                 return $user;
             } else {

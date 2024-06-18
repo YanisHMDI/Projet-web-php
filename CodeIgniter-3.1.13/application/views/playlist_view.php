@@ -89,26 +89,22 @@
             <p>Vous n'avez pas encore de playlists privées.</p>
         <?php endif; ?>
 
-        <!-- Afficher les playlists publiques -->
-        <?php if (!empty($public_playlists)): ?>
-            <h3>Playlists Publiques :</h3>
-            <div class="playlists">
-                <?php foreach ($public_playlists as $playlist): ?>
-                    <div class="playlist">
-                        <?php 
-                        $image_path = $playlist->image ? base_url($playlist->image) : base_url('denis.jpg');
-                        ?>
-                            <h3 class="playlist-title">
-                                <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
-                                <span class="playlist-options" onclick="openOptions(event, <?php echo $playlist->id; ?>)">...</span>
-                            </h3>
-                            <div id="playlist-options-<?php echo $playlist->id; ?>" class="playlist-options-menu">
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+      <!-- Afficher les playlists publiques -->
+<?php if (!empty($public_playlists)): ?>
+    <h3>Playlists Publiques :</h3>
+    <div class="playlists">
+        <?php foreach ($public_playlists as $playlist): ?>
+            <div class="playlist">
+            <h3 class="playlist-title">
+                <a href="<?php echo site_url('playlist/view/' . $playlist->id); ?>"><?php echo $playlist->name; ?></a>
+            </h3>
+            <div class="playlist-buttons">
+                <a href="<?php echo site_url('playlist/add_tracks/' . $playlist->id); ?>" class="btn">Ajouter des titres</a>
             </div>
-        <?php endif; ?>
+        </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
     </section>
 
     <!-- Bouton + -->

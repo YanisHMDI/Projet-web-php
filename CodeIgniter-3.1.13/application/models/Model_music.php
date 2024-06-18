@@ -89,15 +89,14 @@ public function get_album_details($album_id) {
 
 
     public function getTracks() {
-        $this->db->select('track.id, song.name'); // Sélectionnez les colonnes nécessaires
+        $this->db->select('track.id, song.name'); /
         $this->db->from('track');
-        $this->db->join('song', 'track.songId = song.id'); // Joignez la table des chansons pour obtenir les noms des chansons
+        $this->db->join('song', 'track.songId = song.id'); 
         $query = $this->db->get();
         return $query->result();
     }
 
     public function getTracksNotInPlaylist($playlist_id) {
-        // Sélectionnez les pistes qui ne sont pas déjà dans la playlist
         $this->db->select('track.id, song.name');
         $this->db->from('track');
         $this->db->join('song', 'track.songId = song.id');
@@ -136,18 +135,37 @@ public function get_album_details($album_id) {
         $query = $this->db->get();
         return $query->result();
     }
-    public function getSongsByArtist($artist_id) {
-        $this->db->select('song.*');
+    
+    
+    public function get_tracks_by_artist($artist_id) {
+        $this->db->select('track.id, song.name');
         $this->db->from('track');
-        $this->db->join('album', 'album.id = track.albumId');
-        $this->db->join('song', 'song.id = track.songId');
+        $this->db->join('song', 'track.songId = song.id');
+        $this->db->where('track.artist_id', $artist_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getSongsByAlbum($album_id) {
+        $this->db->select('track.id, song.name as songName');
+        $this->db->from('track');
+        $this->db->join('song', 'track.songId = song.id');
+        $this->db->where('track.albumId', $album_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+
+    public function getSongsByArtist($artist_id) {
+        $this->db->select('track.id, song.name as songName');
+        $this->db->from('track');
+        $this->db->join('song', 'track.songId = song.id');
+        $this->db->join('album', 'track.albumId = album.id');
         $this->db->where('album.artistId', $artist_id);
         $query = $this->db->get();
         return $query->result();
     }
     
-    
-
 
     
     

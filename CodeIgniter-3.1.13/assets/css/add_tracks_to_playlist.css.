@@ -1,0 +1,47 @@
+body {
+    padding: 20px; /* Ajustement de l'espacement interne du corps */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin-left: 220px; /* Décalage global vers la droite */
+}
+
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    padding: 20px;
+}
+
+.add-tracks-section {
+    flex: 1; 
+}
+
+/* Style des formulaires */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+select, button {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box; /* Taille inclut la bordure */
+}
+
+button {
+    background-color: #4CAF50; /* Couleur de fond verte pour les boutons */
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049; /* Légère variation au survol */
+}

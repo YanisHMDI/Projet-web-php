@@ -89,7 +89,7 @@ public function get_album_details($album_id) {
 
 
     public function getTracks() {
-        $this->db->select('track.id, song.name'); /
+        $this->db->select('track.id, song.name'); 
         $this->db->from('track');
         $this->db->join('song', 'track.songId = song.id'); 
         $query = $this->db->get();
